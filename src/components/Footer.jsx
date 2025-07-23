@@ -20,9 +20,12 @@ export default function Footer() {
               <a href="#" aria-label="Facebook" className="text-white hover:text-gray-400 transition-colors">
                 <FaFacebookF size={36} />
               </a>
-              <a href="#" aria-label="Twitter" className="text-white hover:text-gray-400 transition-colors">
-                <FaTwitter size={36} />
-              </a>
+              <a href="https://x.com" aria-label="X" className="text-white hover:text-gray-400 transition-colors">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1200 1227" fill="currentColor">
+                  <path d="M1198 0H949L601 505 253 0H2l430 623-430 604h249l348-486 348 486h251L768 606z"/>
+                   </svg>
+                </a>
+
               <a href="#" aria-label="YouTube" className="text-white hover:text-gray-400 transition-colors">
                 <FaYoutube size={36} />
               </a>
