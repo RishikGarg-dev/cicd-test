@@ -11,7 +11,6 @@ export default function Footer() {
             <p className="text-sm leading-relaxed max-w-xs">
               We manage your property leasing and rental needs.
             </p>
-            
             {/* Social Media Icons */}
             <div className="flex items-center gap-x-6 mt-6">
               <a href="#" aria-label="Instagram" className="text-white hover:text-gray-400 transition-colors">
@@ -21,17 +20,16 @@ export default function Footer() {
                 <FaFacebookF size={36} />
               </a>
               <a href="https://x.com" aria-label="X" className="text-white hover:text-gray-400 transition-colors">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1200 1227" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1200 1227" fill="currentColor">
                   <path d="M1198 0H949L601 505 253 0H2l430 623-430 604h249l348-486 348 486h251L768 606z"/>
-                   </svg>
-                </a>
-
+                </svg>
+              </a>
               <a href="#" aria-label="YouTube" className="text-white hover:text-gray-400 transition-colors">
                 <FaYoutube size={36} />
               </a>
             </div>
           </div>
-          <p className="text-sm">© 2025. All rights reserved.</p>
+          
         </div>
 
         {/* Contact Section */}
@@ -47,7 +45,6 @@ export default function Footer() {
           <label htmlFor="email" className="text-sm mb-2">
             Enter your email address
           </label>
-          
           <div className="bg-white rounded-full w-[330px] h-[44px] mb-4 flex items-center px-6">
             <input
               id="email"
@@ -56,12 +53,16 @@ export default function Footer() {
               className="bg-transparent text-sm text-black w-full outline-none placeholder:text-gray-500"
             />
           </div>
-
           <button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2 w-fit text-sm">
             Submit your Request now
           </button>
         </div>
       </div>
+      
+      <div className="flex justify-center mt-8">
+        <p className="text-sm text-center">© 2025. All rights reserved.</p>
+      </div>
+      
     </footer>
   );
 }
