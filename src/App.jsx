@@ -6,13 +6,17 @@ import HouseDetail from './components/HouseDetail';
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HouseList />} />
-        <Route path="/details/:id" element={<HouseDetail />} />
-      </Routes>
-    </Router>
+    <div>
+      <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HouseList />} />
+          <Route path="/details/:id" element={<HouseDetail />} />
+        </Routes>
+      </Router>
+    </div>
   );
 };
-
 export default App;
