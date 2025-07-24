@@ -1,4 +1,4 @@
-// src/components/HouseList.js
+
 import React, { useState } from 'react';
 import { houses } from '../houses';
 import HouseCard from './HouseCard';

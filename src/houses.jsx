@@ -1,4 +1,4 @@
-// src/data/houses.js
+
 export const houses = [
   {
     id: 1,

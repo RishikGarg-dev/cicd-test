@@ -1,4 +1,4 @@
-// src/components/HouseCard.js
+
 import React from 'react';
 import {
   FaBed,
