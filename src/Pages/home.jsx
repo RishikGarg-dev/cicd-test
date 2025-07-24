@@ -61,98 +61,101 @@ export default function HomePage() {
               <p className="mt-6 text-xl md:text-xl font-medium drop-shadow-sm">
                 Easy Steps to find your next home <br />Partner, View, Tour, Shift.
               </p>
-              <div className="mt-6 w-full max-w-4xl mx-auto px-4">
-                <form onSubmit={handleSubmit}>
-
-                  <div className="bg-white/20 backdrop-blur-md rounded-full px-4 py-2 flex items-center justify-between max-w-5xl mx-auto mt-20 shadow-md text-sm">
-                    {/* Location */}
-                    <div className="flex items-center gap-1">
-                      <i className="fas fa-map-marker-alt text-black ml-2"></i>
-                      <input
-                        type="text"
-                        placeholder="Enter location"
-                        className="flex-1 px-4 py-2 rounded-md text-black focus:outline-none placeholder-black text-md"
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
-
-                      />
-                    </div>
-
-                    <div className="h-6 w-px bg-black/30 mx-1" />
-
-                    {/* Price Range */}
-                    <div className="relative">
-                      <div
-                        className="flex items-center gap-1 cursor-pointer mr-15"
-                        onClick={() => setShowSlider(!showSlider)}
-                      >
-                        <i className="fas fa-money-bill-wave text-black ml-2 mr-3"></i>
-                        <span className="text-black text-md whitespace-nowrap">
-                          Price Range
-                        </span>
-                      </div>
-
-                      {/* Slider Dropdown Panel */}
-                      {showSlider && (
-                        <div className="absolute top-full mt-2 left-0 bg-white p-4 rounded-lg shadow-lg z-10 w-64">
-                          <label className="block mb-2 text-sm font-semibold text-gray-700">
-                            Max Price: ₹{price.toLocaleString()}
-                          </label>
-                          <input
-                            type="range"
-                            min="1000"
-                            max="50000"
-                            step="500"
-                            value={price}
-                            onChange={(e) => {
-                              setPrice(Number(e.target.value));
-                              setSelectedPrice(`0-${e.target.value}`);
-                            }}
-                            className="w-full"
-                          />
-                        </div>
-                      )}
-                    </div>
+              <div className="mt-6 w-full max-w-4xl mx-auto px-2 sm:px-4">
+  <form onSubmit={handleSubmit}>
+    <div className="relative bg-white/20 backdrop-blur-md rounded-full px-2 sm:px-4 py-3 sm:py-3 flex items-center justify-between max-w-full sm:max-w-5xl mx-auto mt-10 shadow-md text-xs sm:text-sm gap-1 sm:gap-2 overflow-visible">
 
 
-                    <div className="h-6 w-px bg-black/30 mx-1" />
+      {/* Location */}
+      <div className="flex items-center gap-1">
+        <i className="fas fa-map-marker-alt text-black ml-1 sm:ml-2 text-xs sm:text-sm"></i>
+        <input
+          type="text"
+          placeholder="Enter location"
+          className="px-2 sm:px-3 py-1 rounded-md text-black focus:outline-none placeholder-black text-xs sm:text-sm w-24 sm:w-auto"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+      </div>
 
-                    {/* Age */}
-                    <div className="flex items-center px-3">
-                      <i className="fas fa-hourglass-half text-black mr-3"></i>
-                      <input
-                        type="text"
-                        placeholder="Age of properties"
-                        className="bg-transparent outline-none text-black placeholder-black"
-                        value={age}
-                        onChange={(e) => setAge(e.target.value)}
-                      />
-                    </div>
+      <div className="self-stretch w-px bg-black/30 mx-1" />
 
-                    {/* Divider */}
-                    <div className="h-6 w-[1.5px] bg-black/30 mx-1" />
 
-                    {/* Property Type */}
-                    <div className="flex items-center gap-0">
-                      <i className="fas fa-building text-black ml-2"></i>
-                      <select className="flex-1 px-3 py-2 rounded-md text-black focus:outline-none cursor-pointer"
-                        value={propertyType}
-                        onChange={(e) => setPropertyType(e.target.value)}
-                      >
-                        <option value="">Property Type</option>
-                        <option value="flat">Flat</option>
-                        <option value="house">House</option>
-                        <option value="pg">PG</option>
-                      </select>
-                    </div>
 
-                    {/* Search Button */}
-                    <button className="text-black px-3 cursor-pointer">
-                      <i className="fas fa-search text-xl"></i>
-                    </button>
-                  </div>
-                </form>
-              </div>
+      {/* Price Range */}
+      <div className="relative">
+        <div
+          className="flex items-center gap-1 cursor-pointer"
+          onClick={() => setShowSlider(!showSlider)}
+        >
+          <i className="fas fa-money-bill-wave text-black ml-1 sm:ml-2 mr-1 text-xs sm:text-sm"></i>
+          <span className="text-black text-xs sm:text-sm whitespace-nowrap pr-1 ml-2 sm:mr-12">
+            Price Range
+          </span>
+        </div>
+
+        {showSlider && (
+          <div className="absolute top-full mt-2 left-0 bg-white p-4 rounded-lg shadow-lg z-10 w-64">
+            <label className="block mb-2 text-sm font-semibold text-gray-700">
+              Max Price: ₹{price.toLocaleString()}
+            </label>
+            <input
+              type="range"
+              min="1000"
+              max="50000"
+              step="500"
+              value={price}
+              onChange={(e) => {
+                setPrice(Number(e.target.value));
+                setSelectedPrice(`0-${e.target.value}`);
+              }}
+              className="w-full"
+            />
+          </div>
+        )}
+      </div>
+
+      <div className="self-stretch w-px bg-black/30 mx-1" />
+
+
+      {/* Age */}
+      <div className="flex items-center">
+        <i className="fas fa-hourglass-half text-black mr-2 text-xs sm:text-sm"></i>
+        <input
+          type="text"
+          placeholder="Age of properties"
+          className="bg-transparent outline-none text-black placeholder-black w-24 sm:w-auto text-xs sm:text-sm"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+        />
+      </div>
+
+      <div className="self-stretch w-px bg-black/30 mx-1" />
+
+
+      {/* Property Type */}
+      <div className="flex items-center">
+        <i className="fas fa-building text-black ml-1 sm:ml-2 text-xs sm:text-sm"></i>
+        <select
+          className="px-2 sm:px-3 py-1 rounded-md text-black focus:outline-none cursor-pointer text-xs sm:text-sm"
+          value={propertyType}
+          onChange={(e) => setPropertyType(e.target.value)}
+        >
+          <option value="">Property Type</option>
+          <option value="1 BHK">1 BHK</option>
+          <option value="2 BHK">2 BHK </option>
+          <option value="3 BHK">3 BHK</option>
+        </select>
+      </div>
+
+      {/* Search Button */}
+      <button className="text-black px-2 sm:px-3 cursor-pointer">
+        <i className="fas fa-search text-sm sm:text-xl"></i>
+      </button>
+    </div>
+  </form>
+</div>
+
 
 
             </div>
