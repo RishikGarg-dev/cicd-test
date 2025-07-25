@@ -5,6 +5,11 @@ import HouseList from './components/HouseList';
 import HouseDetail from './components/HouseDetail';
 
 const App = () => {
+import React from 'react';
+import Home from './Pages/home';
+
+
+function App() {
   return (
     <div>
       <h1 className="text-3xl font-bold underline">
@@ -16,7 +21,14 @@ const App = () => {
           <Route path="/details/:id" element={<HouseDetail />} />
         </Routes>
       </Router>
+    <div className="font-sans">
+      <Home />
     </div>
   );
 };
 export default App;
+  );
+}
+
+export default App;
+
