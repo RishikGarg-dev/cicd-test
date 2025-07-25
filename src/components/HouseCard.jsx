@@ -27,8 +27,8 @@ const HouseCard = ({ house, isFavorite, toggleFavorite }) => {
       onClick={handleCardClick}
       style={{
         width: 300,
-        margin: '0 10px',
-        border: '1px solid #ddd',
+        margin: '0 6px',
+        border: '2px solid #ddd',
         borderRadius: 12,
         overflow: 'hidden',
         cursor: 'pointer',

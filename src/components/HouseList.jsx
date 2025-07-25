@@ -14,6 +14,7 @@ const HouseList = () => {
 
   return (
     <div style={{ padding: 20, textAlign: 'center' }}>
+  
       <h1 className="text-xl text-red-500"> <strong>Discount Listings</strong></h1>  
       <p className='text-lg'><u>Special deals and exclusive discounts -rent smarter, save more.</u></p>
 

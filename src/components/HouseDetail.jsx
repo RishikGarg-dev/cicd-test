@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { houses } from '../houses';
@@ -19,25 +18,21 @@ const HouseDetail = () => {
     );
   };
 
-  if (!house) return <div>House not found</div>;
+  if (!house) return <div className="p-4">House not found</div>;
 
   const isFavorite = favorites.includes(house.id);
 
   return (
-    <div style={{ padding: 20 }}>
-      <div style={{ position: 'relative' }}>
+    <div className="p-4">
+      {/* Main Image & Favorite Icon */}
+      <div className="relative">
         <img
           src={house.image}
-          alt="Detail"
-          style={{
-            width: '100%',
-            height: '700px',
-            objectFit: 'cover',
-            borderRadius: 10,
-          }}
+          alt="House"
+          className="w-full h-[500px] md:h-[600px] object-cover rounded-lg"
         />
         <div
-          style={{ position: 'absolute', top: 20, right: 20, cursor: 'pointer' }}
+          className="absolute top-5 right-5 cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
             toggleFavorite(house.id);
@@ -51,36 +46,35 @@ const HouseDetail = () => {
         </div>
       </div>
 
-      <h2 className='text-2xl font-medium' style={{  marginTop: 20 }}> {house.title}</h2>
-      <p className='text-2xl'><strong>Location:</strong> {house.location}</p>
-      <p className='text-2xl'><strong>Size:</strong> {house.size}</p>
-      <p className='text-2xl'><strong>Beds:</strong> {house.beds}</p>
-      <p className='text-2xl'><strong>Vehicles:</strong> {house.vehicles}</p>
-      <p className='text-2xl'><strong>Type:</strong> {house.type}</p>
-      <p className='text-2xl'><strong>Price:</strong> ₹{house.price} <span style={{ color: 'red' }}>{house.discount}</span></p>
+      {/* House Details */}
+      <h2 className="text-2xl font-semibold mt-6">{house.title}</h2>
+      <p className="text-lg"><strong>Location:</strong> {house.location}</p>
+      <p className="text-lg"><strong>Size:</strong> {house.size}</p>
+      <p className="text-lg"><strong>Beds:</strong> {house.beds}</p>
+      <p className="text-lg"><strong>Vehicles:</strong> {house.vehicles}</p>
+      <p className="text-lg"><strong>Type:</strong> {house.type}</p>
+      <p className="text-lg">
+        <strong>Price:</strong> ₹{house.price}{' '}
+        <span className="text-red-500">{house.discount}</span>
+      </p>
 
-      <h1 className='text-xl font-medium' style={{ marginTop: 40 }}> Similar Listings</h1>
-      <div
-        style={{
-          display: 'flex',
-          overflowX: 'auto',
-          paddingTop: 20,
-          gap: 10,
-        }}
-      >
+      {/* Similar Listings */}
+      <h1 className="text-xl font-medium mt-10 mb-4">Similar Listings</h1>
+      <div className='max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-5'>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-3">
         {houses
           .filter(h => h.id !== house.id)
           .map(h => (
-            <div key={h.id} style={{ display: 'inline-block' }}>
-              <HouseCard
-                house={h}
-                isFavorite={favorites.includes(h.id)}
-                toggleFavorite={toggleFavorite}
-              />
-            </div>
+            <HouseCard
+              key={h.id}
+              house={h}
+              isFavorite={favorites.includes(h.id)}
+              toggleFavorite={toggleFavorite}
+            />
           ))}
       </div>
     </div>
+  </div>
   );
 };
 
