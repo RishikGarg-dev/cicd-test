@@ -26,7 +26,7 @@ const features = [
 
 export default function TrustedProperties() {
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="pt-4 pb-12 bg-gray-50">
       <h2 className="text-3xl font-bold text-center mb-8">Trusted Properties</h2>
       <p className="max-w-2xl text-center mx-auto mb-12">
         Rent confidently. Swiftly connects you with genuine listings, flexible options,
