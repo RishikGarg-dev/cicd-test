@@ -1,16 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import FeaturedProperties from './components/FeaturedProperties.jsx';
-import TrustedProperties from './components/TrustedProperties';
-import StartRenting from './components/StartRenting';
-import CardCarousel from './components/home.jsx';
-import Footer from './components/Footer';
-
-import './App.css';
+import FeaturedProperties from "./components/FeaturedProperties";
+import TrustedProperties from "./components/TrustedProperties";
+import StartRenting from "./components/StartRenting";
+import CardCarousel from "./components/home";
+import Footer from "./components/Footer";
 
 const Home = () => (
-  <div>
+  <div className="overflow-x-hidden">
     <FeaturedProperties />
     <CardCarousel />
     <TrustedProperties />
@@ -28,5 +26,5 @@ export default function App() {
         <Footer />
       </div>
     </Router>
-  );
+  );
 }
