@@ -27,10 +27,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-<div >
-    <h1> this the testing page of the swiftly </h1>
-    <p> this is the Properties Pages of the swiftly </p>
-    <h1> Worj</h1>
-</div>

@@ -14,7 +14,7 @@ const HouseCard = ({ house, isFavorite, toggleFavorite }) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate(`/details/${house.id}`);
+    navigate(`/properties/${house.id}`);
   };
 
   const handleHeartClick = (e) => {
