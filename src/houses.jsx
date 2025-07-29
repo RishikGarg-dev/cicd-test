@@ -63,8 +63,8 @@ export const houses = [
 
   {
     id: 6,
-    title: 'Sun City My Homes 10th Floor',
-    location: 'ShadNagar ,Hyderabad ,500079',
+    title: 'City Homes 1st Floor',
+    location: 'Madhapur,Hyderabad ,500089',
     image: '/images/img5.jpg',
     beds: 2,
     size: '1600 Sq Ft',
@@ -75,14 +75,14 @@ export const houses = [
   },
   {
     id: 7,
-    title: 'Sun City My Homes 10th Floor',
-    location: 'ShadNagar ,Hyderabad ,500079',
+    title: 'My Homes 2nd Floor',
+    location: 'Hi-Tech City,Hyderabad ,500779',
     image: '/images/img5.jpg',
     beds: 2,
-    size: '1600 Sq Ft',
+    size: '1800 Sq Ft',
     vehicles: '2 2W+1 4W',
     type: 'Flat',
-    price: 20000,
+    price: 60000,
     discount: '15% OFF for 1st 3 months',
   },
 ];

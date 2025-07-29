@@ -1,22 +1,22 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HouseList from './components/HouseList';
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
 import HouseDetail from './components/HouseDetail';
-import Home from './Pages/home';
+import HomePage from './Pages/home';
+import Header from './components/Header';
 
 
 function App() {
   return (
     <div>
-      <Router>
-           <Home />
+      
+      <Router>   
+        <Header/>
         <Routes>
-          <Route path="/" element={<HouseList />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/details/:id" element={<HouseDetail />} />
         </Routes>
-      </Router>
-    
+      </Router>   
     </div>
   )
   }
