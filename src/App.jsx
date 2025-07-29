@@ -7,19 +7,21 @@ import StartRenting from "./components/StartRenting";
 import CardCarousel from "./components/home";
 import Footer from "./components/Footer";
 
-const Home = () => (
-  <div className="overflow-x-hidden">
-    <FeaturedProperties />
-    <CardCarousel />
-    <TrustedProperties />
-    <StartRenting />
-  </div>
-);
+const Home = () => {
+  return (
+    <div className="overflow-x-hidden">
+      <FeaturedProperties />
+      <CardCarousel />
+      <TrustedProperties />
+      <StartRenting />
+    </div>
+  );
+};
 
 export default function App() {
   return (
     <Router>
-      <div className="max-w-full overflow-hidden">
+      <div className="flex flex-col min-h-screen max-w-full overflow-x-hidden">
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
