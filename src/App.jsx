@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import FeaturedProperties from "./components/FeaturedProperties";
 import TrustedProperties from "./components/TrustedProperties";
 import StartRenting from "./components/StartRenting";
-import CardCarousel from "./components/home";
+import CardCarousel from "./components/CardCarousel";
 import Footer from "./components/Footer";
 
 const Home = () => {
