@@ -1,20 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+import FeaturedProperties from "./components/FeaturedProperties";
+import TrustedProperties from "./components/TrustedProperties";
+import StartRenting from "./components/StartRenting";
+import CardCarousel from "./components/CardCarousel";
+import Footer from "./components/Footer";
 
+const Home = () => {
   return (
-  
-      <div>
-     
-  <h1 className="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+    <div className="overflow-x-hidden">
+      <FeaturedProperties />
+      <CardCarousel />
+      <TrustedProperties />
+      <StartRenting />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default function App() {
+  return (
+    <Router>
+      <div className="flex flex-col min-h-screen max-w-full overflow-x-hidden">
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
