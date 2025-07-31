@@ -27,7 +27,7 @@ const HouseDetail = () => {
 
   return (
     <div className="p-4 max-w-screen-xl mx-auto">
-      {/* Title, Price & Deposit*/}
+      
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center px-2 md:px-0 mb-4">
         <div>
           <h2 className="text-2xl font-semibold">{house.title}</h2>
@@ -42,7 +42,6 @@ const HouseDetail = () => {
         </div>
       </div>
 
-      {/* Property Image */}
       <div className="relative mb-6">
         <img
           src={house.image}
@@ -64,10 +63,9 @@ const HouseDetail = () => {
         </div>
       </div>
 
-      {/* Property Summary Section */}
       <h1 className="text-xl font-semibold "> Property Summary </h1>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-6">
-        {/* Additional Property Details*/}
+        
         <div className="flex items-center">
           <FaBed className="mr-2 text-gray-600" />
           <span>{house.beds} BHK</span>
@@ -126,11 +124,9 @@ const HouseDetail = () => {
         </div>
       </div>
 
-      {/* Description Section */}
       <h3 className="text-lg font-semibold mb-2">Description</h3>
       <p>{house.description}</p>
 
-      {/* Nearby Accessibility Section */}
       <div className="pt-8 mt-10">
         <h3 className="text-xl font-semibold mb-6">Nearby Accessibility</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -149,7 +145,6 @@ const HouseDetail = () => {
             </li>
           </ul>
 
-          {/* Map Image */}
           <div>
             <img
               src={house.mapImage}
@@ -160,7 +155,6 @@ const HouseDetail = () => {
         </div>
       </div>
 
-      {/* Schedule a Tour & Apply Now */}
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <p className="text-gray-800 text-base mb-3">
@@ -183,7 +177,6 @@ const HouseDetail = () => {
         </div>
       </div>
 
-      {/* Similar Listings Section */}
       <div className="mt-10">
         <h3 className="text-xl font-semibold mb-4">Similar Listings</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6">

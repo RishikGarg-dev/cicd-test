@@ -24,8 +24,8 @@ const HouseList = () => {
           whiteSpace: 'nowrap',
           display: 'flex',
           justifyContent: 'flex-start',
-          maxWidth: '960px', // 3 cards * 300px + some margin
-          margin: '30px auto', // centers the scroll area
+          maxWidth: '960px', 
+          margin: '30px auto',
           paddingBottom: 10,
         }}
       >

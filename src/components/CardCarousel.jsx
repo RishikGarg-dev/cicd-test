@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { FaBed, FaRulerCombined, FaCarSide, FaHome } from 'react-icons/fa';
 
-const cardData = [
-   {
+const cardData = [ {
       id: 1,
       title: 'Urban Tuplis 10th Floor',
       location: 'Jubilee Hills, Hyderabad',
@@ -61,80 +60,70 @@ const cardData = [
       type: 'Villa',
       price: '3.4 Cr',
       discount: '10% OFF',
-    },
-];
+    }, ];
 
 export default function CardCarousel() {
   const [centerIndex, setCenterIndex] = useState(2);
-  const containerRef = useRef(null);
+  const [dragOffset, setDragOffset] = useState(0);
   const dragStartX = useRef(null);
-  const dragging = useRef(false);
 
   const handleMouseDown = (e) => {
-    dragging.current = true;
     dragStartX.current = e.clientX;
   };
 
   const handleMouseMove = (e) => {
-    if (!dragging.current || dragStartX.current === null) return;
-
+    if (dragStartX.current === null) return;
     const delta = e.clientX - dragStartX.current;
-
-    if (containerRef.current) {
-      containerRef.current.style.transform = `translateX(${delta}px)`;
-    }
+    setDragOffset(delta);
   };
 
-  const handleMouseUp = (e) => {
-    dragging.current = false;
+  const handleMouseUp = () => {
+    if (dragStartX.current === null) return;
 
-    const delta = e.clientX - (dragStartX.current ?? 0);
+    const delta = dragOffset;
+    const threshold = 100;
 
-    if (containerRef.current) {
-      containerRef.current.style.transform = 'translateX(0)';
+    if (delta < -threshold && centerIndex < cardData.length - 1) {
+      setCenterIndex((prev) => prev + 1);
+    } else if (delta > threshold && centerIndex > 0) {
+      setCenterIndex((prev) => prev - 1);
     }
 
-    if (Math.abs(delta) > 50) {
-      if (delta < 0 && centerIndex < cardData.length - 1) {
-        setCenterIndex(centerIndex + 1);
-      } else if (delta > 0 && centerIndex > 0) {
-        setCenterIndex(centerIndex - 1);
-      }
-    }
-
+    setDragOffset(0);
     dragStartX.current = null;
   };
 
   const getStyles = (i) => {
     const diff = i - centerIndex;
+    const isDragging = dragStartX.current !== null;
+    const dragTranslate = isDragging ? dragOffset / 10 : 0;
+
     const scale = 1 - Math.min(Math.abs(diff) * 0.15, 0.5);
-    const translate = diff * 60;
+    const translateX = diff * 60 + dragTranslate;
     const zIndex = 100 - Math.abs(diff);
     const opacity = Math.abs(diff) > 2 ? 0 : 1;
 
     return {
-      transform: `translateX(${translate}%) scale(${scale})`,
+      transform: `translateX(${translateX}%) scale(${scale})`,
       zIndex,
       opacity,
+      transition: isDragging ? 'none' : 'transform 0.3s ease',
     };
   };
 
   return (
     <div
       className="relative w-full h-[400px] overflow-hidden select-none"
+      onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
-      onMouseDown={handleMouseDown}
     >
-      <div
-        ref={containerRef}
-        className="relative flex items-center justify-center h-full transition-transform duration-300 ease-in-out"
-      >
+      <div className="relative flex items-center justify-center h-full">
         {cardData.map((card, i) => (
           <div
             key={card.id}
-            className="absolute w-[300px] h-[360px] p-4 bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out"
+            className="absolute w-[300px] h-[360px] p-4 bg-white rounded-xl shadow-lg"
             style={getStyles(i)}
           >
             <div

@@ -5,7 +5,6 @@ export default function StartRenting() {
   return (
     <section className="py-12 bg-white">
       <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-8 px-4">
-        {/* Left Text Section */}
         <div className="flex-1 text-center lg:text-left">
           <h2 className="text-3xl font-bold mb-4">
             Start Renting Out Your Property Today
@@ -19,7 +18,6 @@ export default function StartRenting() {
           </button>
         </div>
 
-        {/* Right Image with Overlay Box */}
         <div className="relative w-[260px] sm:w-[300px] md:w-[320px] lg:w-[360px]">
           <img
             src={img4}
@@ -28,7 +26,6 @@ export default function StartRenting() {
 
           />
 
-          {/* Bigger Overlay stats box */}
           <div
             className={`
               absolute bottom-6

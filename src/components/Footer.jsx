@@ -4,14 +4,12 @@ export default function Footer() {
   return (
     <footer className="bg-[#1D1E20] w-full text-white px-16 py-10">
       <div className="flex justify-between items-start">
-        {/* Services Section */}
         <div className="flex flex-col justify-between h-full min-h-[250px]">
           <div>
             <h2 className="text-lg font-semibold mb-3">Services</h2>
             <p className="text-sm leading-relaxed max-w-xs">
               We manage your property leasing and rental needs.
             </p>
-            {/* Social Media Icons */}
             <div className="flex items-center gap-x-6 mt-6">
               <a href="#" aria-label="Instagram" className="text-white hover:text-gray-400 transition-colors">
                 <FaInstagram size={36} />
@@ -31,15 +29,11 @@ export default function Footer() {
           </div>
           
         </div>
-
-        {/* Contact Section */}
         <div className="flex flex-col gap-2">
           <h2 className="text-lg font-semibold mb-2">Contact</h2>
           <p className="text-sm">+91 9573263944</p>
           <p className="text-sm">info@shswift.com</p>
         </div>
-
-        {/* Support Section */}
         <div className="flex flex-col">
           <h2 className="text-lg font-semibold mb-3">Support</h2>
           <label htmlFor="email" className="text-sm mb-2">
@@ -59,7 +53,7 @@ export default function Footer() {
         </div>
       </div>
       
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center">
         <p className="text-sm text-center">© 2025. All rights reserved.</p>
       </div>
       
