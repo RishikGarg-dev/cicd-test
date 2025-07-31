@@ -18,7 +18,7 @@ const HouseCard = ({ house, isFavorite, toggleFavorite }) => {
   };
 
   const handleHeartClick = (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     toggleFavorite(house.id);
   };
 

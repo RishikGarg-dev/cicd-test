@@ -27,7 +27,7 @@ const HouseDetail = () => {
 
   return (
     <div className="p-4 max-w-screen-xl mx-auto">
-      
+
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center px-2 md:px-0 mb-4">
         <div>
           <h2 className="text-2xl font-semibold">{house.title}</h2>
@@ -65,7 +65,7 @@ const HouseDetail = () => {
 
       <h1 className="text-xl font-semibold "> Property Summary </h1>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-6">
-        
+
         <div className="flex items-center">
           <FaBed className="mr-2 text-gray-600" />
           <span>{house.beds} BHK</span>
@@ -161,7 +161,7 @@ const HouseDetail = () => {
             <strong>Want to visit the Property?</strong><br />
             Just schedule the time by clicking on schedule a tour.
           </p>
-          <button className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition">
+          <button className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition cursor-pointer">
             Schedule a Tour
           </button>
         </div>
@@ -171,7 +171,7 @@ const HouseDetail = () => {
             <strong>Click Apply Now to begin your rental journey.</strong><br />
             It takes just a few minutes to share your details, upload documents, and take the first step toward securing your new home.
           </p>
-          <button className="bg-green-500 text-white py-2 px-6 rounded-md hover:bg-green-600 transition">
+          <button className="bg-green-500 text-white py-2 px-6 rounded-md hover:bg-green-600 transition cursor-pointer">
             Apply Now
           </button>
         </div>
