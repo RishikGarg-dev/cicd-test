@@ -1,19 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
-import Header from './components/Header';
 import HouseDetail from './components/HouseDetail';
 import HomePage from './Pages/home';
 import Properties from './Pages/propertiespage';
-import VerifiedListings from './pages/verifiedlistingpage'
-import FurnitureRewards from './pages/furniturerewardspage'
-import UpToDayRentals from './pages/uptodayrentalspage'
+import VerifiedListings from './Pages/verifiedlistingpage'
+import FurnitureRewards from './Pages/furniturerewardspage'
+import UpToDayRentals from './Pages/uptodayrentalspage'
 import Footer from './components/Footer';
 
 function App() {
   return (
     <div>
       <Router>
-        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/properties" element={<Properties />} />

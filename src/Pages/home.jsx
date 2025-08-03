@@ -4,14 +4,18 @@ import { houses } from '../houses';
 import HouseCard from '../components/HouseCard';
 import CardCarousel from '../components/CardCarousel';
 import img4 from "../assets/office.jpg";
+import Navbar from '../components/NavBar';
 
 export default function HomePage() {
   const [price, setPrice] = useState(5000);
   const [location, setLocation] = useState('');
   const [selectedPrice, setSelectedPrice] = useState('');
   const [age, setAge] = useState('');
+  const [selectedAge, setSelectedAge] = useState('');
+
   const [propertyType, setPropertyType] = useState('');
   const [showSlider, setShowSlider] = useState(false);
+  const [showAgeSlider, setShowAgeSlider] = useState(false);
   const [favorites, setFavorites] = useState([]);
 
   const navigate = useNavigate();
@@ -24,55 +28,60 @@ export default function HomePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = { location, selectedPrice, age, propertyType };
+
+    const formData = {
+      location,
+      selectedPrice,
+      age,
+      propertyType,
+    };
+
     console.log("Form Data:", formData);
   };
 
   return (
     <div className="min-h-screen bg-white text-black">
+      <Navbar />
 
       {/* Hero Section */}
-
-
-
-
       <section className="relative w-full min-h-screen">
-        <div className="bg-cover bg-center h-[600px] w-full relative" style={{ backgroundImage: "url('/banner.png')" }}>
+        <div className="bg-[url('/banner.png')] bg-cover bg-center h-150 w-full relative">
+          {/* Text on Top of Image */}
           <div className="absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
-            <h1 className="text-4xl sm:text-5xl font-bold text-white leading-snug">
+            <h1 className="text-5xl font-bold text-white text-center leading-snug">
               Find, Rent, and Manage <br />Homes Swiftly
             </h1>
-            <p className="mt-6 text-lg sm:text-xl font-medium drop-shadow-sm">
+            <p className="mt-6 text-xl md:text-xl font-medium drop-shadow-sm">
               Easy Steps to find your next home <br />Partner, View, Tour, Shift.
             </p>
-
             <div className="mt-6 w-full max-w-4xl mx-auto px-2 sm:px-4">
               <form onSubmit={handleSubmit}>
-                <div className="relative bg-white/20 backdrop-blur-md rounded-full px-4 py-3 flex items-center justify-between gap-2 overflow-visible">
+                <div className="relative bg-white/100 backdrop-blur-md rounded-full px-1 sm:px-4 py-2 sm:py-3 flex items-center justify-between w-full max-w-[95vw] sm:max-w-5xl mx-auto mt-10 shadow-md text-[10px] sm:text-sm gap-1 sm:gap-2 whitespace-nowrap">
 
-
-                  <div className="flex items-center gap-2">
-                    <i className="fas fa-map-marker-alt text-black text-sm"></i>
+                  {/* Location */}
+                  <div className="flex items-center gap-1">
+                    <i className="fas fa-map-marker-alt text-black ml-1 sm:ml-2 text-[10px] sm:text-sm"></i>
                     <input
                       type="text"
                       placeholder="Enter location"
-                      className="px-3 py-1 rounded-md text-black focus:outline-none placeholder-black text-sm"
+                      className="px-1 sm:px-2 py-1 rounded-md text-black focus:outline-none placeholder-black text-[9px] sm:text-sm w-16 sm:w-28"
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
                     />
                   </div>
 
+                  <div className="self-stretch w-px bg-black/30 mx-0.5 sm:mx-1" />
 
-                  <div className="self-stretch w-px bg-black/30 mx-2" />
-
-
+                  {/* Price Range */}
                   <div className="relative">
                     <div
                       className="flex items-center gap-1 cursor-pointer"
                       onClick={() => setShowSlider(!showSlider)}
                     >
-                      <i className="fas fa-money-bill-wave text-black text-sm"></i>
-                      <span className="text-black text-sm">Price Range</span>
+                      <i className="fas fa-money-bill-wave text-black ml-0.5 sm:ml-2 mr-0.5 sm:mr-1 text-[10px] sm:text-sm"></i>
+                      <span className="text-black text-[9px] sm:text-sm whitespace-nowrap ml-0.5 sm:ml-2">
+                        Price Range
+                      </span>
                     </div>
 
                     {showSlider && (
@@ -83,7 +92,7 @@ export default function HomePage() {
                         <input
                           type="range"
                           min="1000"
-                          max="50000"
+                          max="700000"
                           step="500"
                           value={price}
                           onChange={(e) => {
@@ -96,25 +105,58 @@ export default function HomePage() {
                     )}
                   </div>
 
-                  <div className="self-stretch w-px bg-black/30 mx-2" />
+                  <div className="self-stretch w-px bg-black/30 mx-0.5 sm:mx-1" />
 
-                  <div className="flex items-center gap-2">
-                    <i className="fas fa-hourglass-half text-black text-sm"></i>
-                    <input
-                      type="text"
-                      placeholder="Age of properties"
-                      className="bg-transparent outline-none text-black placeholder-black text-sm"
-                      value={age}
-                      onChange={(e) => setAge(e.target.value)}
-                    />
+                  {/* Age */}
+                  <div className="relative flex items-center gap-1 sm:gap-2 mr-2 sm:mr-4">
+                    <i className="fas fa-hourglass-half text-black text-[10px] sm:text-sm"></i>
+
+                    <span
+                      className="text-[9px] sm:text-sm text-black cursor-pointer hidden sm:inline"
+                      onClick={() => setShowAgeSlider(!showAgeSlider)}
+                    >
+                      Age of Property
+                    </span>
+                    
+                    <span
+                      className="text-[9px] text-black cursor-pointer sm:hidden"
+                      onClick={() => setShowAgeSlider(!showAgeSlider)}
+                    >
+                      Age of Property
+                    </span>
+
+                    {showAgeSlider && (
+                      <div
+                        className="absolute top-full mt-2 left-0 bg-white p-4 rounded-lg shadow-lg z-10 w-64"
+                        onClick={(e) => e.stopPropagation()} // ✅ Prevents closing on click
+                      >
+                        <label className="block mb-2 text-sm font-semibold text-gray-700">
+                          Max Age: {age} years
+                        </label>
+                        <input
+                          type="range"
+                          min="1"
+                          max="100"
+                          step="1"
+                          value={age}
+                          onChange={(e) => {
+                            setAge(Number(e.target.value));
+                            setSelectedAge(`0-${e.target.value}`);
+                          }}
+                          className="w-full"
+                        />
+                      </div>
+                    )}
                   </div>
 
-                  <div className="self-stretch w-px bg-black/30 mx-2" />
+                  <div className="self-stretch w-px bg-black/30 mx-0.5 sm:mx-1" />
 
-                  <div className="flex items-center gap-2">
-                    <i className="fas fa-building text-black text-sm"></i>
+                  {/* Property Type */}
+                  <div className="flex items-center">
+                    <i className="fas fa-building text-black ml-0.5 sm:ml-2 text-[10px] sm:text-sm"></i>
                     <select
-                      className="px-3 py-1 rounded-md text-black focus:outline-none cursor-pointer text-sm"
+                      className="text-[9px] sm:text-sm px-1 py-1 sm:px-3 rounded-md text-black focus:outline-none cursor-pointer 
+                                 w-[70px] sm:w-auto min-w-[60px] appearance-none"
                       value={propertyType}
                       onChange={(e) => setPropertyType(e.target.value)}
                     >
@@ -122,11 +164,13 @@ export default function HomePage() {
                       <option value="1 BHK">1 BHK</option>
                       <option value="2 BHK">2 BHK</option>
                       <option value="3 BHK">3 BHK</option>
+                      <option value="4 BHK">4 BHK</option>
                     </select>
                   </div>
 
-                  <button className="text-black px-3 py-1 cursor-pointer">
-                    <i className="fas fa-search text-xl"></i>
+                  {/* Search Button */}
+                  <button className="text-black px-1 sm:px-2 cursor-pointer">
+                    <i className="fas fa-search text-sm sm:text-xl"></i>
                   </button>
                 </div>
               </form>
@@ -156,9 +200,7 @@ export default function HomePage() {
       </section>
 
       {/* CardCarousel section */}
-
       <section className='px-4 sm:px-6 py-10 text-center min-h-screen flex flex-col justify-center ' >
-
         <div className='m-16'>
           <h1 className='text-2xl sm:text-3xl  font-bold ' > Featured Properties </h1>
         </div>
@@ -166,9 +208,6 @@ export default function HomePage() {
           <CardCarousel />
         </div>
       </section>
-
-
-
 
       {/* Trusted Properties */}
       <section className="bg-gray-50 py-12 px-4 sm:px-6 min-h-screen flex flex-col justify-center">
@@ -218,8 +257,6 @@ export default function HomePage() {
       </section>
 
       {/* StartRenting Section */}
-
-
       <section className="py-12 bg-white min-h-screen flex items-center">
         <div className="max-w-full mx-auto flex flex-col lg:flex-row justify-between gap-70 px-4 sm:px-6 lg:px-8">
 
