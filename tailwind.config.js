@@ -1,6 +1,5 @@
-// tailwind.config.js
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx,html}'], // update as needed
+  content: ['./src/**/*.{js,jsx,ts,tsx,html}'],
   theme: {
     extend: {
       keyframes: {
@@ -14,5 +13,8 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+    require('tailwind-scrollbar-hide'), // ⬅️ Add this
+  ],
 };
