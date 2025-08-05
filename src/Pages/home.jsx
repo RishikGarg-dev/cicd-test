@@ -151,8 +151,6 @@ export default function HomePage() {
             </form>
 
             {/* Mobile Filters */}
-            {/* Filters Row (Mobile only) */}
-{/* Mobile Filters */}
 <div className="sm:hidden mt-4 px-4 relative z-10">
   <div className="relative w-full">
     <div className="flex gap-2 justify-between w-full">
