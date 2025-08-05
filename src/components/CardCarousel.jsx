@@ -8,6 +8,7 @@ import {
   FaRegHeart,
 } from 'react-icons/fa';
 import { houses } from '../houses';
+
 export default function CardCarousel() {
   const [centerIndex, setCenterIndex] = useState(2);
   const [favorites, setFavorites] = useState([]);
@@ -77,10 +78,13 @@ export default function CardCarousel() {
     const total = houses.length;
     const diff = ((i - centerIndex + total) % total + total) % total;
     const visibleIndex = diff > total / 2 ? diff - total : diff;
+
+    const isMobile = window.innerWidth < 640;
+    const translate = visibleIndex * (isMobile ? 60 : 75);
     const scale = 1 - Math.min(Math.abs(visibleIndex) * 0.1, 0.4);
-    const translate = visibleIndex * 75;
     const zIndex = 100 - Math.abs(visibleIndex);
     const opacity = Math.abs(visibleIndex) > 2 ? 0 : 1;
+
     return {
       transform: `translateX(${translate}%) scale(${scale})`,
       zIndex,
@@ -96,7 +100,7 @@ export default function CardCarousel() {
 
   return (
     <div
-      className="relative w-full h-[430px] overflow-hidden select-none px-[5px] cursor-pointer"
+      className="relative w-full h-[380px] sm:h-[430px] overflow-hidden select-none px-[5px] cursor-pointer"
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
@@ -112,29 +116,32 @@ export default function CardCarousel() {
         {houses.map((card, i) => (
           <div
             key={card.id}
-            className="absolute w-[85vw] sm:w-[80vw] max-w-[320px] h-[420px] p-4 bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out"
+            className="absolute w-50vw] sm:w-[80vw] max-w-[300px] h-[280px] sm:h-[420px] p-3 sm:p-4 bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out"
             style={getStyles(i)}
           >
             <div
-              className="absolute top-3 right-3 cursor-pointer z-10"
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleFavorite(card.id);
-              }}
-            >
-              {favorites.includes(card.id) ? (
-                <FaHeart size={30} className="text-red-500" />
-              ) : (
-                <FaRegHeart size={30} className="text-black-400" />
-              )}
-            </div>
+  className="absolute top-3 right-3 bg-white rounded-full p-2 shadow-md cursor-pointer z-10"
+  onClick={(e) => {
+    e.stopPropagation();
+    toggleFavorite(card.id);
+  }}
+>
+  {favorites.includes(card.id) ? (
+    <FaHeart size={24} className="text-red-500" />
+  ) : (
+    <FaRegHeart size={24} className="text-gray-600" />
+  )}
+</div>
+
             <div
-              className="w-full h-52 bg-cover bg-center rounded-md mb-3"
+              className="w-full h-36 sm:h-52 bg-cover bg-center rounded-md mb-2"
               style={{ backgroundImage: `url(${card.image})` }}
             />
-            <h3 className="text-base sm:text-lg font-semibold">{card.title}</h3>
-            <p className="text-sm sm:text-base text-gray-500 mb-2">📍{card.location}</p>
-            <div className="flex justify-between text-sm mb-1">
+            <h3 className="text-sm sm:text-lg font-semibold">{card.title}</h3>
+            <p className="text-xs sm:text-sm text-gray-500 mb-1 truncate">
+              📍{card.location}
+            </p>
+            <div className="flex justify-between text-xs sm:text-sm mb-1">
               <div className="flex items-center gap-1">
                 <FaBed /> {card.beds}
               </div>
@@ -142,7 +149,7 @@ export default function CardCarousel() {
                 <FaRulerCombined /> {card.size}
               </div>
             </div>
-            <div className="flex justify-between text-sm mb-2">
+            <div className="flex justify-between text-xs sm:text-sm mb-2">
               <div className="flex items-center gap-1">
                 <FaCarSide /> {card.vehicles}
               </div>
@@ -150,7 +157,7 @@ export default function CardCarousel() {
                 <FaHome /> {card.type}
               </div>
             </div>
-            <p className="text-xl sm:text-2xl font-bold text-center text-blue-800">
+            <p className="text-lg sm:text-2xl font-bold text-center text-blue-800">
               ₹{card.price}
             </p>
           </div>
