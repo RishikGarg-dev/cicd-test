@@ -1,32 +1,30 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
+import HouseDetail from './components/HouseDetail';
+import HomePage from './Pages/home';
+import Properties from './Pages/propertiespage';
+import VerifiedListings from './Pages/verifiedlistingpage'
+import FurnitureRewards from './Pages/furniturerewardspage'
+import UpToDayRentals from './Pages/uptodayrentalspage'
+import Footer from './components/Footer';
 
-import FeaturedProperties from "./components/FeaturedProperties";
-import TrustedProperties from "./components/TrustedProperties";
-import StartRenting from "./components/StartRenting";
-import CardCarousel from "./components/CardCarousel";
-import Footer from "./components/Footer";
-
-const Home = () => {
+function App() {
   return (
-    <div className="overflow-x-hidden">
-      <FeaturedProperties />
-      <CardCarousel />
-      <TrustedProperties />
-      <StartRenting />
-    </div>
-  );
-};
-
-export default function App() {
-  return (
-    <Router>
-      <div className="flex flex-col min-h-screen max-w-full overflow-x-hidden">
+    <div>
+      <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/properties" element={<Properties />} />
+          <Route path="/properties/:id" element={<HouseDetail />} />
+          <Route path="/verified-listings" element={<VerifiedListings />} />
+          <Route path="/furniture-rewards" element={<FurnitureRewards />} />
+          <Route path="/up-to-day-rentals" element={<UpToDayRentals />} />
         </Routes>
         <Footer />
-      </div>
-    </Router>
-  );
+      </Router>
+    </div>
+  )
 }
+
+export default App
+

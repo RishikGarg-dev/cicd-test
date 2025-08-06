@@ -65,6 +65,42 @@ The app will be running at `http://localhost:5173`.
 
 4. Create a **Pull Request (PR)** to `main` from GitHub.
 
+### 📝 How to Raise a Pull Request (PR):
+
+1. **Navigate to GitHub Repository**:
+   - Go to `https://github.com/amentcapital-dev/swiftly`
+   - You'll see a banner suggesting to "Compare & pull request" for your recently pushed branch
+
+2. **Create the Pull Request**:
+   - Click **"Compare & pull request"** button
+   - Or go to **"Pull requests"** tab → **"New pull request"**
+
+3. **Fill PR Details**:
+   ```
+   Title: fix: setup Tailwind CSS v4 and resolve JSX className issue
+   
+   Description:
+   ## Changes Made
+   - ✅ Added @tailwindcss/vite plugin to vite.config.js
+   - ✅ Fixed className attribute in App.jsx (was using 'class')
+   - ✅ Added proper Tailwind CSS import in index.css
+   - ✅ Resolved encoding issues in CSS file
+   
+   ## Testing
+   - [x] Tailwind CSS classes now work correctly
+   - [x] Development server runs without errors
+   - [x] Styles are properly applied to components
+   ```
+
+4. **Select Reviewers & Labels**:
+   - Add team members as reviewers
+   - Add appropriate labels (e.g., `bug`, `enhancement`, `documentation`)
+
+5. **Submit the PR**:
+   - Click **"Create pull request"**
+   - Wait for code review and approval
+   - Merge after approval ✅
+
 ---
 
 ## 📁 Folder Structure
