@@ -137,12 +137,11 @@ export default function CardCarousel() {
               className="w-full h-36 sm:h-52 bg-cover bg-center rounded-md mb-2"
               style={{ backgroundImage: `url(${card.image})` }}
             />
-            <h3 className="text-sm sm:text-lg font-semibold">{card.title}</h3>
-            <p className="text-xs sm:text-sm text-gray-500 mb-1 truncate">
-              📍{card.location}
-            </p>
-            <div className="flex justify-between text-xs sm:text-sm mb-1">
-              <div className="flex items-center gap-1">
+
+            <h3 className="text-base sm:text-lg font-semibold">{card.title}</h3>
+            <p className="text-sm sm:text-base text-gray-500 mb-2">📍 {card.location}</p>
+            <div className="flex justify-between text-sm mb-1">
+            <div className="flex items-center gap-1">
                 <FaBed /> {card.beds}
               </div>
               <div className="flex items-center gap-1">
