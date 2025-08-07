@@ -49,18 +49,19 @@ const HouseDetail = () => {
           className="w-full h-[500px] md:h-[600px] object-cover rounded-lg"
         />
         <div
-          className="absolute top-5 right-5 cursor-pointer"
-          onClick={(e) => {
-            e.stopPropagation();
-            toggleFavorite(house.id);
-          }}
-        >
-          {isFavorite ? (
-            <FaHeart size={30} color="red" />
-          ) : (
-            <FaRegHeart size={30} color="white" />
-          )}
-        </div>
+  className="absolute top-5 right-5 bg-white rounded-full p-2 shadow-md cursor-pointer z-10"
+  onClick={(e) => {
+    e.stopPropagation();
+    toggleFavorite(house.id);
+  }}
+>
+  {isFavorite ? (
+    <FaHeart size={24} className="text-red-500" />
+  ) : (
+    <FaRegHeart size={24} className="text-gray-500" />
+  )}
+</div>
+
       </div>
 
       <h1 className="text-xl font-semibold "> Property Summary </h1>
