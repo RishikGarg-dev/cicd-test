@@ -4,7 +4,7 @@ import { houses } from '../houses';
 import HouseCard from '../components/HouseCard';
 import CardCarousel from '../components/CardCarousel';
 import img4 from "../assets/office.jpg";
-import Navbar from '../components/NavBar';
+
 
 export default function HomePage() {
   const [price, setPrice] = useState(5000);
@@ -33,7 +33,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <Navbar />
+      
 
       {/* Hero Section */}
       <section className="relative w-full min-h-[50vh] sm:min-h-screen">
