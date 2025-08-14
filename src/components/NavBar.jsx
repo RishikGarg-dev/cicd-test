@@ -26,6 +26,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center space-x-14 ml-auto">
           <Link to="/" className="text-black text-sm font-medium hover:text-gray-700">Home</Link>
           <Link to="/Properties" className="text-black text-sm font-medium hover:text-gray-700">Properties</Link>
+          <Link to="/LandLord" className="text-black text-sm font-medium hover:text-gray-700">LandLord</Link>
           <Link to="/Login" className="text-black text-sm font-medium hover:text-gray-700">
             <i className="fas fa-user mr-1"></i> Login
           </Link>

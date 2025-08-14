@@ -188,13 +188,14 @@ const PropertyPage = () => {
 
           {/* Desktop filters inline */}
           <div className="hidden sm:flex flex-wrap justify-center gap-3">
+
             {Object.entries(filterOptions).map(([filter, options]) => (
               <div key={filter} className="relative">
                 <button
                   onClick={() => toggleDropdown(filter)}
                   className="flex items-center text-gray-700 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-medium"
                 >
-                  {selectedFilters[filter] || filter}
+                 {selectedFilters[filter] ? `${filter}: ${selectedFilters[filter]}` : filter}
                   <ChevronDown className="w-4 h-4 ml-2" />
                 </button>
                 {activeDropdown === filter && (
