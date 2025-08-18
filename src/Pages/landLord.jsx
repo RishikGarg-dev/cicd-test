@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import MyProperty from '../components/myProperty';
 import ApplicationsList from '../components/applicationList';
+import PropertyForm from '../components/AddProperty';
+import LeaseAgreementsComp from '../components/LeaseAgreement'; // renamed import
+import MaintenanceRequestsComp from '../components/MaintanenceRequests';
 import { Menu } from 'lucide-react'; // Optional icon
 import Navbar from '../components/NavBar';
 
 // Section components
 const MyProperties = () => <MyProperty />;
 const RentalApplications = () => <ApplicationsList />;
-const AddProperty = () => <div>This is Add Property section</div>;
-const LeaseAgreements = () => <div>This is Lease Agreements section</div>;
-const MaintenanceRequests = () => <div>This is Maintenance Requests section</div>;
+const Addproperty = () => <PropertyForm />;
+const LeaseAgreements = () => <LeaseAgreementsComp />;   // use alias here
+const MaintenanceRequests = () =><MaintenanceRequestsComp />;
 
 // Menu config
 const menuItems = [
   { key: 'my properties', component: <MyProperties /> },
   { key: 'rental applications', component: <RentalApplications /> },
-  { key: 'add property', component: <AddProperty /> },
+  { key: 'add property', component: <Addproperty /> },
   { key: 'lease agreements', component: <LeaseAgreements /> },
   { key: 'maintenance requests', component: <MaintenanceRequests /> },
 ];
