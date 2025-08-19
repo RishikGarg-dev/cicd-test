@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import HouseDetail from './components/HouseDetail';
 import HomePage from './Pages/home';
+import NavBar from './components/NavBar';
 import Properties from './Pages/propertiespage';
 import VerifiedListings from './Pages/verifiedlistingpage';
 import FurnitureRewards from './Pages/furniturerewardspage';
@@ -13,6 +14,7 @@ function App() {
   return (
     <div>
       <Router>
+        <NavBar/>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/properties" element={<Properties />} />

@@ -4,7 +4,9 @@ export const houses = [
     id: 1,
     title: 'Urban Tuplis 10th Floor',
     location: 'L.B Nagar ,Hyderabad ,500079',
-    image: '/images/img6.jpeg',
+    image: [
+      '/images/img6.jpeg',
+    ],
     description: `This well-maintained 2BHK apartment located at  L.B Nagar ,Hyderabad ,500079. With a built-up area of 1600 Sq Ft, the home offers spacious 2 bedrooms, two modern bathrooms, 
                 a semi-furnished modular kitchen, and a scenic road-facing balcony. Positioned on the 10th floor of a 5-storey building, the apartment receives ample natural light and ventilation throughout the day.
                 The property is 5 years old and part of a secure, gated society that offers 24x7 security, lift access, power backup, and dedicated parking. It is ideal for small families or working professionals, offering 

@@ -33,7 +33,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <Navbar />
 
       {/* Hero Section */}
       <section className="relative w-full min-h-[50vh] sm:min-h-screen">

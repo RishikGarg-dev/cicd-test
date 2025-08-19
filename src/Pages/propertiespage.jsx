@@ -44,7 +44,6 @@ const PropertyPage = () => {
 
   return (
     <>
-      <NavBar />
       {/* Hero */}
       <div
         className="relative bg-cover bg-center h-[300px]"

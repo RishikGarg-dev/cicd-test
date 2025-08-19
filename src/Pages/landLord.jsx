@@ -31,7 +31,6 @@ const LandlordDashboard = () => {
 
   return (
     <>
-    <Navbar/>
     <div className="flex flex-col md:flex-row h-screen bg-gray-100">
       {/* Topbar for mobile */}
       <div className="md:hidden p-4 flex items-center justify-between bg-white shadow">
