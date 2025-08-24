@@ -9,6 +9,11 @@ import VerifiedListings from './Pages/VerifiedlistingPage'
 import FurnitureRewards from './Pages/FurnitureRewardsPage'
 import UpToDayRentals from './Pages/UpToDayRentalsPage'
 import Footer from './components/Footer';
+import ActiveRentals from './Pages/ActiveRentals';
+import LeaseDocuments from './components/LeaseDocuments'
+import RentalsHistory from './components/RentalHistory'
+import MaintenanceIssue from './components/Maintenance'
+import PaymentStatus from './components/Paymentstatus'
 
 function App() {
   return (
@@ -23,6 +28,11 @@ function App() {
           <Route path="/verified-listings" element={<VerifiedListings />} />
           <Route path="/furniture-rewards" element={<FurnitureRewards />} />
           <Route path="/up-to-day-rentals" element={<UpToDayRentals />} />
+          <Route path="/myrentals" element={<ActiveRentals />} />
+          <Route path="/leasedocuments" element={<LeaseDocuments />} />
+          <Route path="/rentalshistory" element={<RentalsHistory />} />
+          <Route path="/maintenanceissue" element={<MaintenanceIssue />} />
+          <Route path="/paymentstatus" element={<PaymentStatus />} />
         </Routes>
         <Footer />
       </Router>
@@ -31,9 +41,5 @@ function App() {
 }
 
 export default App
-
-
-
-
 
 
