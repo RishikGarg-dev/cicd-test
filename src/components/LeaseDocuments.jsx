@@ -29,13 +29,17 @@ const LeaseDocuments = ({ activeSection, onSectionChange }) => {
   };
 
   return (
-    <div className="flex">
-      <Sidebar activeSection={activeSection} onSectionChange={onSectionChange} />
-      <div className="flex-1 bg-gray-100 p-6">
-        <div className="bg-white rounded-lg p-6 shadow-sm border-2 border-blue-500">
-          <h2 className="text-lg font-medium mb-6">Documents</h2>
+    <section className="flex flex-col sm:flex-row">
+      {/* Sidebar Component */}
+      <Sidebar activeSection={activeSection} onSectionChange={onSectionChange} className="sm:w-1/4 lg:w-1/5" />
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+      {/* Main Content Area */}
+      <div className="flex-1 bg-gray-100 p-4 sm:p-6 md:p-8 lg:p-10">
+        <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border-2 border-blue-500">
+          <h2 className="text-lg sm:text-xl font-medium mb-6">Documents</h2>
+
+          {/* Document Types Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             {documentTypes.map((doc, index) => (
               <div key={index} className="bg-white rounded-lg border border-gray-200 p-6 text-center cursor-pointer hover:shadow-md transition-shadow">
                 <div className="flex justify-center mb-4">
@@ -47,7 +51,7 @@ const LeaseDocuments = ({ activeSection, onSectionChange }) => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

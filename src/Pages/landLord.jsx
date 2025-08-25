@@ -5,7 +5,7 @@ import PropertyForm from '../components/AddProperty';
 import LeaseAgreementsComp from '../components/LeaseAgreement'; // renamed import
 import MaintenanceRequestsComp from '../components/MaintanenceRequests';
 import { Menu } from 'lucide-react'; // Optional icon
-import Navbar from '../components/NavBar';
+
 
 // Section components
 const MyProperties = () => <MyProperty />;

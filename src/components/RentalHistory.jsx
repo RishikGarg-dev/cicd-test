@@ -24,16 +24,20 @@ const RentalsHistory = ({ activeSection, onSectionChange }) => {
   ];
 
   return (
-    <div className="flex">
-      <Sidebar activeSection={activeSection} onSectionChange={onSectionChange} />
-      <div className="flex-1 bg-gray-100 p-6">
-        <div className="bg-white rounded-lg p-6 shadow-sm">
-          <h2 className="text-lg font-medium mb-6">History</h2>
+    <section className="flex flex-col sm:flex-row">
+      {/* Sidebar Component */}
+      <Sidebar activeSection={activeSection} onSectionChange={onSectionChange} className="sm:w-1/4 lg:w-1/5" />
 
-          <div className="space-y-6">
+      {/* Main Content Area */}
+      <div className="flex-1 bg-gray-100 p-4 sm:p-6 md:p-8 lg:p-10">
+        <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm h-full">
+          <h2 className="text-lg sm:text-xl font-medium mb-6">History</h2>
+
+          {/* Scrollable Container for History Properties */}
+          <div className="space-y-6 overflow-y-auto max-h-[500px] sm:max-h-[600px] md:max-h-[700px] lg:max-h-[800px]">
             {historyProperties.map((property) => (
               <div key={property.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                <div className="w-full h-48 bg-gray-100">
+                <div className="w-full h-48 sm:h-60 md:h-72 bg-gray-100">
                   <img
                     src={property.image}
                     alt={property.address}
@@ -41,14 +45,14 @@ const RentalsHistory = ({ activeSection, onSectionChange }) => {
                   />
                 </div>
 
-                <div className="p-4">
-                  <div className="flex justify-between items-start mb-2">
+                <div className="p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row justify-between items-start mb-2">
                     <div>
-                      <h3 className="font-medium text-gray-900">{property.address}</h3>
-                      <p className="text-gray-600 text-sm">{property.location}</p>
+                      <h3 className="font-medium text-gray-900 text-base sm:text-lg">{property.address}</h3>
+                      <p className="text-gray-600 text-sm sm:text-base">{property.location}</p>
                     </div>
-                    <div className="text-right">
-                      <p className="font-medium text-gray-900">{property.rent}</p>
+                    <div className="text-right mt-3 sm:mt-0">
+                      <p className="font-medium text-gray-900 text-sm sm:text-base">{property.rent}</p>
                     </div>
                   </div>
 
@@ -70,7 +74,7 @@ const RentalsHistory = ({ activeSection, onSectionChange }) => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

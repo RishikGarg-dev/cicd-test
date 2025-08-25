@@ -4,14 +4,13 @@ import Navbar from './components/NavBar';
 import LoginSignup from './Pages/LoginSignUpPage'
 import HouseDetail from './components/HouseDetail';
 import HomePage from './Pages/HomePage';
-import NavBar from './components/NavBar';
 import Properties from './Pages/PropertiesPage';
 import VerifiedListings from './Pages/VerifiedlistingPage';
 import FurnitureRewards from './Pages/FurnitureRewardsPage';
 import UpToDayRentals from './Pages/UpToDayRentalsPage';
 import Landlord  from './Pages/landLord';
 import Footer from './components/Footer';
-import ActiveRentals from './Pages/ActiveRentals';
+import ActiveRentals from './Pages/MyRentals';
 import LeaseDocuments from './components/LeaseDocuments'
 import RentalsHistory from './components/RentalHistory'
 import MaintenanceIssue from './components/Maintenance'
@@ -21,8 +20,7 @@ function App() {
   return (
     <div>
       <Router>
-        <NavBar/>
-        <Navbar />
+        <Navbar/>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/Login" element={<LoginSignup />} />
