@@ -43,26 +43,32 @@ const HouseDetail = () => {
       </div>
 
       <div className="relative mb-6">
-        <img
-          src={house.image}
-          alt="House"
-          className="w-full h-[500px] md:h-[600px] object-cover rounded-lg"
-        />
-        <div
-  className="absolute top-5 right-5 bg-white rounded-full p-2 shadow-md cursor-pointer z-10"
-  onClick={(e) => {
-    e.stopPropagation();
-    toggleFavorite(house.id);
-  }}
->
-  {isFavorite ? (
-    <FaHeart size={24} className="text-red-500" />
-  ) : (
-    <FaRegHeart size={24} className="text-gray-500" />
-  )}
+  <div className="flex gap-4 overflow-x-auto">
+    {house.image.map((imgUrl, idx) => (
+      <img
+        key={idx}
+        src={imgUrl}
+        alt={`House view ${idx + 1}`}
+        className="w-[350px] h-[300px] object-cover rounded-lg shrink-0"
+      />
+    ))}
+  </div>
+
+  <div
+    className="absolute top-5 right-5 bg-white rounded-full p-2 shadow-md cursor-pointer z-10"
+    onClick={(e) => {
+      e.stopPropagation();
+      toggleFavorite(house.id);
+    }}
+  >
+    {isFavorite ? (
+      <FaHeart size={24} className="text-red-500" />
+    ) : (
+      <FaRegHeart size={24} className="text-gray-500" />
+    )}
+  </div>
 </div>
 
-      </div>
 
       <h1 className="text-xl font-semibold "> Property Summary </h1>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-6">

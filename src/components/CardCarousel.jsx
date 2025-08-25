@@ -116,32 +116,32 @@ export default function CardCarousel() {
         {houses.map((card, i) => (
           <div
             key={card.id}
-            className="absolute w-50vw] sm:w-[80vw] max-w-[300px] h-[280px] sm:h-[420px] p-3 sm:p-4 bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out"
+            className="absolute w-[60vw] sm:w-[80vw] max-w-[300px] h-[300px] sm:h-[420px] p-3 sm:p-4 bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out"
             style={getStyles(i)}
           >
             <div
-  className="absolute top-3 right-3 bg-white rounded-full p-2 shadow-md cursor-pointer z-10"
-  onClick={(e) => {
-    e.stopPropagation();
-    toggleFavorite(card.id);
-  }}
->
-  {favorites.includes(card.id) ? (
-    <FaHeart size={24} className="text-red-500" />
-  ) : (
-    <FaRegHeart size={24} className="text-gray-600" />
-  )}
-</div>
+              className="absolute top-3 right-3 bg-white rounded-full p-2 shadow-md cursor-pointer z-10"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(card.id);
+              }}
+            >
+              {favorites.includes(card.id) ? (
+                <FaHeart size={24} className="text-red-500" />
+              ) : (
+                <FaRegHeart size={24} className="text-gray-600" />
+              )}
+            </div>
 
             <div
               className="w-full h-36 sm:h-52 bg-cover bg-center rounded-md mb-2"
-              style={{ backgroundImage: `url(${card.image})` }}
+              style={{ backgroundImage: `url(${card.images?.[0] || card.image})` }}
+
             />
-            <h3 className="text-sm sm:text-lg font-semibold">{card.title}</h3>
-            <p className="text-xs sm:text-sm text-gray-500 mb-1 truncate">
-              📍{card.location}
-            </p>
-            <div className="flex justify-between text-xs sm:text-sm mb-1">
+
+            <h3 className="text-base sm:text-lg font-semibold">{card.title}</h3>
+            <p className="text-sm sm:text-base text-gray-500 mb-2">📍 {card.location}</p>
+            <div className="flex justify-between text-sm mb-1">
               <div className="flex items-center gap-1">
                 <FaBed /> {card.beds}
               </div>

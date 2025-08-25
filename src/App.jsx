@@ -4,10 +4,12 @@ import Navbar from './components/NavBar';
 import LoginSignup from './Pages/LoginSignUpPage'
 import HouseDetail from './components/HouseDetail';
 import HomePage from './Pages/HomePage';
+import NavBar from './components/NavBar';
 import Properties from './Pages/PropertiesPage';
-import VerifiedListings from './Pages/VerifiedlistingPage'
-import FurnitureRewards from './Pages/FurnitureRewardsPage'
-import UpToDayRentals from './Pages/UpToDayRentalsPage'
+import VerifiedListings from './Pages/VerifiedlistingPage';
+import FurnitureRewards from './Pages/FurnitureRewardsPage';
+import UpToDayRentals from './Pages/UpToDayRentalsPage';
+import Landlord  from './Pages/landLord';
 import Footer from './components/Footer';
 import ActiveRentals from './Pages/ActiveRentals';
 import LeaseDocuments from './components/LeaseDocuments'
@@ -19,6 +21,7 @@ function App() {
   return (
     <div>
       <Router>
+        <NavBar/>
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -28,6 +31,7 @@ function App() {
           <Route path="/verified-listings" element={<VerifiedListings />} />
           <Route path="/furniture-rewards" element={<FurnitureRewards />} />
           <Route path="/up-to-day-rentals" element={<UpToDayRentals />} />
+          <Route path="/landlord" element={<Landlord/>}/>
           <Route path="/myrentals" element={<ActiveRentals />} />
           <Route path="/leasedocuments" element={<LeaseDocuments />} />
           <Route path="/rentalshistory" element={<RentalsHistory />} />
@@ -37,7 +41,7 @@ function App() {
         <Footer />
       </Router>
     </div>
-  )
+  );
 }
 
 export default App
