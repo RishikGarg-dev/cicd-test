@@ -33,24 +33,24 @@ const MaintenanceIssue = ({ activeSection, onSectionChange }) => {
               <input
                 id="upload"
                 type="file"
-                className="w-full border-2 border-gray-300 p-3 rounded-md"
+                className="w-full border-2 border-gray-300 p-3 rounded-md cursor-pointer"
               />
             </div>
           </div>
           
           {/* Buttons Section */}
           <div className="mt-8">
-            <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
+            <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 cursor-pointer">
               Raise New Issue
             </button>
           </div>
 
           {/* View Past and Open Issues */}
           <div className="flex justify-between items-center mt-6">
-            <button className="text-blue-600 hover:underline">
+            <button className="text-blue-600 hover:underline cursor-pointer">
               View Open Issues
             </button>
-            <button className="text-blue-600 hover:underline">
+            <button className="text-blue-600 hover:underline cursor-pointer">
               View Past Issues
             </button>
           </div>

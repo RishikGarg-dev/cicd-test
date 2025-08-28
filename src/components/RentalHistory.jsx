@@ -65,9 +65,12 @@ const RentalsHistory = ({ activeSection, onSectionChange }) => {
                     </p>
                   </div>
 
-                  <button className="text-blue-500 hover:underline cursor-pointer">
-                    View Details
-                  </button>
+                  {/* Move the button to the right side */}
+                  <div className="flex justify-end mt-4">
+                    <button className="text-blue-500 hover:underline cursor-pointer">
+                      View Details
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

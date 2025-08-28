@@ -93,9 +93,12 @@ const ActiveRentals = () => {
                     </div>
                   )}
 
-                  <Link to={`/rentals/${property.id}`} className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md text-sm sm:text-base">
-                    View Details
-                  </Link>
+                  {/* Move the button to the right side */}
+                  <div className="flex justify-end mt-4">
+                    <Link to={`/rentals/${property.id}`} className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md text-sm sm:text-base">
+                      View Details
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
@@ -104,6 +107,6 @@ const ActiveRentals = () => {
       </div>
     </section>
   );
-}
+};
 
 export default ActiveRentals;

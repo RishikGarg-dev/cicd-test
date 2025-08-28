@@ -13,8 +13,8 @@ import Footer from './components/Footer';
 import ActiveRentals from './Pages/MyRentals';
 import LeaseDocuments from './components/LeaseDocuments'
 import RentalsHistory from './components/RentalHistory'
-import MaintenanceIssue from './components/Maintenance'
-import PaymentStatus from './components/Paymentstatus'
+import MaintenanceIssue from './components/RaiseMaintenanceIssue'
+import PaymentStatus from './components/PaymentStatus'
 
 function App() {
   return (
