@@ -51,7 +51,7 @@ const PropertyCard = ({ property }) => {
         <div className="flex items-center text-gray-500 mb-4">
           <p className="text-sm">📍{property.location}</p>
         </div>
-        
+
         {/* Better spacing for smaller screens, justify-between for larger screens */}
         <div className="flex justify-between items-center text-xs sm:text-sm md:text-base text-gray-600 mb-4 border-t border-b border-gray-100 py-3 gap-x-2 sm:gap-x-3 lg:gap-x-0">
           <DetailIcon icon={FaBed} text={`${property.beds} Beds`} />
@@ -76,19 +76,19 @@ const PropertyPage = () => (
           Properties ({houses.length})
         </h2>
         <div className="flex items-center">
-  <span className="text-gray-600 mr-2">Sort by:</span>
-  <div className="flex items-center">
-  <span className="text-gray-600 mr-2">Sort by:</span>
-  <select
-    defaultValue="relevance"
-    className="bg-transparent font-semibold text-gray-800 focus:outline-none focus:ring-0 focus:border-none appearance-auto"
-  >
-    <option value="relevance">Relevance</option>
-    <option value="toprated">Top Rated</option>
-  </select>
-</div>
+          <span className="text-gray-600 mr-2">Sort by:</span>
+          <div className="flex items-center">
+            <span className="text-gray-600 mr-2">Sort by:</span>
+            <select
+              defaultValue="relevance"
+              className="bg-transparent font-semibold text-gray-800 focus:outline-none focus:ring-0 focus:border-none appearance-auto"
+            >
+              <option value="relevance">Relevance</option>
+              <option value="toprated">Top Rated</option>
+            </select>
+          </div>
 
-</div>
+        </div>
 
 
       </div>

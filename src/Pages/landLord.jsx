@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import MyProperty from '../components/myProperty';
-import ApplicationsList from '../components/applicationList';
+import MyProperty from '../components/LandLordProperties';
+import ApplicationsList from '../components/RentalApplicationList';
 import PropertyForm from '../components/AddProperty';
 import LeaseAgreementsComp from '../components/LeaseAgreement'; // renamed import
 import MaintenanceRequestsComp from '../components/MaintanenceRequests';

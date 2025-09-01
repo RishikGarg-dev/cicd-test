@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { houses } from '../houses';
-import HouseCard from '../components/HouseCard';
-import CardCarousel from '../components/CardCarousel';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { houses } from "../houses";
+import HouseCard from "../components/HouseCard";
+import CardCarousel from "../components/CardCarousel";
 import img4 from "../assets/office.jpg";
 
 
 export default function HomePage() {
   const [price, setPrice] = useState(5000);
-  const [location, setLocation] = useState('');
-  const [selectedPrice, setSelectedPrice] = useState('');
-  const [age, setAge] = useState('');
-  const [selectedAge, setSelectedAge] = useState('');
-  const [propertyType, setPropertyType] = useState('');
+  const [selectedPrice, setSelectedPrice] = useState("");
+  const [age, setAge] = useState("");
+  const [propertyType, setPropertyType] = useState("");
   const [showSlider, setShowSlider] = useState(false);
   const [showAgeSlider, setShowAgeSlider] = useState(false);
   const [favorites, setFavorites] = useState([]);
+  const [location, setLocation] = useState("");
 
   const navigate = useNavigate();
 
@@ -33,39 +32,60 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      
-
       {/* Hero Section */}
       <section className="relative w-full min-h-[50vh] sm:min-h-screen">
-        <div className="bg-[url('/banner.png')] bg-cover bg-center h-150 w-full relative">
+        <div className="bg-[url('https://res.cloudinary.com/dvqrtjzvv/image/upload/v1756129943/banner_e69nkm.png')] bg-cover bg-center h-150 w-full relative">
           <div className="absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white w-full">
             <h1 className="text-3xl sm:text-5xl font-bold text-white text-center leading-snug">
-              Find, Rent, and Manage <br />Homes Swiftly
+              Find, Rent, and Manage <br />
+              Homes Swiftly
             </h1>
             <p className="mt-6 text-l sm:text-xl md:text-xl font-medium drop-shadow-sm">
-              Easy Steps to find your next home <br />Partner, View, Tour, Shift.
+              Easy Steps to find your next home <br />
+              Partner, View, Tour, Shift.
             </p>
 
-            {/* Search bar - Desktop */}
-            <form onSubmit={handleSubmit} className="hidden sm:block mt-6 w-full max-w-4xl mx-auto px-4">
+            {/* Desktop Search Bar */}
+            <form
+              onSubmit={handleSubmit}
+              className="hidden sm:block mt-6 w-full max-w-4xl mx-auto px-4"
+            >
               <div className="relative bg-white/100 backdrop-blur-md rounded-full px-4 py-3 flex items-center justify-between shadow-md gap-2 text-sm">
                 {/* Location */}
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-2">
                   <i className="fas fa-map-marker-alt text-black"></i>
                   <input
                     type="text"
-                    placeholder="Location"
-                    className="px-2 py-1 rounded-md text-black focus:outline-none placeholder-black w-32 sm:w-40"
+                    placeholder="Enter Location"
+                    className="px-2 py-1 bg-transparent border-none focus:outline-none text-black placeholder-gray-500 w-40"
                     value={location}
-                    onChange={(e) => setLocation(e.target.value)}
+                    onChange={(e) => {
+                      setLocation(e.target.value);
+                      setShowSlider(false);
+                      setShowAgeSlider(false);
+                    }}
+                    onClick={() => {
+                      setShowSlider(false);
+                      setShowAgeSlider(false);
+                    }}
                   />
                 </div>
+
                 <div className="self-stretch w-px bg-black/30" />
+
                 {/* Price */}
                 <div className="relative">
-                  <div className="flex items-center gap-2 cursor-pointer" onClick={() => setShowSlider(!showSlider)}>
+                  <div
+                    className="flex items-center gap-2 cursor-pointer"
+                    onClick={() => {
+                      setShowSlider(!showSlider);
+                      setShowAgeSlider(false);
+                    }}
+                  >
                     <i className="fas fa-money-bill-wave text-black"></i>
-                    <span className="text-black whitespace-nowrap">Price Range</span>
+                    <span className="text-black whitespace-nowrap">
+                      Price Range
+                    </span>
                   </div>
                   {showSlider && (
                     <div className="absolute top-full mt-2 left-0 bg-white p-4 rounded-lg shadow-lg z-10 w-64">
@@ -87,11 +107,19 @@ export default function HomePage() {
                     </div>
                   )}
                 </div>
+
                 <div className="self-stretch w-px bg-black/30" />
+
                 {/* Age */}
                 <div className="relative flex items-center gap-2">
                   <i className="fas fa-hourglass-half text-black"></i>
-                  <span className="text-black cursor-pointer whitespace-nowrap" onClick={() => setShowAgeSlider(!showAgeSlider)}>
+                  <span
+                    className="text-black cursor-pointer whitespace-nowrap"
+                    onClick={() => {
+                      setShowAgeSlider(!showAgeSlider);
+                      setShowSlider(false);
+                    }}
+                  >
                     Age of Property
                   </span>
                   {showAgeSlider && (
@@ -111,14 +139,24 @@ export default function HomePage() {
                     </div>
                   )}
                 </div>
+
                 <div className="self-stretch w-px bg-black/30" />
+
                 {/* Property Type */}
                 <div className="flex items-center">
                   <i className="fas fa-building text-black"></i>
                   <select
                     className="text-sm px-2 py-1 rounded-md text-black focus:outline-none cursor-pointer min-w-[100px]"
                     value={propertyType}
-                    onChange={(e) => setPropertyType(e.target.value)}
+                    onChange={(e) => {
+                      setPropertyType(e.target.value);
+                      setShowSlider(false);
+                      setShowAgeSlider(false);
+                    }}
+                    onClick={() => {
+                      setShowSlider(false);
+                      setShowAgeSlider(false);
+                    }}
                   >
                     <option value="">Property Type</option>
                     <option value="1 BHK">1 BHK</option>
@@ -127,7 +165,8 @@ export default function HomePage() {
                     <option value="4 BHK">4 BHK</option>
                   </select>
                 </div>
-                <button className="text-black px-2">
+
+                <button className="text-black px-2 cursor-pointer">
                   <i className="fas fa-search text-xl"></i>
                 </button>
               </div>
@@ -142,7 +181,19 @@ export default function HomePage() {
                   placeholder="Enter locality or Zip code"
                   className="flex-1 text-xs focus:outline-none bg-transparent"
                   value={location}
-                  onChange={(e) => setLocation(e.target.value)}
+                  onChange={(e) => {
+                    setLocation(e.target.value);
+                    setShowSlider(false);
+                    setShowAgeSlider(false);
+                  }}
+                  onFocus={() => {
+                    setShowSlider(false);
+                    setShowAgeSlider(false);
+                  }}
+                  onClick={() => {
+                    setShowSlider(false);
+                    setShowAgeSlider(false);
+                  }}
                 />
                 <button className="text-black px-2">
                   <i className="fas fa-search text-xl"></i>
@@ -151,102 +202,105 @@ export default function HomePage() {
             </form>
 
             {/* Mobile Filters */}
-<div className="sm:hidden mt-4 px-4 relative z-10">
-  <div className="relative w-full">
-    <div className="flex gap-2 justify-between w-full">
-      {/* Property Type */}
-      <div className="flex-1 min-w-0">
-        <select
-          className="appearance-none text-center text-[11px] px-2 py-1 border-none rounded-full shadow bg-white text-black w-full outline-none"
-          value={propertyType}
-          onChange={(e) => {
-            setPropertyType(e.target.value);
-            setShowSlider(false);
-            setShowAgeSlider(false);
-          }}
-        >
-          <option value="">Property Type</option>
-          <option value="1 BHK">1 BHK</option>
-          <option value="2 BHK">2 BHK</option>
-          <option value="3 BHK">3 BHK</option>
-          <option value="4 BHK">4 BHK</option>
-        </select>
-      </div>
+            <div className="sm:hidden mt-4 px-4 relative z-10">
+              <div className="relative w-full">
+                <div className="flex gap-2 justify-between w-full">
+                  {/* Property Type */}
+                  <div className="flex-1 min-w-0">
+                    <select
+                      className="appearance-none text-center text-[11px] px-2 py-1 border-none rounded-full shadow bg-white text-black w-full outline-none"
+                      value={propertyType}
+                      onChange={(e) => {
+                        setPropertyType(e.target.value);
+                        setShowSlider(false);
+                        setShowAgeSlider(false);
+                      }}
+                      onClick={() => {
+                        setShowSlider(false);
+                        setShowAgeSlider(false);
+                      }}
+                    >
+                      <option value="">Property Type</option>
+                      <option value="1 BHK">1 BHK</option>
+                      <option value="2 BHK">2 BHK</option>
+                      <option value="3 BHK">3 BHK</option>
+                      <option value="4 BHK">4 BHK</option>
+                    </select>
+                  </div>
 
-      {/* Price Range */}
-      <div className="flex-1 min-w-0 relative">
-        <button
-          onClick={() => {
-            setShowSlider(!showSlider);
-            setShowAgeSlider(false);
-          }}
-          className="text-[11px] text-center px-2 py-1 border-none rounded-full shadow bg-white text-black w-full outline-none"
-        >
-          Price Range
-        </button>
-      </div>
+                  {/* Price Range */}
+                  <div className="flex-1 min-w-0 relative">
+                    <button
+                      onClick={() => {
+                        setShowSlider(!showSlider);
+                        setShowAgeSlider(false);
+                      }}
+                      type="button"
+                      className="text-[11px] text-center px-2 py-1 border-none rounded-full shadow bg-white text-black w-full outline-none"
+                    >
+                      Price Range
+                    </button>
+                  </div>
 
-      {/* Age of Property */}
-      <div className="flex-1 min-w-0 relative">
-        <button
-          onClick={() => {
-            setShowAgeSlider(!showAgeSlider);
-            setShowSlider(false);
-          }}
-          className="text-[11px] text-center px-2 py-1 border-none rounded-full shadow bg-white text-black w-full outline-none"
-        >
-          Age of Property
-        </button>
-      </div>
-    </div>
+                  {/* Age of Property */}
+                  <div className="flex-1 min-w-0 relative">
+                    <button
+                      onClick={() => {
+                        setShowAgeSlider(!showAgeSlider);
+                        setShowSlider(false);
+                      }}
+                      type="button"
+                      className="text-[11px] text-center px-2 py-1 border-none rounded-full shadow bg-white text-black w-full outline-none"
+                    >
+                      Age of Property
+                    </button>
+                  </div>
+                </div>
 
-    {/* Sliders (outside row, centered) */}
-    {showSlider && (
-      <div className="absolute left-1/2 -translate-x-1/2 mt-2 bg-white p-4 rounded-md shadow-lg z-30 w-[92vw] max-w-xs">
-        <label className="block mb-2 text-xs font-semibold text-gray-700">
-          Max Price: ₹{price.toLocaleString()}
-        </label>
-        <input
-          type="range"
-          min="1000"
-          max="700000"
-          step="500"
-          value={price}
-          onChange={(e) => {
-            setPrice(Number(e.target.value));
-            setSelectedPrice(`0-${e.target.value}`);
-          }}
-          className="w-full"
-        />
-      </div>
-    )}
+                {/* Sliders */}
+                {showSlider && (
+                  <div className="absolute left-1/2 -translate-x-1/2 mt-2 bg-white p-4 rounded-md shadow-lg z-30 w-[92vw] max-w-xs">
+                    <label className="block mb-2 text-xs font-semibold text-gray-700">
+                      Max Price: ₹{price.toLocaleString()}
+                    </label>
+                    <input
+                      type="range"
+                      min="1000"
+                      max="700000"
+                      step="500"
+                      value={price}
+                      onChange={(e) => {
+                        setPrice(Number(e.target.value));
+                        setSelectedPrice(`0-${e.target.value}`);
+                      }}
+                      className="w-full"
+                    />
+                  </div>
+                )}
 
-    {showAgeSlider && (
-      <div className="absolute left-1/2 -translate-x-1/2 mt-2 bg-white p-4 rounded-md shadow-lg z-30 w-[92vw] max-w-xs">
-        <label className="block mb-2 text-xs font-semibold text-gray-700">
-          Max Age: {age} years
-        </label>
-        <input
-          type="range"
-          min="1"
-          max="100"
-          step="1"
-          value={age}
-          onChange={(e) => setAge(Number(e.target.value))}
-          className="w-full"
-        />
-      </div>
-    )}
-  </div>
-</div>
-
-
-
-
+                {showAgeSlider && (
+                  <div className="absolute left-1/2 -translate-x-1/2 mt-2 bg-white p-4 rounded-md shadow-lg z-30 w-[92vw] max-w-xs">
+                    <label className="block mb-2 text-xs font-semibold text-gray-700">
+                      Max Age: {age} years
+                    </label>
+                    <input
+                      type="range"
+                      min="1"
+                      max="100"
+                      step="1"
+                      value={age}
+                      onChange={(e) => setAge(Number(e.target.value))}
+                      className="w-full"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
+    
       {/* Discount Listings */}
       <section className="px-4 sm:px-6 py-14 text-center">
         <h2 className="text-3xl text-red-500 font-bold">Discount Listings</h2>

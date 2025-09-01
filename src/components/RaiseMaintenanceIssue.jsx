@@ -6,16 +6,16 @@ const MaintenanceIssue = ({ activeSection, onSectionChange }) => {
     <div className="flex flex-col md:flex-row">
       {/* Sidebar */}
       <div className="md:w-1/4 w-full">
-        <Sidebar activeSection={activeSection} onSectionChange={onSectionChange}  />
+        <Sidebar activeSection={activeSection} onSectionChange={onSectionChange} />
       </div>
-      
+
       {/* Main Content */}
       <section className="flex-1 p-6 bg-gray-100 md:w-3/4">
         <div className="bg-white rounded-lg p-6 shadow-lg">
-          
+
           {/* Heading */}
           <h2 className="text-2xl font-semibold mb-6">Raise Maintenance Issue</h2>
-          
+
           {/* Describe The Issue Section */}
           <div className="space-y-4">
             <div className="space-y-2">
@@ -37,7 +37,7 @@ const MaintenanceIssue = ({ activeSection, onSectionChange }) => {
               />
             </div>
           </div>
-          
+
           {/* Buttons Section */}
           <div className="mt-8">
             <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 cursor-pointer">

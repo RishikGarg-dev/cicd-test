@@ -42,13 +42,12 @@ const MaintenanceRequestsComp = () => {
             {/* Status clickable */}
             <Link
               to={`/status/${req.status.toLowerCase()}`}
-              className={`inline-block mt-3 text-sm font-semibold underline cursor-pointer ${
-                req.status.toLowerCase() === "resolved"
-                  ? "text-green-600"
-                  : req.status.toLowerCase() === "open"
+              className={`inline-block mt-3 text-sm font-semibold underline cursor-pointer ${req.status.toLowerCase() === "resolved"
+                ? "text-green-600"
+                : req.status.toLowerCase() === "open"
                   ? "text-red-500"
                   : "text-gray-500"
-              }`}
+                }`}
             >
               {req.status}
             </Link>

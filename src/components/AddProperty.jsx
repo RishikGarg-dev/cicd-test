@@ -50,14 +50,14 @@ export default function PropertyForm() {
 
           {/* Address */}
           {/* Address */}
-<textarea
-  name="address"
-  placeholder="Address"
-  value={formData.address}
-  onChange={handleChange}
-  rows={4} // Adjust height (number of lines visible)
-  className="w-full border rounded-lg p-4 text-lg outline-none resize-none"
-/>
+          <textarea
+            name="address"
+            placeholder="Address"
+            value={formData.address}
+            onChange={handleChange}
+            rows={4} // Adjust height (number of lines visible)
+            className="w-full border rounded-lg p-4 text-lg outline-none resize-none"
+          />
 
 
           {/* Rent */}
@@ -101,7 +101,7 @@ export default function PropertyForm() {
           {/* Submit */}
           <button
             type="submit"
-            className="bg-blue-600 text-white px-6 py-4 rounded-lg w-full text-lg font-semibold hover:bg-blue-700 transition"
+            className="bg-blue-600 text-white px-6 py-4 rounded-lg w-full text-lg font-semibold hover:bg-blue-700 transition cursor-pointer"
           >
             Submit Property
           </button>

@@ -12,13 +12,13 @@ export default function Footer() {
             We manage your property leasing and rental needs.
           </p>
           <div className="flex items-center gap-x-4 mt-4">
-            <a href="#" aria-label="Instagram" className="hover:text-gray-400 transition-colors">
+            <a href="https://www.instagram.com/rentwithswiftly/" target="_blank" aria-label="Instagram" className="hover:text-gray-400 transition-colors">
               <FaInstagram size={20} />
             </a>
-            <a href="#" aria-label="Facebook" className="hover:text-gray-400 transition-colors">
+            <a href="https://www.facebook.com/profile.php?id=61578842593380" target="_blank" aria-label="Facebook" className="hover:text-gray-400 transition-colors">
               <FaFacebookF size={20} />
             </a>
-            <a href="https://x.com" aria-label="X" className="hover:text-gray-400 transition-colors">
+            <a href="https://x.com/rentwithswiftly" target="_blank" aria-label="X" className="hover:text-gray-400 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 1200 1227" fill="currentColor">
                 <path d="M1198 0H949L601 505 253 0H2l430 623-430 604h249l348-486 348 486h251L768 606z" />
               </svg>

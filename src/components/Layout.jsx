@@ -1,6 +1,6 @@
 // src/components/Property.jsx
 import React from 'react';
-import PropertyCard from './propertyCard';
+import PropertyCard from './PropertyCard';
 
 const Property = () => {
   return (

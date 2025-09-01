@@ -35,13 +35,13 @@ const ApplicationsList = () => {
               <td className="p-3 border border-gray-300">
                 <button
                   onClick={() => handleAccept(app.id)}
-                  className="text-green-600 mr-4 hover:underline"
+                  className="text-green-600 mr-4 hover:underline cursor-pointer"
                 >
                   ✅ Accept
                 </button>
                 <button
                   onClick={() => handleReject(app.id)}
-                  className="text-red-500 hover:underline"
+                  className="text-red-500 hover:underline cursor-pointer"
                 >
                   ❌ Reject
                 </button>

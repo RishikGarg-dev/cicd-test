@@ -39,13 +39,13 @@ const MyProperty = () => {
                                 {house.title} - {house.location}
                             </div>
                             <div className="border-t border-gray-200 px-3 py-2 flex justify-between text-sm">
-                                <button onClick={handleEdit} className="text-blue-500 hover:underline">
+                                <button onClick={handleEdit} className="text-blue-500 hover:underline cursor-pointer">
                                     ✏️ Edit
                                 </button>
-                                <button onClick={handleDelete} className="text-red-500 hover:underline">
+                                <button onClick={handleDelete} className="text-red-500 hover:underline cursor-pointer">
                                     ❌ Delete
                                 </button>
-                                <button onClick={(e) => handleView(e, house.id)} className="hover:underline">
+                                <button onClick={(e) => handleView(e, house.id)} className="hover:underline cursor-pointer">
                                     👁️ View
                                 </button>
                             </div>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import bannerImg from '../assets/image45.png';
-import NavBar from '../components/NavBar';
-import Property from '../components/propertiesPage';
+import Property from '../components/Layout';
 import { SlidersHorizontal, ChevronDown, MapPin, Search } from 'lucide-react';
 
 

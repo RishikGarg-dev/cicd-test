@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "./SideBar"; // Import Sidebar component
+import Sidebar from "./SideBar"; 
 
 const RentalsHistory = ({ activeSection, onSectionChange }) => {
   const historyProperties = [
@@ -33,7 +33,7 @@ const RentalsHistory = ({ activeSection, onSectionChange }) => {
         <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm h-full">
           <h2 className="text-lg sm:text-xl font-medium mb-6">History</h2>
 
-          {/* Scrollable Container for History Properties */}
+          {/*  History Properties */}
           <div className="space-y-6 overflow-y-auto max-h-[500px] sm:max-h-[600px] md:max-h-[700px] lg:max-h-[800px]">
             {historyProperties.map((property) => (
               <div key={property.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
@@ -65,7 +65,7 @@ const RentalsHistory = ({ activeSection, onSectionChange }) => {
                     </p>
                   </div>
 
-                  {/* Move the button to the right side */}
+                  
                   <div className="flex justify-end mt-4">
                     <button className="text-blue-500 hover:underline cursor-pointer">
                       View Details

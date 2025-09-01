@@ -61,7 +61,7 @@ export default function LeaseAgreementsComp() {
               {lease.organisation}
             </p>
 
-            <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+            <button className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition cursor-pointer">
               View contract
             </button>
           </div>

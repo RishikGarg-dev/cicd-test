@@ -11,7 +11,7 @@ const Sidebar = ({ activeSection, onSectionChange }) => {
     { id: "payment-status", label: "Payment Status", path: "/paymentstatus" },
     { id: "maintenance-issue", label: "Raise Maintenance Issue", path: "/maintenanceissue" },
   ];
-                                                                                                                                                                                                                                                          
+
   return (
     <>
       {/* Mobile Menu Toggle Button */}
@@ -23,9 +23,8 @@ const Sidebar = ({ activeSection, onSectionChange }) => {
       </button>
 
       <aside
-        className={`w-full sm:w-64 bg-gray-300 h-[calc(100vh-4rem)] p-4 sm:p-6 flex-shrink-0 ${
-          isOpen ? "block" : "hidden sm:block"
-        }`}
+        className={`w-full sm:w-64 bg-gray-300 h-[calc(100vh-4rem)] p-4 sm:p-6 flex-shrink-0 ${isOpen ? "block" : "hidden sm:block"
+          }`}
       >
         <nav className="space-y-2">
           {menuItems.map((item) => (
@@ -33,11 +32,10 @@ const Sidebar = ({ activeSection, onSectionChange }) => {
               key={item.id}
               to={item.path}
               onClick={() => onSectionChange(item.id)}
-              className={`w-full block text-left px-4 py-2 rounded-lg transition-colors ${
-                activeSection === item.id
-                  ? "bg-white text-gray-900 shadow-sm"
-                  : "text-gray-700 hover:bg-gray-200"
-              }`}
+              className={`w-full block text-left px-4 py-2 rounded-lg transition-colors ${activeSection === item.id
+                ? "bg-white text-gray-900 shadow-sm"
+                : "text-gray-700 hover:bg-gray-200"
+                }`}
             >
               {item.label}
             </Link>
@@ -49,4 +47,4 @@ const Sidebar = ({ activeSection, onSectionChange }) => {
 };
 
 export default Sidebar;
-  
+
