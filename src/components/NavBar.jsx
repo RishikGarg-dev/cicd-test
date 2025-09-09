@@ -36,7 +36,6 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Dropdown Nav */}
-      {/* Mobile Dropdown Nav */}
 {isOpen && (
   <div className="md:hidden bg-white/60 backdrop-blur-md px-4 py-6 space-y-4 text-sm">
     <Link to="/" className="block text-black font-medium hover:text-gray-700">Home</Link>
@@ -49,6 +48,7 @@ export default function Navbar() {
     </Link>
   </div>
 )}
+
 
     </nav>
   );
