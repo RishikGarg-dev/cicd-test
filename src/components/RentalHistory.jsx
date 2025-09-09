@@ -1,6 +1,4 @@
 import React from "react";
-import Sidebar from "./SideBar"; 
-
 const RentalsHistory = ({ activeSection, onSectionChange }) => {
   const historyProperties = [
     {

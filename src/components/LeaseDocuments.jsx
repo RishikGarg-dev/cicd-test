@@ -1,5 +1,4 @@
 import React from "react";
-import Sidebar from "./SideBar";
 import { FaHome, FaBuilding, FaFileAlt, FaPen, FaTimes } from "react-icons/fa";
 
 const LeaseDocuments = ({ activeSection, onSectionChange }) => {
