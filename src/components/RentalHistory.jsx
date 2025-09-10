@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "./SideBar"; 
+import Sidebar from "./SideBar";
 
 const RentalsHistory = ({ activeSection, onSectionChange }) => {
   const historyProperties = [
@@ -65,7 +65,7 @@ const RentalsHistory = ({ activeSection, onSectionChange }) => {
                     </p>
                   </div>
 
-                  
+
                   <div className="flex justify-end mt-4">
                     <button className="text-blue-500 hover:underline cursor-pointer">
                       View Details

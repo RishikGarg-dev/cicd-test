@@ -30,7 +30,7 @@ export default function Agent() {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      
+
 
       <div>
         {/* Search */}
@@ -82,7 +82,7 @@ export default function Agent() {
               <option value="Hindi">Hindi</option>
               <option value="Punjabi">Punjabi</option>
               <option value="Marathi">Marathi</option>
-            
+
             </select>
           </div>
         </div>
