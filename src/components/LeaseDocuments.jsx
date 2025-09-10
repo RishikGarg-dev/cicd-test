@@ -1,5 +1,4 @@
 import React from "react";
-import Sidebar from "./SideBar";
 import { FaHome, FaBuilding, FaFileAlt, FaPen, FaTimes } from "react-icons/fa";
 
 const LeaseDocuments = ({ activeSection, onSectionChange }) => {
@@ -30,8 +29,6 @@ const LeaseDocuments = ({ activeSection, onSectionChange }) => {
 
   return (
     <section className="flex flex-col sm:flex-row">
-      {/* Sidebar Component */}
-      <Sidebar activeSection={activeSection} onSectionChange={onSectionChange} className="sm:w-1/4 lg:w-1/5" />
 
       {/* Main Content Area */}
       <div className="flex-1 bg-gray-100 p-4 sm:p-6 md:p-8 lg:p-10">

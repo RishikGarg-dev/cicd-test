@@ -43,7 +43,7 @@ const HouseDetail = () => {
       </div>
 
       <div className="relative mb-6">
-        <div className="flex gap-4 overflow-x-auto">
+        <div className="flex gap-4 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {house.image.map((imgUrl, idx) => (
             <img
               key={idx}
@@ -53,6 +53,7 @@ const HouseDetail = () => {
             />
           ))}
         </div>
+
 
         <div
           className="absolute top-5 right-5 bg-white rounded-full p-2 shadow-md cursor-pointer z-10"

@@ -52,7 +52,7 @@ const LoginSignup = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
       <div className="flex flex-col md:flex-row bg-white rounded-4xl shadow-lg overflow-hidden max-w-5xl w-full">
-        
+
         {/* Left Side Image */}
         <div className="md:w-2/5 w-full bg-stone-800 flex justify-center items-center p-4">
           <img src="./images/img1.jpg" alt="house" className="rounded-lg w-full h-auto object-cover" />
@@ -165,11 +165,10 @@ const LoginSignup = () => {
             <button
               type="submit"
               disabled={Object.keys(errors).length > 0 || !identifier || !password}
-              className={`w-full py-2 font-semibold rounded-lg text-white transition cursor-pointer ${
-                Object.keys(errors).length > 0 || !identifier || !password
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-blue-500 to-green-400 hover:opacity-90'
-              }`}
+              className={`w-full py-2 font-semibold rounded-lg text-white transition cursor-pointer ${Object.keys(errors).length > 0 || !identifier || !password
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-gradient-to-r from-blue-500 to-green-400 hover:opacity-90'
+                }`}
             >
               {isLogin ? 'LOGIN' : 'SIGN UP'}
             </button>

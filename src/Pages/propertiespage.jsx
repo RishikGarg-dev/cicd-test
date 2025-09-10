@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import bannerImg from '../assets/image45.png';
-import Property from '../components/Layout';
 import { SlidersHorizontal, ChevronDown, MapPin, Search } from 'lucide-react';
-
-
+import PropertyCard from '../components/PropertyCard'; // assuming you still keep PropertyCard separate
 const filterOptions = {
   "Property Type": ["Flat", "Villa", "Independent House"],
   "Price Range": ["< ₹10,000", "₹10,000 - ₹20,000", "₹20,000 - ₹30,000", "> ₹30,000"],
@@ -12,13 +10,11 @@ const filterOptions = {
   "Parking": ["Yes", "No"],
   "Others": ["Furnished", "Pet Friendly", "Lift", "Security"],
 };
-
 const PropertyPage = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [selectedFilters, setSelectedFilters] = useState({});
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const importantFilters = ["Property Type", "Price Range"];
-  
   const removeFilter = (filterKey) => {
     setSelectedFilters((prev) => {
       const updated = { ...prev };
@@ -26,24 +22,20 @@ const PropertyPage = () => {
       return updated;
     });
   };
-
   const toggleDropdown = (filter) => {
     setActiveDropdown((prev) => (prev === filter ? null : filter));
   };
-
   const selectOption = (filter, option) => {
     setSelectedFilters((prev) => ({ ...prev, [filter]: option }));
     setActiveDropdown(null);
   };
-
   const resetAllFilters = () => {
     setSelectedFilters({});
     setActiveDropdown(null);
   };
-
   return (
     <>
-      {/* Hero */}
+      {/* Hero Section */}
       <div
         className="relative bg-cover bg-center h-[300px]"
         style={{ backgroundImage: `url(${bannerImg})` }}
@@ -55,7 +47,6 @@ const PropertyPage = () => {
           </p>
         </div>
       </div>
-
       {/* Search Bar */}
       <div className="w-full flex justify-center my-6 px-4">
         <div className="w-full max-w-4xl border p-1 rounded-lg shadow-lg bg-white">
@@ -79,13 +70,12 @@ const PropertyPage = () => {
           </div>
         </div>
       </div>
-
       {/* Filters */}
       <div className="bg-white pt-2 pb-4 px-4 sm:px-6 lg:px-8 border-b border-gray-200">
         <div className="container mx-auto">
+          {/* Mobile Filters */}
           <div className="flex flex-col gap-2 sm:hidden mb-3">
             <div className="flex items-center gap-2">
-              {/* Filter Icon */}
               <button
                 onClick={() => setShowMobileFilters(!showMobileFilters)}
                 className="flex items-center gap-2 p-2 bg-gray-100 rounded-full hover:bg-gray-200 flex-shrink-0"
@@ -93,8 +83,6 @@ const PropertyPage = () => {
                 <SlidersHorizontal className="w-5 h-5 text-gray-700" />
                 <span className="text-sm text-gray-700">Filter</span>
               </button>
-
-              {/* Always-visible filters beside icon */}
               <div className="flex gap-2 flex-1 min-w-0">
                 {importantFilters.map((filter) => (
                   <div key={filter} className="relative flex-shrink-0">
@@ -122,8 +110,6 @@ const PropertyPage = () => {
                 ))}
               </div>
             </div>
-
-            {/* Selected Filters (other than important ones) - on a separate row */}
             {Object.entries(selectedFilters).some(([filter]) => !importantFilters.includes(filter)) && (
               <div className="flex gap-2 flex-wrap">
                 {Object.entries(selectedFilters).map(([filter, value]) =>
@@ -145,8 +131,6 @@ const PropertyPage = () => {
               </div>
             )}
           </div>
-
-          {/* Stacked filters for mobile */}
           {showMobileFilters && (
             <div className="flex flex-col gap-3 sm:hidden">
               {Object.entries(filterOptions)
@@ -183,17 +167,15 @@ const PropertyPage = () => {
               </button>
             </div>
           )}
-
-          {/* Desktop filters inline */}
+          {/* Desktop Filters */}
           <div className="hidden sm:flex flex-wrap justify-center gap-3">
-
             {Object.entries(filterOptions).map(([filter, options]) => (
               <div key={filter} className="relative">
                 <button
                   onClick={() => toggleDropdown(filter)}
                   className="flex items-center text-gray-700 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-medium"
                 >
-                 {selectedFilters[filter] ? `${filter}: ${selectedFilters[filter]}` : filter}
+                  {selectedFilters[filter] ? `${filter}: ${selectedFilters[filter]}` : filter}
                   <ChevronDown className="w-4 h-4 ml-2" />
                 </button>
                 {activeDropdown === filter && (
@@ -220,10 +202,12 @@ const PropertyPage = () => {
           </div>
         </div>
       </div>
-
-      <Property selectedFilters={selectedFilters} />
+      {/* Property Section */}
+      <section className="py-6 px-4 md:px-10">
+        <h2 className="text-2xl font-bold mb-4">Explore Properties</h2>
+        <PropertyCard selectedFilters={selectedFilters} />
+      </section>
     </>
   );
 };
-
 export default PropertyPage;
