@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "./SideBar";
+
 
 const PaymentStatus = ({ activeSection, onSectionChange }) => {
   const transactions = [
@@ -11,8 +11,6 @@ const PaymentStatus = ({ activeSection, onSectionChange }) => {
 
   return (
     <div className="flex flex-col md:flex-row">
-      {/* Sidebar section (stacked on mobile and side-by-side on tablets and above) */}
-      <Sidebar activeSection={activeSection} onSectionChange={onSectionChange} />
 
       <section className="flex-1 bg-gray-100 p-6">
         <div className="bg-white rounded-lg p-6 shadow-sm">

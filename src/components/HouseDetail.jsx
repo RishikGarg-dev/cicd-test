@@ -43,16 +43,17 @@ const HouseDetail = () => {
       </div>
 
       <div className="relative mb-6">
-        <div className="flex gap-4 overflow-x-auto">
-          {house.image.map((imgUrl, idx) => (
-            <img
-              key={idx}
-              src={imgUrl}
-              alt={`House view ${idx + 1}`}
-              className="w-[350px] h-[300px] object-cover rounded-lg shrink-0"
-            />
-          ))}
-        </div>
+        <div className="flex gap-4 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+  {house.image.map((imgUrl, idx) => (
+    <img
+      key={idx}
+      src={imgUrl}
+      alt={`House view ${idx + 1}`}
+      className="w-[350px] h-[300px] object-cover rounded-lg shrink-0"
+    />
+  ))}
+</div>
+
 
         <div
           className="absolute top-5 right-5 bg-white rounded-full p-2 shadow-md cursor-pointer z-10"
