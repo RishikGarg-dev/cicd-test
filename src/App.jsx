@@ -13,10 +13,6 @@ import Footer from './components/Footer';
 import Agent from './Pages/Agent';
 import AgentDetails from "./components/AgentDetails";
 import ActiveRentals from './Pages/MyRentals';
-import LeaseDocuments from './components/LeaseDocuments';
-import RentalsHistory from './components/RentalHistory';
-import MaintenanceIssue from './components/RaiseMaintenanceIssue';
-import PaymentStatus from './components/Paymentstatus';
 
 
 function App() {
@@ -36,10 +32,6 @@ function App() {
           <Route path="/agent/:id" element={<AgentDetails />} />
           <Route path="/landlord" element={<Landlord />} />
           <Route path="/myrentals" element={<ActiveRentals />} />
-          <Route path="/leasedocuments" element={<LeaseDocuments />} />
-          <Route path="/rentalshistory" element={<RentalsHistory />} />
-          <Route path="/maintenanceissue" element={<MaintenanceIssue />} />
-          <Route path="/paymentstatus" element={<PaymentStatus />} />
         </Routes>
         <Footer />
       </Router>

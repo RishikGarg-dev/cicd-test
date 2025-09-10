@@ -133,11 +133,16 @@ export default function CardCarousel() {
               )}
             </div>
 
-            <div
-              className="w-full h-36 sm:h-52 bg-cover bg-center rounded-md mb-2"
-              style={{ backgroundImage: `url(${card.images?.[0] || card.image})` }}
+            <img
+  className="w-full h-36 sm:h-52 rounded-md mb-2 object-cover"
+  src={Array.isArray(card.image) ? card.image[0] : card.image || "/placeholder.png"}
+  alt={card.title}
+  onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = "/placeholder.png"; // fallback
+  }}
+/>
 
-            />
 
             <h3 className="text-base sm:text-lg font-semibold">{card.title}</h3>
             <p className="text-sm sm:text-base text-gray-500 mb-2">📍 {card.location}</p>

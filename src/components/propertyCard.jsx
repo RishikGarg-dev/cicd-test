@@ -29,7 +29,7 @@ const PropertyCard = ({ property }) => {
       <div className="relative">
         <img
           className="h-56 w-full object-cover"
-          src={property.image}
+          src={Array.isArray(property.image) ? property.image[0] : property.image}
           alt={property.title}
         />
         <button

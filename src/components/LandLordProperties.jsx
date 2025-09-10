@@ -31,7 +31,7 @@ const MyProperty = () => {
                     >
                         <div className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
                             <img
-                                src={house.image}
+                                src={Array.isArray(house.image) ? house.image[0] : house.image}
                                 alt={house.title}
                                 className="w-full h-40 object-cover"
                             />
