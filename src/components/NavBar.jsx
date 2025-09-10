@@ -36,18 +36,18 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Dropdown Nav */}
-{isOpen && (
-  <div className="md:hidden bg-white/60 backdrop-blur-md px-4 py-6 space-y-4 text-sm">
-    <Link to="/" className="block text-black font-medium hover:text-gray-700">Home</Link>
-    <Link to="/Properties" className="block text-black font-medium hover:text-gray-700">Properties</Link>
-    <Link to="/agent" className="block text-black font-medium hover:text-gray-700">Agent</Link>
-    <Link to="/LandLord" className="block text-black font-medium hover:text-gray-700">LandLord</Link>
-    <Link to="/myrentals" className="block text-black font-medium hover:text-gray-700">MyRentals</Link>
-    <Link to="#Login" className="block text-black font-medium hover:text-gray-700 mt-6">
-      <i className="fas fa-user mr-1"></i> Login
-    </Link>
-  </div>
-)}
+      {isOpen && (
+        <div className="md:hidden bg-white/60 backdrop-blur-md px-4 py-6 space-y-4 text-sm">
+          <Link to="/" className="block text-black font-medium hover:text-gray-700">Home</Link>
+          <Link to="/Properties" className="block text-black font-medium hover:text-gray-700">Properties</Link>
+          <Link to="/agent" className="block text-black font-medium hover:text-gray-700">Agent</Link>
+          <Link to="/LandLord" className="block text-black font-medium hover:text-gray-700">LandLord</Link>
+          <Link to="/myrentals" className="block text-black font-medium hover:text-gray-700">MyRentals</Link>
+          <Link to="#Login" className="block text-black font-medium hover:text-gray-700 mt-6">
+            <i className="fas fa-user mr-1"></i> Login
+          </Link>
+        </div>
+      )}
 
 
     </nav>

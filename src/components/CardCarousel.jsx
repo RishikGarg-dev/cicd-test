@@ -134,14 +134,14 @@ export default function CardCarousel() {
             </div>
 
             <img
-  className="w-full h-36 sm:h-52 rounded-md mb-2 object-cover"
-  src={Array.isArray(card.image) ? card.image[0] : card.image || "/placeholder.png"}
-  alt={card.title}
-  onError={(e) => {
-    e.target.onerror = null;
-    e.target.src = "/placeholder.png"; // fallback
-  }}
-/>
+              className="w-full h-36 sm:h-52 rounded-md mb-2 object-cover"
+              src={Array.isArray(card.image) ? card.image[0] : card.image || "/placeholder.png"}
+              alt={card.title}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "/placeholder.png"; // fallback
+              }}
+            />
 
 
             <h3 className="text-base sm:text-lg font-semibold">{card.title}</h3>
