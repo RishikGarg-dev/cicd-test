@@ -1,4 +1,4 @@
-import { houses } from './houses'; 
+import { houses } from './houses';
 
 export const agentsData = [
   {
@@ -8,7 +8,7 @@ export const agentsData = [
     rating: 5,
     reviewsCount: 95,
     experience: 3,
-    languages: [ "Telugu", "Hindi"],
+    languages: ["Telugu", "Hindi"],
     specialties: ["Luxury Rentals", "Budget-Friendly Options", "Family Rentals"],
     about: `Uday is a young, dynamic agent known for quickly finding properties that match his clients’ exact needs. With multilingual skills, he caters to a wide range of clients in Hyderabad.
     With over a decade in the real estate industry, I specialize in matching clients with their dream homes, investment properties, and commercial spaces. 

@@ -300,7 +300,7 @@ export default function HomePage() {
         </div>
       </section>
 
-    
+
       {/* Discount Listings */}
       <section className="px-4 sm:px-6 py-14 text-center">
         <h2 className="text-3xl text-red-500 font-bold">Discount Listings</h2>
@@ -358,47 +358,47 @@ export default function HomePage() {
 
       {/* Start Renting */}
       <section className="py-10 bg-white flex items-center">
-  <div className="max-w-full mx-auto flex flex-col lg:flex-row justify-between gap-16 px-4 sm:px-6 lg:px-8">
-    <div className="flex-1 text-center lg:text-left">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 leading-tight">
-        Start Renting Out Your Property Today
-      </h2>
-      <p className="text-gray-700 mb-6 text-base sm:text-lg">
-        List your space on Swiftly — whether it's furnished or not — and get
-        <br className="hidden sm:inline-block" />
-        matched with genuine, trustworthy tenants.
-      </p>
-      <button className="bg-gradient-to-r from-purple-500 to-green-400 text-white px-6 py-3 rounded-md shadow hover:opacity-90 transition cursor-pointer">
-        Start Listing
-      </button>
-    </div>
+        <div className="max-w-full mx-auto flex flex-col lg:flex-row justify-between gap-16 px-4 sm:px-6 lg:px-8">
+          <div className="flex-1 text-center lg:text-left">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 leading-tight">
+              Start Renting Out Your Property Today
+            </h2>
+            <p className="text-gray-700 mb-6 text-base sm:text-lg">
+              List your space on Swiftly — whether it's furnished or not — and get
+              <br className="hidden sm:inline-block" />
+              matched with genuine, trustworthy tenants.
+            </p>
+            <button className="bg-gradient-to-r from-purple-500 to-green-400 text-white px-6 py-3 rounded-md shadow hover:opacity-90 transition cursor-pointer">
+              Start Listing
+            </button>
+          </div>
 
-    <div className="relative w-full max-w-[360px] sm:max-w-[400px] md:max-w-[440px] lg:max-w-[480px] mx-auto">
-      <img
-  src={img4}
-  alt="Leasing Office"
-  className="rounded-xl w-[280px] sm:w-full h-[280px] sm:h-[320px] md:h-[360px] object-cover ml-auto"
-/>
+          <div className="relative w-full max-w-[360px] sm:max-w-[400px] md:max-w-[440px] lg:max-w-[480px] mx-auto">
+            <img
+              src={img4}
+              alt="Leasing Office"
+              className="rounded-xl w-[280px] sm:w-full h-[280px] sm:h-[320px] md:h-[360px] object-cover ml-auto"
+            />
 
 
-      {/* Blue Box Info */}
-      <div className="absolute bottom-4 left-2 sm:left-6 lg:left-[-70px] bg-blue-500 text-white rounded-md shadow-md px-4 sm:px-6 py-5 w-[85%] sm:w-[320px] lg:w-[260px]">
-  <div className="flex justify-between items-center text-center w-full">
-    <div className="flex-1">
-      <div className="text-xl sm:text-2xl font-bold">1400+</div>
-      <div className="text-sm font-medium">Properties</div>
-    </div>
-    <div className="w-px bg-white h-10 sm:h-12 mx-4 sm:mx-6"></div>
-    <div className="flex-1">
-      <div className="text-xl sm:text-2xl font-bold">72+</div>
-      <div className="text-sm font-medium">Trusted clients</div>
-    </div>
-  </div>
-</div>
+            {/* Blue Box Info */}
+            <div className="absolute bottom-4 left-2 sm:left-6 lg:left-[-70px] bg-blue-500 text-white rounded-md shadow-md px-4 sm:px-6 py-5 w-[85%] sm:w-[320px] lg:w-[260px]">
+              <div className="flex justify-between items-center text-center w-full">
+                <div className="flex-1">
+                  <div className="text-xl sm:text-2xl font-bold">1400+</div>
+                  <div className="text-sm font-medium">Properties</div>
+                </div>
+                <div className="w-px bg-white h-10 sm:h-12 mx-4 sm:mx-6"></div>
+                <div className="flex-1">
+                  <div className="text-xl sm:text-2xl font-bold">72+</div>
+                  <div className="text-sm font-medium">Trusted clients</div>
+                </div>
+              </div>
+            </div>
 
-    </div>
-  </div>
-</section>
+          </div>
+        </div>
+      </section>
 
     </div>
   );

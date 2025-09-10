@@ -41,10 +41,11 @@ const HouseCard = ({ house, isFavorite, toggleFavorite }) => {
     >
       <div style={{ position: 'relative' }}>
         <img
-          src={house.image}
+          src={Array.isArray(house.image) ? house.image[0] : house.image}
           alt="House"
           style={{ width: '100%', height: 180, objectFit: 'cover' }}
         />
+
         <div
           onClick={handleHeartClick}
           style={{

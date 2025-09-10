@@ -1,13 +1,8 @@
 import React from "react";
-import Sidebar from "./SideBar";
 
 const MaintenanceIssue = ({ activeSection, onSectionChange }) => {
   return (
     <div className="flex flex-col md:flex-row">
-      {/* Sidebar */}
-      <div className="md:w-1/4 w-full">
-        <Sidebar activeSection={activeSection} onSectionChange={onSectionChange} />
-      </div>
 
       {/* Main Content */}
       <section className="flex-1 p-6 bg-gray-100 md:w-3/4">
