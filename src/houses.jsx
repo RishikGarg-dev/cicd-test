@@ -1,101 +1,3 @@
-import p1i1 from "../src/assets/property1_Image1.jpg";
-import p1i2 from "../src/assets/property1_Image2.jpg";
-import p1i3 from "../src/assets/property1_Image3.jpg";
-import p1i4 from "../src/assets/property1_Image4.jpg";
-import p1i5 from "../src/assets/property1_Image5.jpg";
-import p1i6 from "../src/assets/property1_Image6.jpg";
-import p1i7 from "../src/assets/property1_Image7.jpg";
-import p1i8 from "../src/assets/property1_Image8.jpg";
-import p1i9 from "../src/assets/property1_Image9.jpg";
-import p1i10 from "../src/assets/property1_Image10.jpg";
-import p1i11 from "../src/assets/property1_Image11.jpg";
-import p1i12 from "../src/assets/property1_Image12.jpg";
-import p1i13 from "../src/assets/property1_Image13.jpg";
-import p1i14 from "../src/assets/property1_Image14.jpg";
-import p1i15 from "../src/assets/property1_Image15.jpg";
-import p1i16 from "../src/assets/property1_Image16.jpg";
-import p1i17 from "../src/assets/property1_Image17.jpg";
-import p1i18 from "../src/assets/property1_Image18.jpg";
-import p1i19 from "../src/assets/property1_Image19.jpg";
-
-import p2i1 from "../src/assets/property2_Image1.jpg";
-import p2i2 from "../src/assets/property2_Image2.jpg";
-import p2i3 from "../src/assets/property2_Image3.jpg";
-import p2i4 from "../src/assets/property2_Image4.jpg";
-import p2i5 from "../src/assets/property2_Image5.jpg";
-import p2i6 from "../src/assets/property2_Image6.jpg";
-import p2i7 from "../src/assets/property2_Image7.jpg";
-import p2i8 from "../src/assets/property2_Image8.jpg";
-import p2i9 from "../src/assets/property2_Image9.jpg";
-import p2i10 from "../src/assets/property2_Image10.jpg";
-import p2i11 from "../src/assets/property2_Image11.jpg";
-import p2i12 from "../src/assets/property2_Image12.jpg";
-import p2i13 from "../src/assets/property2_Image13.jpg";
-import p2i14 from "../src/assets/property2_Image14.jpg";
-
-import p3i1 from "../src/assets/property3_Image1.jpg";
-import p3i2 from "../src/assets/property3_Image2.jpg";
-import p3i3 from "../src/assets/property3_Image3.jpg";
-import p3i4 from "../src/assets/property3_Image4.jpg";
-import p3i5 from "../src/assets/property3_Image5.jpg";
-import p3i6 from "../src/assets/property3_Image6.jpg";
-import p3i7 from "../src/assets/property3_Image7.jpg";
-import p3i8 from "../src/assets/property3_Image8.jpg";
-import p3i9 from "../src/assets/property3_Image9.jpg";
-import p3i10 from "../src/assets/property3_Image10.jpg";
-import p3i11 from "../src/assets/property3_Image11.jpg";
-import p3i12 from "../src/assets/property3_Image12.jpg";
-import p3i13 from "../src/assets/property3_Image13.jpg";
-import p3i14 from "../src/assets/property3_Image14.jpg";
-import p3i15 from "../src/assets/property3_Image15.jpg";
-import p3i16 from "../src/assets/property3_Image16.jpg";
-import p3i17 from "../src/assets/property3_Image17.jpg";
-import p3i18 from "../src/assets/property3_Image18.jpg";
-import p3i19 from "../src/assets/property3_Image19.jpg";
-import p3i20 from "../src/assets/property3_Image20.jpg";
-import p3i21 from "../src/assets/property3_Image21.jpg";
-
-import p4i1 from "../src/assets/property4_Image1.jpg";
-import p4i2 from "../src/assets/property4_Image2.jpg";
-import p4i3 from "../src/assets/property4_Image3.jpg";
-import p4i4 from "../src/assets/property4_Image4.jpg";
-import p4i5 from "../src/assets/property4_Image5.jpg";
-import p4i6 from "../src/assets/property4_Image6.jpg";
-import p4i7 from "../src/assets/property4_Image7.jpg";
-import p4i8 from "../src/assets/property4_Image8.jpg";
-import p4i9 from "../src/assets/property4_Image9.jpg";
-import p4i10 from "../src/assets/property4_Image10.jpg";
-import p4i11 from "../src/assets/property4_Image11.jpg";
-import p4i12 from "../src/assets/property4_Image12.jpg";
-import p4i13 from "../src/assets/property4_Image13.jpg";
-import p4i14 from "../src/assets/property4_Image14.jpg";
-import p4i15 from "../src/assets/property4_Image15.jpg";
-import p4i16 from "../src/assets/property4_Image16.jpg";
-import p4i17 from "../src/assets/property4_Image17.jpg";
-import p4i18 from "../src/assets/property4_Image18.jpg";
-import p4i19 from "../src/assets/property4_Image19.jpg";
-
-import p5i1 from "../src/assets/property5_Image1.jpg";
-import p5i2 from "../src/assets/property5_Image2.jpg";
-import p5i3 from "../src/assets/property5_Image3.jpg";
-import p5i4 from "../src/assets/property5_Image4.jpg";
-import p5i5 from "../src/assets/property5_Image5.jpg";
-import p5i6 from "../src/assets/property5_Image6.jpg";
-import p5i7 from "../src/assets/property5_Image7.jpg";
-import p5i8 from "../src/assets/property5_Image8.jpg";
-import p5i9 from "../src/assets/property5_Image9.jpg";
-import p5i10 from "../src/assets/property5_Image10.jpg";
-import p5i11 from "../src/assets/property5_Image11.jpg";
-import p5i12 from "../src/assets/property5_Image12.jpg";
-import p5i13 from "../src/assets/property5_Image13.jpg";
-import p5i14 from "../src/assets/property5_Image14.jpg";
-import p5i15 from "../src/assets/property5_Image15.jpg";
-import p5i16 from "../src/assets/property5_Image16.jpg";
-import p5i17 from "../src/assets/property5_Image17.jpg";
-import p5i18 from "../src/assets/property5_Image18.jpg";
-import p5i19 from "../src/assets/property5_Image19.jpg";
-import p5i20 from "../src/assets/property5_Image20.jpg";
-
 export const houses = [
   {
     id: 1,
@@ -103,25 +5,23 @@ export const houses = [
     title: 'shiftly 10th Floor',
     location: 'L.B Nagar ,Hyderabad ,500079',
     image: [
-      p1i1,
-      p1i2,
-      p1i3,
-      p1i4,
-      p1i5,
-      p1i6,
-      p1i7,
-      p1i8,
-      p1i9,
-      p1i10,
-      p1i11,
-      p1i12,
-      p1i13,
-      p1i14,
-      p1i15,
-      p1i16,
-      p1i17,
-      p1i18,
-      p1i19,
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597238/property1_Image19_azhrpv.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597235/property1_Image18_blaelv.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597232/property1_Image17_glsifi.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597230/property1_Image16_u4gfku.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597227/property1_Image15_ibkj6n.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597225/property1_Image13_q6sv3k.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597225/property1_Image11_vmspzx.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597225/property1_Image11_vmspzx.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597220/property1_Image12_qri1u6.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597213/property1_Image10_pjqguo.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597210/property1_image9_s74zsw.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597204/property1_image7_i5rh8q.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597202/property1_image6_rwpgqi.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597193/property1_image3_hdpugt.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597200/property1_image5_k82nfv.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597191/property1_image1_r7vnuf.jpg',
+     
     ],
     description: `Step into this thoughtfully designed 2BHK home that blends comfort, functionality, and style. The apartment features two well-ventilated bedrooms with built-in wardrobes, two modern bathrooms, and a semi-furnished modular kitchen with ample storage and workspace. Adding to its appeal is a dedicated pooja/prayer space, offering a peaceful corner for spiritual practices right within your home.
 
@@ -152,7 +52,8 @@ Whether you’re unwinding in the balcony, spending time with loved ones in the 
     nearbyLocation: 'HSR Layout, Bangalore',
     nearbyMetro: 'HSR Metro Station - 1.5 km',
     nearbyMall: 'Forum Mall - 3 km',
-    mapImage: 'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1756129875/map_zqyznb.png',
+    latitude: 17.3476,
+    longitude: 78.5576,
   },
 
   {
@@ -161,20 +62,19 @@ Whether you’re unwinding in the balcony, spending time with loved ones in the 
     title: 'karmanghat building',
     location: 'Karmanghat ,Hyderabad ,500059',
     image: [
-      p2i1,
-      p2i2,
-      p2i3,
-      p2i4,
-      p2i5,
-      p2i6,
-      p2i7,
-      p2i8,
-      p2i9,
-      p2i10,
-      p2i11,
-      p2i12,
-      p2i13,
-      p2i14,
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597592/property2_Image14_v1y7az.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597589/property2_Image13_gkykrw.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597587/property2_Image12_w0vlrt.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597577/property2_Image9_suqjus.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597572/property2_Image7_ea1x7i.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597570/property2_Image6_pjl50f.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597567/property2_Image5_lbyqbs.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597567/property2_Image5_lbyqbs.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597553/property2_Image4_ytilc4.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597553/property2_Image4_ytilc4.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597551/property2_Image3_rqjgrp.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597548/property2_Image2_vt2nj1.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597533/property2_Image1_penosg.jpg',
     ],
     description: `Step into this thoughtfully designed 2BHK apartment that combines simplicity with modern elegance. The home features two well-planned bedrooms that allow for maximum comfort, two contemporary bathrooms fitted with sleek fixtures, and a spacious living and dining area that flows seamlessly, perfect for family gatherings or quiet evenings. The modular kitchen offers plenty of space for storage and efficient cooking, making it ideal for everyday use.
 
@@ -203,7 +103,8 @@ The apartment is part of a secure residential complex with round-the-clock secur
     nearbyLocation: 'HSR Layout, Bangalore',
     nearbyMetro: 'HSR Metro Station - 1.5 km',
     nearbyMall: 'Forum Mall - 3 km',
-    mapImage: 'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1756129875/map_zqyznb.png',
+    latitude: 17.340821578702656, 
+    longitude: 78.53133531565966,
   },
 
   {
@@ -212,27 +113,25 @@ The apartment is part of a secure residential complex with round-the-clock secur
     title: 'Avanthi Hills 5th Floor',
     location: 'BalaNagar ,Hyderabad ,500071',
     image: [
-      p3i1,
-      p3i2,
-      p3i3,
-      p3i4,
-      p3i5,
-      p3i6,
-      p3i7,
-      p3i8,
-      p3i9,
-      p3i10,
-      p3i11,
-      p3i12,
-      p3i13,
-      p3i14,
-      p3i15,
-      p3i16,
-      p3i17,
-      p3i18,
-      p3i19,
-      p3i20,
-      p3i21,
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598025/property3_Image21_waupvp.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598022/property3_Image20_q86omn.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598018/property3_Image19_djlnj6.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598015/property3_Image18_g0y3yj.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598012/property3_Image17_gdl8jq.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598008/property3_Image16_sjk2cy.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598005/property3_Image15_aqsvwu.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598004/property3_Image14_u8weos.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597999/property3_Image13_g6unar.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597996/property3_Image12_tcmhus.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597996/property3_Image12_tcmhus.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597993/property3_Image11_lu73mu.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597989/property3_image10_wz38gj.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597963/property3_image9_kaigqa.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597958/property3_Image8_t0cl0c.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597958/property3_Image8_t0cl0c.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597930/property3_image5_erki8x.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597927/property3_image4_cm08g9.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597920/property3_image1_tlics0.jpg',
     ],
     description: `This 3BHK apartment is the definition of space, comfort, and modern style. It features three generously sized bedrooms with ample room for wardrobes, three bathrooms with stylish fittings, and a bright living room that invites natural light from all directions. The modular kitchen is designed for both efficiency and aesthetics, ensuring a smooth cooking experience for daily living.
 
@@ -261,7 +160,8 @@ The property is part of a gated community that ensures 24x7 security, lift acces
     nearbyLocation: 'HSR Layout, Bangalore',
     nearbyMetro: 'HSR Metro Station - 1.5 km',
     nearbyMall: 'Forum Mall - 3 km',
-    mapImage: 'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1756129875/map_zqyznb.png',
+    latitude:17.263532311683726,
+    longitude: 78.72418322172447,
 
   },
   {
@@ -272,25 +172,23 @@ The property is part of a gated community that ensures 24x7 security, lift acces
     title: 'Vassavi Estate 2nd Floor',
     location: 'R.N.Reddy ,Hyderabad ,500079',
     image: [
-      p4i1,
-      p4i2,
-      p4i3,
-      p4i4,
-      p4i5,
-      p4i6,
-      p4i7,
-      p4i8,
-      p4i9,
-      p4i10,
-      p4i11,
-      p4i12,
-      p4i13,
-      p4i14,
-      p4i15,
-      p4i16,
-      p4i17,
-      p4i18,
-      p4i19,
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598464/property4_Image17_jalbrd.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598460/property4_Image16_aiwwkl.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598458/property4_Image15_rqtzid.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598454/property4_Image14_whzjsy.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598451/property4_Image13_u6wuif.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598447/property4_Image12_pc7soj.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598446/property4_Image11_cvrizc.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598441/property4_image10_obzmfq.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598438/property4_image9_qb6ow8.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598436/property4_image8_e8pfia.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598430/property4_image7_bxsoqh.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598427/property4_image6_bxuurl.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598425/property4_image4_fnggz8.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598424/property4_image5_mohumb.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598417/property4_image2_iwuelx.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598412/property4_image1_bjzhhr.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598418/property4_image3_uua6qf.jpg',
     ],
     description: `This fully furnished 2BHK apartment offers everything you need for a convenient and stylish lifestyle. With two comfortable bedrooms complete with wardrobes and beds, two well-maintained bathrooms, and a spacious living room, this home is designed for ease of living. The kitchen is fully functional, equipped with cabinets and essential fittings, making it ready for immediate use.
 
@@ -319,7 +217,8 @@ As part of a well-kept residential community, residents enjoy 24-hour security, 
     nearbyLocation: 'HSR Layout, Bangalore',
     nearbyMetro: 'HSR Metro Station - 1.5 km',
     nearbyMall: 'Forum Mall - 3 km',
-    mapImage: 'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1756129875/map_zqyznb.png',
+    latitude:17.337255873849934,
+    longitude: 78.55586085825178,
   },
 
   {
@@ -328,26 +227,21 @@ As part of a well-kept residential community, residents enjoy 24-hour security, 
     title: 'Sun City My Homes 10th Floor',
     location: 'ShadNagar ,Hyderabad ,500079',
     image: [
-      p5i1,
-      p5i2,
-      p5i3,
-      p5i4,
-      p5i5,
-      p5i6,
-      p5i7,
-      p5i8,
-      p5i9,
-      p5i10,
-      p5i11,
-      p5i12,
-      p5i13,
-      p5i14,
-      p5i15,
-      p5i16,
-      p5i17,
-      p5i18,
-      p5i19,
-      p5i20,
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598879/property5_Image2_kwuclp.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598885/property5_Image4_bph7ho.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598882/property5_Image3_pgooks.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598913/property5_Image6_gkbkri.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598910/property5_Image5_dhtwf1.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598921/property5_Image8_zd260z.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598917/property5_Image7_slpqma.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598935/property5_Image12_z58fkm.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598928/property5_Image10_erbrs8.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598925/property5_Image9_ufpual.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598939/property5_Image13_sggttl.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598932/property5_Image11_vwylho.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598947/property5_Image15_jtocva.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598958/property5_Image18_matshk.jpg',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598955/property5_Image17_qpntdu.jpg',
     ],
     description: `Experience the charm of independent living with this spacious 2BHK home designed for comfort and flexibility. The property offers two bedrooms with plenty of natural light, two bathrooms, a large living room ideal for entertaining, a separate dining area, and a functional kitchen with storage shelves and cabinets. The open and practical layout makes it perfect for both families and professionals who appreciate extra space.
 
@@ -376,7 +270,8 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
     nearbyLocation: 'HSR Layout, Bangalore',
     nearbyMetro: 'HSR Metro Station - 1.5 km',
     nearbyMall: 'Forum Mall - 3 km',
-    mapImage: 'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1756129875/map_zqyznb.png',
+   latitude:17.078625158634708, 
+   longitude:78.19560261831275
   },
 
   {
@@ -416,7 +311,8 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
   nearbyLocation: 'Madhapur, Hyderabad',
   nearbyMetro: 'Adjoining Metro Station',
   nearbyMall: 'Information not available',
-  mapImage: 'https://res.cloudinary.com/demo/image/upload/v1693849202/map_madhapur_hyderabad.jpg'
+  latitude:17.43747133254125, 
+  longitude:78.40018434035989,
 },
 {
   id: 7,
@@ -457,7 +353,8 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
   nearbyLocation: 'Madhapur, Hyderabad',
   nearbyMetro: 'Adjoining Metro Station',
   nearbyMall: 'Information not available',
-  mapImage: 'https://res.cloudinary.com/demo/image/upload/v1693849203/map_capital_park_madhapur.jpg'
+  latitude:17.44703090073117, 
+  longitude:78.38636249843218,
 },
 {
   id: 8,
@@ -498,7 +395,8 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
   nearbyLocation: 'Amberpet, Secunderabad',
   nearbyMetro: 'Adjoining Metro Station',
   nearbyMall: 'Information not available',
-  mapImage: 'https://res.cloudinary.com/demo/image/upload/v1693849204/map_amberpet_hyderabad.jpg'
+  latitude:17.392651659320308, 
+  longitude:78.51613870384448,
 },
 {
   id: 9,
@@ -542,7 +440,8 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
   nearbyLocation: 'Peddapur, Hyderabad',
   nearbyMetro: 'Information not available',
   nearbyMall: 'Information not available',
-  mapImage: 'https://res.cloudinary.com/demo/image/upload/v1693849205/map_peddapur_hyderabad.jpg'
+  latitude:17.60820094689767,
+  longitude: 78.00854278707448,
 },
 {
   id: 10,
@@ -587,7 +486,9 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
   nearbyLocation: 'Gachibowli, Hyderabad',
   nearbyMetro: 'Adjoining Metro Station',
   nearbyMall: 'Information not available',
-  mapImage: 'https://res.cloudinary.com/demo/image/upload/v1693849207/map_gachibowli_hyderabad.jpg'
+  latitude:17.454918333251793, 
+  longitude:78.36243041641484,
+  
 },
 {
   id: 11,
@@ -628,14 +529,15 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
   nearbyLocation: 'Gachibowli, Hyderabad',
   nearbyMetro: 'Information not available',
   nearbyMall: 'Information not available',
-  mapImage: 'https://res.cloudinary.com/demo/image/upload/v1693849208/map_phoenix_golfedge_gachibowli.jpg'
+  latitude:17.424353540980086, 
+  longitude:78.34757465056397,
 },
 {
-  "id": 12,
-  "agentId": 13,
-  "title": "G+6 Commercial Building for Sale in Kondapur",
-  "location": "Kondapur, West Zone, Hyderabad",
-  "image": [
+  id: 12,
+  agentId: 13,
+  title: "G+6 Commercial Building for Sale in Kondapur",
+  location: "Kondapur, West Zone, Hyderabad",
+  image: [
     'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757525139/id12_5_ay4ydu.jpg',
     'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757525139/id12_8_yjki1x.jpg',
     'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757525139/id12_7_lqbl0n.jpg',
@@ -647,30 +549,31 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
     'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757525167/id12_3_uoaycj.jpg',
     'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757525167/id12_4_pdb595.jpg',
   ],
-  "description": "Presenting an excellent investment opportunity in Kondapur, Hyderabad. This entire G+6 commercial office building, situated on a 700 Square Yards plot, is available for sale at a breakthrough price of ₹43 Crore. The property boasts a prime road-facing position for high visibility and is semi-furnished, providing a solid foundation to customize the workspace. With its high rental yield potential, this well-maintained building is an ideal prospect for expanding your business footprint or for savvy investors.",
-  "beds": null,
-  "size": "700 Sq. Yds. (Plot Area)",
-  "vehicles": "Ample Parking Available",
-  "type": "Commercial Building",
-  "price": 430000000,
-  "discount": null,
-  "deposit": null,
-  "bathrooms": "7+",
-  "parking": 10,
-  "floor": "G+6",
-  "furnishing": "Semi-Furnished",
-  "propertyType": "Office Space",
-  "lift": "Available",
-  "security": "Available",
-  "powerBackup": "Yes",
-  "propertyAge": null,
-  "waterSupply": "Available",
-  "facing": "Road View",
-  "balcony": null,
-  "nearbyLocation": "Kondapur, Hyderabad",
-  "nearbyMetro": "Information not available",
-  "nearbyMall": "Information not available",
-  "mapImage": "https://res.cloudinary.com/demo/image/upload/v1693849209/map_kondapur_hyderabad.jpg"
-}
+  description: "Presenting an excellent investment opportunity in Kondapur, Hyderabad. This entire G+6 commercial office building, situated on a 700 Square Yards plot, is available for sale at a breakthrough price of ₹43 Crore. The property boasts a prime road-facing position for high visibility and is semi-furnished, providing a solid foundation to customize the workspace. With its high rental yield potential, this well-maintained building is an ideal prospect for expanding your business footprint or for savvy investors.",
+  beds: null,
+  size: '700 Sq. Yds. (Plot Area)',
+  vehicles: 'Ample Parking Available',
+  type: 'Commercial Building',
+  price: 430000000,
+  discount: null,
+  deposit: null,
+  bathrooms: '7+',
+  parking: 10,
+  floor: 'G+6',
+  furnishing:'Semi-Furnished',
+  propertyType: 'Office Space',
+  lift: 'Available',
+  security: 'Available',
+  powerBackup: 'Yes',
+  propertyAge: null,
+  waterSupply:'Available',
+  facing: 'Road View',
+  balcony: null,
+  nearbyLocation: 'Kondapur, Hyderabad',
+  nearbyMetro: 'Information not available',
+  nearbyMall: 'Information not available',
+  latitude:17.469710829190575,
+  longitude: 78.35362877034551,
+},
 
 ];
