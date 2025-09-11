@@ -154,10 +154,15 @@ const HouseDetail = () => {
           </ul>
 
           <div>
-            <img
-              src={house.mapImage}
-              alt="Nearby Map"
-              className="w-full h-[250px] object-cover rounded-md"
+            <iframe
+              src={`https://www.google.com/maps?q=${house.latitude},${house.longitude}&hl=en&z=16&output=embed`}
+              width="100%"
+              height="250"
+              style={{ border: 0, borderRadius: '0.75rem' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Nearby Map"
             />
           </div>
         </div>
