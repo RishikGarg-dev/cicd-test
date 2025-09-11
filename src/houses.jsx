@@ -21,15 +21,8 @@ export const houses = [
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597193/property1_image3_hdpugt.jpg',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597200/property1_image5_k82nfv.jpg',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597191/property1_image1_r7vnuf.jpg',
-     
     ],
-    description: `Step into this thoughtfully designed 2BHK home that blends comfort, functionality, and style. The apartment features two well-ventilated bedrooms with built-in wardrobes, two modern bathrooms, and a semi-furnished modular kitchen with ample storage and workspace. Adding to its appeal is a dedicated pooja/prayer space, offering a peaceful corner for spiritual practices right within your home.
-
-The interiors are bright and airy, thanks to large windows and open balconies that invite in natural light and fresh air throughout the day. Elegant flooring and a clean layout make the home feel both cozy and sophisticated, perfect for families and working professionals alike.
-
-This property is part of a secure gated community, providing facilities such as 24x7 security, lift access, power backup, and dedicated parking. Every detail is designed to ensure safety, comfort, and convenience for its residents.
-
-Whether you’re unwinding in the balcony, spending time with loved ones in the spacious living areas, or enjoying the peaceful community atmosphere, this home is an ideal place to create lasting memories. With a competitive monthly rent of ₹[insert rent] and a refundable deposit of ₹[insert deposit], this 2BHK offers a rare mix of elegance, practicality, and affordability.`,
+    description: `Step into this thoughtfully designed 2BHK home that blends comfort, functionality, and style. The apartment features two well-ventilated bedrooms with built-in wardrobes, two modern bathrooms, and a semi-furnished modular kitchen with ample storage and workspace. Adding to its appeal is a dedicated pooja/prayer space, offering a peaceful corner for spiritual practices right within your home.`,
     beds: 2,
     size: '1600 Sq Ft',
     vehicles: '1 Reserved parking',
@@ -54,6 +47,7 @@ Whether you’re unwinding in the balcony, spending time with loved ones in the 
     nearbyMall: 'Forum Mall - 3 km',
     latitude: 17.3476,
     longitude: 78.5576,
+
   },
 
   {
@@ -109,9 +103,9 @@ The apartment is part of a secure residential complex with round-the-clock secur
 
   {
     id: 3,
-    agentId: 3,
-    title: 'Avanthi Hills 5th Floor',
-    location: 'BalaNagar ,Hyderabad ,500071',
+    agentId: 1,
+    title: 'Spacious 3BHK Modern Apartment',
+    location: 'HSR Layout, Bangalore',
     image: [
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598025/property3_Image21_waupvp.jpg',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598022/property3_Image20_q86omn.jpg',
@@ -134,10 +128,9 @@ The apartment is part of a secure residential complex with round-the-clock secur
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757597920/property3_image1_tlics0.jpg',
     ],
     description: `This 3BHK apartment is the definition of space, comfort, and modern style. It features three generously sized bedrooms with ample room for wardrobes, three bathrooms with stylish fittings, and a bright living room that invites natural light from all directions. The modular kitchen is designed for both efficiency and aesthetics, ensuring a smooth cooking experience for daily living.
-
-A highlight of this property is the balcony with sliding glass doors, which not only expands the living space but also offers refreshing outdoor views. The interiors are enhanced with premium tiling, wooden flooring in select bedrooms, and contemporary ceiling finishes, adding a touch of elegance to the overall ambiance.
-
-The property is part of a gated community that ensures 24x7 security, lift access, power backup, and reserved parking. Well-lit, ventilated, and designed with attention to detail, this apartment is perfect for those who want the benefits of modern living combined with the warmth of a homely environment.`,
+A highlight of this property is the balcony with sliding glass doors, which not only expands the living space but also offers refreshing outdoor views. The interiors are enhanced with premium tiling, wooden flooring in select bedrooms, and contemporary ceiling finishes, adding a touch of elegance to the overall ambiance.`,
+    latitude: 17.3256,
+    longitude: 78.5247,
     beds: 3,
     size: '1400 Sq Ft',
     vehicles: '2 2W+1 4W',
@@ -162,14 +155,11 @@ The property is part of a gated community that ensures 24x7 security, lift acces
     nearbyMall: 'Forum Mall - 3 km',
     latitude:17.263532311683726,
     longitude: 78.72418322172447,
-
   },
   {
     id: 4,
-    title: 'Vasavi Estate 2nd Floor',
-    location: 'R.N.Reddy ,Hyderabad ,500079',
     agentId: 2,
-    title: 'Vassavi Estate 2nd Floor',
+    title: 'Vasavi Estate 2nd Floor',
     location: 'R.N.Reddy ,Hyderabad ,500079',
     image: [
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757598464/property4_Image17_jalbrd.jpg',
