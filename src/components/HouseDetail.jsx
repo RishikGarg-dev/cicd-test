@@ -26,9 +26,9 @@ const HouseDetail = () => {
   const isFavorite = favorites.includes(house.id);
 
   return (
-    <div className="p-4 max-w-screen-xl mx-auto">
+    <div className="max-w-screen-xl p-4 mx-auto">
 
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center px-2 md:px-0 mb-4">
+      <div className="flex flex-col items-start justify-between px-2 mb-4 md:flex-row md:items-center md:px-0">
         <div>
           <h2 className="text-2xl font-semibold">{house.title}</h2>
           <div className="flex items-center text-lg text-gray-500">
@@ -36,7 +36,7 @@ const HouseDetail = () => {
             <span>{house.location}</span>
           </div>
         </div>
-        <div className="space-y-1 text-gray-800 text-base md:text-lg mt-3 md:mt-0 text-right">
+        <div className="mt-3 space-y-1 text-base text-right text-gray-800 md:text-lg md:mt-0">
           <p className="text-2xl font-semibold text-green-600">₹{house.price}/month</p>
           <p className="text-sm text-gray-500">Security Deposit: ₹{house.deposit}</p>
         </div>
@@ -56,7 +56,7 @@ const HouseDetail = () => {
 
 
         <div
-          className="absolute top-5 right-5 bg-white rounded-full p-2 shadow-md cursor-pointer z-10"
+          className="absolute z-10 p-2 bg-white rounded-full shadow-md cursor-pointer top-5 right-5"
           onClick={(e) => {
             e.stopPropagation();
             toggleFavorite(house.id);
@@ -72,7 +72,7 @@ const HouseDetail = () => {
 
 
       <h1 className="text-xl font-semibold "> Property Summary </h1>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-2 gap-6 mb-6 sm:grid-cols-3 lg:grid-cols-4">
 
         <div className="flex items-center">
           <FaBed className="mr-2 text-gray-600" />
@@ -132,61 +132,66 @@ const HouseDetail = () => {
         </div>
       </div>
 
-      <h3 className="text-lg font-semibold mb-2">Description</h3>
+      <h3 className="mb-2 text-lg font-semibold">Description</h3>
       <p>{house.description}</p>
 
       <div className="pt-8 mt-10">
-        <h3 className="text-xl font-semibold mb-6">Nearby Accessibility</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <h3 className="mb-6 text-xl font-semibold">Nearby Accessibility</h3>
+        <div className="grid items-start grid-cols-1 gap-8 md:grid-cols-2">
           <ul className="space-y-4 text-gray-700">
             <li className="flex items-start gap-3">
-              <FaMapMarkerAlt className="text-blue-600 mt-1" size={18} />
+              <FaMapMarkerAlt className="mt-1 text-blue-600" size={18} />
               <span>{house.nearbyLocation}</span>
             </li>
             <li className="flex items-start gap-3">
-              <FaSubway className="text-blue-600 mt-1" size={18} />
+              <FaSubway className="mt-1 text-blue-600" size={18} />
               <span>{house.nearbyMetro}</span>
             </li>
             <li className="flex items-start gap-3">
-              <FaShoppingCart className="text-blue-600 mt-1" size={18} />
+              <FaShoppingCart className="mt-1 text-blue-600" size={18} />
               <span>{house.nearbyMall}</span>
             </li>
           </ul>
 
           <div>
-            <img
-              src={house.mapImage}
-              alt="Nearby Map"
-              className="w-full h-[250px] object-cover rounded-md"
+            <iframe
+              src={`https://www.google.com/maps?q=${house.latitude},${house.longitude}&hl=en&z=16&output=embed`}
+              width="100%"
+              height="250"
+              style={{ border: 0, borderRadius: '0.75rem' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Nearby Map"
             />
           </div>
         </div>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 gap-8 mt-10 md:grid-cols-2">
         <div>
-          <p className="text-gray-800 text-base mb-3">
+          <p className="mb-3 text-base text-gray-800">
             <strong>Want to visit the Property?</strong><br />
             Just schedule the time by clicking on schedule a tour.
           </p>
-          <button className="bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600 transition cursor-pointer">
+          <button className="px-6 py-2 text-white transition bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600">
             Schedule a Tour
           </button>
         </div>
 
         <div>
-          <p className="text-gray-800 text-base mb-3">
+          <p className="mb-3 text-base text-gray-800">
             <strong>Click Apply Now to begin your rental journey.</strong><br />
             It takes just a few minutes to share your details, upload documents, and take the first step toward securing your new home.
           </p>
-          <button className="bg-green-500 text-white py-2 px-6 rounded-md hover:bg-green-600 transition cursor-pointer">
+          <button className="px-6 py-2 text-white transition bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
             Apply Now
           </button>
         </div>
       </div>
 
       <div className="mt-10">
-        <h3 className="text-xl font-semibold mb-4">Similar Listings</h3>
+        <h3 className="mb-4 text-xl font-semibold">Similar Listings</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6">
           {houses
             .filter(h => h.id !== house.id)
