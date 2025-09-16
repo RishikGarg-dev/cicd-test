@@ -42,6 +42,7 @@ export const houses = [
     nearbyMall: 'Forum Sujana Mall',
     latitude: '17.50661970717292',
     longitude: '78.41123539219119',
+    discount: '5% off on annual rent',
   },
 
   {
@@ -85,6 +86,7 @@ export const houses = [
     nearbyMall: 'sarath city mall',
     latitude: '17.464337227761515',
     longitude: '78.36194267838076',
+    discount: '5% off on annual rent',
   },
 
   {
@@ -129,6 +131,7 @@ export const houses = [
     nearbyMall: 'sarath city mall',
     latitude: '17.462381827026984',
     longitude: '78.35184819047576',
+    discount: '7% off on annual rent',
   },
   {
     id: 4,
@@ -167,6 +170,7 @@ export const houses = [
     nearbyMall: 'sarath city mall',
     latitude: '17.471934572176963', 
     longitude:'78.3601016032763',
+    discount: '8% off on annual rent',
   },
 
   {
@@ -210,6 +214,7 @@ export const houses = [
     nearbyMall: 'Inorbit Mall ',
     latitude: '17.4593735431695',
     longitude: '78.38811805384806',
+    discount: '10% off on annual rent',
   },
 
   {
@@ -249,6 +254,7 @@ export const houses = [
     nearbyMall: 'City Centre Mall ',
     latitude: '17.455172783415172',
     longitude:'78.3925093690634',
+    discount: '5% off on annual rent',
 },
 {
     id: 7,
@@ -289,6 +295,7 @@ export const houses = [
     nearbyMall: 'City Centre Mall ',
     latitude:'17.452771709615984', 
     longitude:'78.39184851803778',
+    discount: '9% off on annual rent',
 },
 {
     id: 8,
@@ -328,6 +335,7 @@ export const houses = [
     nearbyMall: 'Amrutha Mall ',
     latitude:'17.44889532712224', 
     longitude:'78.39077605241059',
+    discount: '15% off on annual rent',
 },
 {
     id: 9,
@@ -370,6 +378,7 @@ export const houses = [
     nearbyMall: 'Inorbit Mall ',
     latitude:'17.436225372459283',
     longitude:'78.33383047201573',
+    discount: '6% off on annual rent',
 },
 {
     id: 10,
@@ -412,6 +421,7 @@ export const houses = [
     nearbyMall: 'Atrium Mall ',
     latitude:'17.445453895498257', 
     longitude:'78.35925962542133',
+    discount: '12% off on annual rent',
   
 },
 {
@@ -457,6 +467,7 @@ export const houses = [
     nearbyMall: 'GVK One Mall ',
     latitude:'17.409588643807634',
     longitude:'78.44706017939872',
+    discount: '10% off on annual rent',
 },
 {
     id: 12,
@@ -497,6 +508,7 @@ export const houses = [
     nearbyMall: 'Sarath City Capital Mall ',
     latitude:'17.419689285304486',
     longitude:'78.33823623821539',
+    discount: '8% off on annual rent',
 },
 
 ];
