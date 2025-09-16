@@ -14,6 +14,8 @@ import Agent from './Pages/Agent';
 import AgentDetails from "./components/AgentDetails";
 import ActiveRentals from './Pages/MyRentals';
 
+// ✅ only blog listing import
+import BlogPage from './Pages/BlogPage';
 
 function App() {
   return (
@@ -32,6 +34,9 @@ function App() {
           <Route path="/agent/:id" element={<AgentDetails />} />
           <Route path="/landlord" element={<Landlord />} />
           <Route path="/myrentals" element={<ActiveRentals />} />
+
+          {/* ✅ single blog route */}
+          <Route path="/blogs" element={<BlogPage />} />
         </Routes>
         <Footer />
       </Router>
