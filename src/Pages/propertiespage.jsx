@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import bannerImg from "../assets/image45.png";
+import bannerImg from "../assets/banner.p.png";
 import { SlidersHorizontal, ChevronDown } from "lucide-react";
 import PropertyCard from "../components/PropertyCard";
 const filterOptions = {
@@ -108,23 +108,23 @@ const PropertyPage = () => {
     <>
       {/* Hero Section */}
       <div className="relative bg-cover bg-center h-[300px]" style={{ backgroundImage: `url(${bannerImg})` }}>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Filter to Fit Your Needs</h2>
-          <p className="text-lg md:text-xl max-w-2xl mb-8">
+        <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center text-white">
+          <h2 className="mb-4 text-4xl font-bold md:text-5xl">Filter to Fit Your Needs</h2>
+          <p className="max-w-2xl mb-8 text-lg md:text-xl">
             From villas and apartments to shops and offices — filter and find it all.
           </p>
         </div>
       </div>
       {/* Desktop Search Bar */}
-      <form onSubmit={handleSubmit} className="hidden sm:block mt-6 w-full max-w-4xl mx-auto px-4 py-5">
-        <div className="relative bg-gray-300 backdrop-blur-md rounded-full px-4 py-3 flex items-center justify-between shadow-md gap-2 text-sm">
+      <form onSubmit={handleSubmit} className="hidden w-full max-w-4xl px-4 py-5 mx-auto mt-6 sm:block">
+        <div className="relative flex items-center justify-between gap-2 px-4 py-3 text-sm bg-gray-300 rounded-full shadow-md backdrop-blur-md">
           {/* Location */}
           <div className="flex items-center gap-2">
-            <i className="fas fa-map-marker-alt text-black"></i>
+            <i className="text-black fas fa-map-marker-alt"></i>
             <input
               type="text"
               placeholder="Enter Location"
-              className="px-2 py-1 bg-transparent border-none focus:outline-none text-black placeholder-gray-500 w-40"
+              className="w-40 px-2 py-1 text-black placeholder-gray-500 bg-transparent border-none focus:outline-none"
               value={location}
               onChange={(e) => {
                 setLocation(e.target.value);
@@ -149,14 +149,14 @@ const PropertyPage = () => {
                 setActiveDropdown(null);
               }}
             >
-              <i className="fas fa-money-bill-wave text-black"></i>
+              <i className="text-black fas fa-money-bill-wave"></i>
               <span className="text-black whitespace-nowrap">Price Range</span>
             </div>
           </div>
           <div className="self-stretch w-px bg-black/30" />
           {/* Age */}
           <div className="relative flex items-center gap-2">
-            <i className="fas fa-hourglass-half text-black"></i>
+            <i className="text-black fas fa-hourglass-half"></i>
             <span
               ref={ageRef}
               className="text-black cursor-pointer whitespace-nowrap"
@@ -172,7 +172,7 @@ const PropertyPage = () => {
           <div className="self-stretch w-px bg-black/30" />
           {/* Property Type */}
           <div className="flex items-center">
-            <i className="fas fa-building text-black"></i>
+            <i className="text-black fas fa-building"></i>
             <select
               className="text-sm px-2 py-1 rounded-md text-black focus:outline-none cursor-pointer min-w-[100px]"
               value={propertyType}
@@ -194,19 +194,19 @@ const PropertyPage = () => {
               <option value="4 BHK">4 BHK</option>
             </select>
           </div>
-          <button className="text-black px-2 cursor-pointer" type="submit">
-            <i className="fas fa-search text-xl"></i>
+          <button className="px-2 text-black cursor-pointer" type="submit">
+            <i className="text-xl fas fa-search"></i>
           </button>
         </div>
       </form>
       {/* Mobile Search Bar */}
-      <form onSubmit={handleSubmit} className="block sm:hidden mt-6 px-4">
-        <div className="flex items-center gap-2 bg-white text-black rounded-full px-3 py-2 shadow-md">
-          <i className="fas fa-map-marker-alt text-xs" />
+      <form onSubmit={handleSubmit} className="block px-4 mt-6 sm:hidden">
+        <div className="flex items-center gap-2 px-3 py-2 text-black bg-white rounded-full shadow-md">
+          <i className="text-xs fas fa-map-marker-alt" />
           <input
             type="text"
             placeholder="Enter locality or Zip code"
-            className="flex-1 text-xs focus:outline-none bg-transparent"
+            className="flex-1 text-xs bg-transparent focus:outline-none"
             value={location}
             onChange={(e) => {
               setLocation(e.target.value);
@@ -214,15 +214,15 @@ const PropertyPage = () => {
               setShowAgeSlider(false);
             }}
           />
-          <button className="text-black px-2" type="submit">
-            <i className="fas fa-search text-xl"></i>
+          <button className="px-2 text-black" type="submit">
+            <i className="text-xl fas fa-search"></i>
           </button>
         </div>
       </form>
       {/* Mobile Filters */}
-      <div className="sm:hidden mt-4 px-4 relative z-10">
+      <div className="relative z-10 px-4 mt-4 sm:hidden">
         <div className="relative w-full">
-          <div className="flex gap-2 justify-between w-full">
+          <div className="flex justify-between w-full gap-2">
             {/* Property Type */}
             <div className="flex-1 min-w-0">
               <select
@@ -242,7 +242,7 @@ const PropertyPage = () => {
               </select>
             </div>
             {/* Price Range */}
-            <div className="flex-1 min-w-0 relative">
+            <div className="relative flex-1 min-w-0">
               <button
                 ref={mobilePriceRef}
                 onClick={() => {
@@ -257,7 +257,7 @@ const PropertyPage = () => {
               </button>
             </div>
             {/* Age of Property */}
-            <div className="flex-1 min-w-0 relative">
+            <div className="relative flex-1 min-w-0">
               <button
                 ref={mobileAgeRef}
                 onClick={() => {
@@ -275,14 +275,14 @@ const PropertyPage = () => {
         </div>
       </div>
       {/* Filters */}
-      <div className="bg-white pt-2 pb-4 px-4 sm:px-6 lg:px-8 border-b border-gray-200">
+      <div className="px-4 pt-2 pb-4 bg-white border-b border-gray-200 sm:px-6 lg:px-8">
         <div className="container mx-auto">
-          <div className="flex flex-col gap-2 sm:hidden mb-3">
+          <div className="flex flex-col gap-2 mb-3 sm:hidden">
             <div className="flex items-center gap-2">
               {/* Filter Icon */}
               <button
                 onClick={() => setShowMobileFilters((s) => !s)}
-                className="flex items-center gap-2 p-2 bg-gray-100 rounded-full hover:bg-gray-200 flex-shrink-0"
+                className="flex items-center flex-shrink-0 gap-2 p-2 bg-gray-100 rounded-full hover:bg-gray-200"
               >
                 <SlidersHorizontal className="w-5 h-5 text-gray-700" />
                 <span className="text-sm text-gray-700">Filter</span>
@@ -291,10 +291,10 @@ const PropertyPage = () => {
             </div>
             {/* Selected Filters (other than important ones) - on a separate row */}
             {Object.entries(selectedFilters).some(([filter]) => !importantFilters.includes(filter)) && (
-              <div className="flex gap-2 flex-wrap">
+              <div className="flex flex-wrap gap-2">
                 {Object.entries(selectedFilters).map(([filter, value]) =>
                   !importantFilters.includes(filter) ? (
-                    <span key={filter} className="flex items-center bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">
+                    <span key={filter} className="flex items-center px-3 py-1 text-xs text-blue-800 bg-blue-100 rounded-full">
                       {filter}: {value}
                       <button onClick={() => removeFilter(filter)} className="ml-2 text-blue-800 hover:text-red-600 focus:outline-none">
                         &times;
@@ -315,33 +315,33 @@ const PropertyPage = () => {
                     <button
                       ref={(el) => (buttonRefs.current[filter] = el)}
                       onClick={() => toggleDropdown(filter)}
-                      className="w-full flex justify-between items-center text-gray-700 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-sm font-medium"
+                      className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
                     >
                       {selectedFilters[filter] || filter}
                       <ChevronDown className="w-4 h-4" />
                     </button>
                   </div>
                 ))}
-              <button onClick={resetAllFilters} className="w-full text-center text-gray-700 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-md text-sm font-medium">
+              <button onClick={resetAllFilters} className="w-full px-4 py-2 text-sm font-medium text-center text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200">
                 Reset all
               </button>
             </div>
           )}
           {/* Desktop filters inline */}
-          <div className="hidden sm:flex flex-wrap justify-center gap-3">
+          <div className="flex-wrap justify-center hidden gap-3 sm:flex">
             {Object.entries(filterOptions).map(([filter, options]) => (
               <div key={filter} className="relative">
                 <button
                   ref={(el) => (buttonRefs.current[filter] = el)}
                   onClick={() => toggleDropdown(filter)}
-                  className="flex items-center text-gray-700 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-medium"
+                  className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200"
                 >
                   {selectedFilters[filter] ? `${filter}: ${selectedFilters[filter]}` : filter}
                   <ChevronDown className="w-4 h-4 ml-2" />
                 </button>
               </div>
             ))}
-            <button onClick={resetAllFilters} className="flex items-center text-gray-700 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full text-sm font-medium">
+            <button onClick={resetAllFilters} className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200">
               Reset all
             </button>
           </div>
@@ -350,8 +350,8 @@ const PropertyPage = () => {
 
       
       {/* Property Section */}
-      <section className="py-6 px-4 md:px-10">
-        <h2 className="text-2xl font-bold mb-4">Explore Properties</h2>
+      <section className="px-4 py-6 md:px-10">
+        <h2 className="mb-4 text-2xl font-bold">Explore Properties</h2>
         <PropertyCard selectedFilters={selectedFilters} />
       </section>
       {/* --- PORTALS: render popups into body so they float above everything --- */}
@@ -417,12 +417,12 @@ const PropertyPage = () => {
           className=""
           style={{ minWidth: 160 }}
         >
-          <div className="max-h-60 overflow-y-auto">
+          <div className="overflow-y-auto max-h-60">
             {(filterOptions[activeDropdown] || filterOptions[activeDropdown] === undefined ? filterOptions[activeDropdown] : []).map((option) => (
               <div
                 key={option}
                 onClick={() => selectOption(activeDropdown, option)}
-                className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                className="px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
               >
                 {option}
               </div>
