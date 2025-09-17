@@ -309,7 +309,8 @@ export default function HomePage() {
         </p>
         {/* Added scrollbar-hide and hidden scroll classes */}
         <div className="mt-8 flex gap-6 overflow-x-auto pb-4 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-          {houses.map((house) => (
+          {/* Filter houses with a discount */}
+          {houses.filter(house => house.hasOwnProperty('discount')).map((house) => (
             <div key={house.id} className="min-w-[280px] sm:min-w-[300px]">
               <HouseCard
                 house={house}
@@ -320,6 +321,7 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
 
       {/* Featured Properties */}
       <section className='px-4 sm:px-6 py-8 text-center'>

@@ -8,12 +8,12 @@ import PropertyPage from './Pages/PropertiesPage';
 import VerifiedListings from './Pages/VerifiedlistingPage';
 import FurnitureRewards from './Pages/FurnitureRewardsPage';
 import UpToDayRentals from './Pages/UpToDayRentalsPage';
-import Landlord from './Pages/landLord';
+import Landlord from './Pages/LandLord';
 import Footer from './components/Footer';
 import Agent from './Pages/Agent';
 import AgentDetails from "./components/AgentDetails";
 import ActiveRentals from './Pages/MyRentals';
-
+import BlogPage from './Pages/BlogPage';
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
           <Route path="/agent/:id" element={<AgentDetails />} />
           <Route path="/landlord" element={<Landlord />} />
           <Route path="/myrentals" element={<ActiveRentals />} />
+          <Route path="/blogs" element={<BlogPage />} />
         </Routes>
         <Footer />
       </Router>
