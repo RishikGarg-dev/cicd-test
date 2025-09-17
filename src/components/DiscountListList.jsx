@@ -12,7 +12,7 @@ const DiscountList = () => {
   };
 
   // Filter houses that have a discount key (even if the value is an empty string or any valid value)
-  const discountedHouses = houses.filter((house) => house.discount);
+  const discountedHouses = houses.filter((house) => house.hasOwnProperty('discount'));
 
   return (
     <div style={{ padding: 20, textAlign: 'center' }}>
