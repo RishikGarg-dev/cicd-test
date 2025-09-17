@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import { houses } from '../houses';
 import HouseCard from './HouseCard';
 
-const HouseList = () => {
+const DiscountList = () => {
   const [favorites, setFavorites] = useState([]);
 
   const toggleFavorite = (id) => {
@@ -12,11 +11,17 @@ const HouseList = () => {
     );
   };
 
+  // Filter houses that have a discount key (even if the value is an empty string or any valid value)
+  const discountedHouses = houses.filter((house) => house.discount);
+
   return (
     <div style={{ padding: 20, textAlign: 'center' }}>
-
-      <h1 className="text-xl text-red-500"> <strong>Discount Listings</strong></h1>
-      <p className='text-lg'><u>Special deals and exclusive discounts -rent smarter, save more.</u></p>
+      <h1 className="text-xl text-red-500">
+        <strong>Discount Listings</strong>
+      </h1>
+      <p className='text-lg'>
+        <u>Special deals and exclusive discounts - rent smarter, save more.</u>
+      </p>
 
       <div
         style={{
@@ -29,7 +34,8 @@ const HouseList = () => {
           paddingBottom: 10,
         }}
       >
-        {houses.map((house) => (
+        {/* Only render the houses with a discount */}
+        {discountedHouses.map((house) => (
           <div key={house.id} style={{ display: 'inline-block' }}>
             <HouseCard
               house={house}
@@ -43,4 +49,4 @@ const HouseList = () => {
   );
 };
 
-export default HouseList;
+export default DiscountList;
