@@ -3,16 +3,19 @@ import { createPortal } from "react-dom";
 import bannerImg from "../assets/banner.p.png";
 import { SlidersHorizontal, ChevronDown } from "lucide-react";
 import PropertyCard from "../components/PropertyCard";
+
 const filterOptions = {
   "Building Type": ["Flat", "Villa", "Independent House"],
   Beds: ["1", "2", "3", "4+"],
   Parking: ["Yes", "No"],
   Others: ["Furnished", "Pet Friendly", "Lift", "Security"],
 };
+
 // Generic portal popup anchored to an element (anchor can be a ref or DOM node)
 function PortalPopup({ anchor, onClose, children, className = "", style = {}, offset = { x: 0, y: 8 } }) {
   const containerRef = useRef(null);
   const [pos, setPos] = useState(null);
+
   // compute position relative to anchor
   useEffect(() => {
     function updatePos() {
@@ -23,6 +26,7 @@ function PortalPopup({ anchor, onClose, children, className = "", style = {}, of
       const top = rect.bottom + window.scrollY + offset.y;
       setPos({ left, top });
     }
+
     updatePos();
     window.addEventListener("resize", updatePos);
     window.addEventListener("scroll", updatePos, true);
@@ -31,6 +35,7 @@ function PortalPopup({ anchor, onClose, children, className = "", style = {}, of
       window.removeEventListener("scroll", updatePos, true);
     };
   }, [anchor, offset]);
+
   // click outside to close
   useEffect(() => {
     function handleDocClick(e) {
@@ -45,6 +50,7 @@ function PortalPopup({ anchor, onClose, children, className = "", style = {}, of
     return () => document.removeEventListener("mousedown", handleDocClick);
   }, [anchor, onClose]);
   if (!pos) return null;
+
   return createPortal(
     <div
       ref={containerRef}
@@ -62,6 +68,7 @@ function PortalPopup({ anchor, onClose, children, className = "", style = {}, of
     document.body
   );
 }
+
 const PropertyPage = () => {
   const [price, setPrice] = useState(5000);
   const [selectedPrice, setSelectedPrice] = useState("");
@@ -73,6 +80,7 @@ const PropertyPage = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [selectedFilters, setSelectedFilters] = useState({});
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+
   // refs to anchor popup positioning
   const priceRef = useRef(null);
   const ageRef = useRef(null);
@@ -80,7 +88,9 @@ const PropertyPage = () => {
   const mobileAgeRef = useRef(null);
   // store refs for each filter button (desktop & mobile) in an object
   const buttonRefs = useRef({});
+
   const importantFilters = ["Property Type", "Price Range"];
+
   const removeFilter = (filterKey) => {
     setSelectedFilters((prev) => {
       const updated = { ...prev };
@@ -88,13 +98,16 @@ const PropertyPage = () => {
       return updated;
     });
   };
+
   const toggleDropdown = (filter) => {
     setActiveDropdown((prev) => (prev === filter ? null : filter));
   };
+
   const selectOption = (filter, option) => {
     setSelectedFilters((prev) => ({ ...prev, [filter]: option }));
     setActiveDropdown(null); // close the portal dropdown
   };
+
   const resetAllFilters = () => {
     setSelectedFilters({});
     setActiveDropdown(null);
@@ -111,6 +124,7 @@ const PropertyPage = () => {
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center text-white">
           <h2 className="mb-4 text-4xl font-bold md:text-5xl">Filter to Fit Your Needs</h2>
           <p className="max-w-2xl mb-8 text-lg md:text-xl">
+
             From villas and apartments to shops and offices — filter and find it all.
           </p>
         </div>
@@ -125,6 +139,7 @@ const PropertyPage = () => {
               type="text"
               placeholder="Enter Location"
               className="w-40 px-2 py-1 text-black placeholder-gray-500 bg-transparent border-none focus:outline-none"
+
               value={location}
               onChange={(e) => {
                 setLocation(e.target.value);
@@ -137,6 +152,7 @@ const PropertyPage = () => {
               }}
             />
           </div>
+
           <div className="self-stretch w-px bg-black/30" />
           {/* Price */}
           <div className="relative">
@@ -173,6 +189,7 @@ const PropertyPage = () => {
           {/* Property Type */}
           <div className="flex items-center">
             <i className="text-black fas fa-building"></i>
+
             <select
               className="text-sm px-2 py-1 rounded-md text-black focus:outline-none cursor-pointer min-w-[100px]"
               value={propertyType}
@@ -243,6 +260,7 @@ const PropertyPage = () => {
             </div>
             {/* Price Range */}
             <div className="relative flex-1 min-w-0">
+
               <button
                 ref={mobilePriceRef}
                 onClick={() => {
@@ -258,6 +276,7 @@ const PropertyPage = () => {
             </div>
             {/* Age of Property */}
             <div className="relative flex-1 min-w-0">
+
               <button
                 ref={mobileAgeRef}
                 onClick={() => {
@@ -274,15 +293,18 @@ const PropertyPage = () => {
           </div>
         </div>
       </div>
+
       {/* Filters */}
       <div className="px-4 pt-2 pb-4 bg-white border-b border-gray-200 sm:px-6 lg:px-8">
         <div className="container mx-auto">
           <div className="flex flex-col gap-2 mb-3 sm:hidden">
+
             <div className="flex items-center gap-2">
               {/* Filter Icon */}
               <button
                 onClick={() => setShowMobileFilters((s) => !s)}
                 className="flex items-center flex-shrink-0 gap-2 p-2 bg-gray-100 rounded-full hover:bg-gray-200"
+
               >
                 <SlidersHorizontal className="w-5 h-5 text-gray-700" />
                 <span className="text-sm text-gray-700">Filter</span>
@@ -347,8 +369,6 @@ const PropertyPage = () => {
           </div>
         </div>
       </div>
-
-      
       {/* Property Section */}
       <section className="px-4 py-6 md:px-10">
         <h2 className="mb-4 text-2xl font-bold">Explore Properties</h2>
@@ -438,4 +458,5 @@ const PropertyPage = () => {
     </>
   );
 };
+
 export default PropertyPage;
