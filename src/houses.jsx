@@ -2,7 +2,7 @@ export const houses = [
   {
     id: 1,
     agentId: 1,
-    title: '1 BHK Independent House for Rent' ,
+    title: '1 BHK Independent House for Rent',
     location: 'Allwyn Colony, Kukatpally, Hyderabad,500072',
     image: [
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757946124/1_10_whadnh.avif',
@@ -62,9 +62,9 @@ export const houses = [
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757951521/2_1_tcexmz.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757951522/2_2_lherip.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757951521/2_3_xdmxgz.avif',
-      
+
     ],
-    description:'This Flat can be a comfortable and affordable home for your family. It is a 1 BHK unit available on rent at Kondapur in Hyderabad. This Flat comes with a plethora of amenities to meet your modern lifestyle needs. It is semi furnished. It is located on floor 2 of the building having a total 6 floors. Offering beautiful city views, this 1 BHK has been thoughtfully developed. It includes a total of 1 bedroom and 1 bathroom. It also includes 1 balcony that can be a perfect place for relaxation. The built-up area of the Flat is 800 square_feet. The Flat is available for a monthly rent of Rs 16055. The security deposit payable is Rs 16055.',
+    description: 'This Flat can be a comfortable and affordable home for your family. It is a 1 BHK unit available on rent at Kondapur in Hyderabad. This Flat comes with a plethora of amenities to meet your modern lifestyle needs. It is semi furnished. It is located on floor 2 of the building having a total 6 floors. Offering beautiful city views, this 1 BHK has been thoughtfully developed. It includes a total of 1 bedroom and 1 bathroom. It also includes 1 balcony that can be a perfect place for relaxation. The built-up area of the Flat is 800 square_feet. The Flat is available for a monthly rent of Rs 16055. The security deposit payable is Rs 16055.',
     beds: 1,
     size: '800 Sq Ft',
     type: 'Flat',
@@ -106,7 +106,7 @@ export const houses = [
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757953221/3_4_tngbmx.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757953222/3_2_m0tag9.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757953223/3_1_lvydvw.avif',
-      
+
     ],
     description: 'This is a modern and stylish home available for affordable rent in Hyderabad. It is a 1 BHK Flat situated at Kondapur. Designed to meet your lifestyle needs, the Flat provides a range of modern amenities for the comfort of the residents. It is fully furnished. Modern home seekers will experience a comfortable living in this 1 BHK property. The Flat is on 2 floor, and the total number of floors is 5. The 1 BHK unit is elegantly designed to meet your housing needs. The Flat has 1 bedroom. It has 1 bathroom. The 1 BHK unit also includes 1 balcony giving splendid views of the surroundings. It is a North facing unit, designed as per Vastu principles. The built-up area of the Flat is 550 square_feet. The monthly rent for the Flat is Rs 24005. The security deposit is Rs 48010.',
     beds: 1,
@@ -145,7 +145,7 @@ export const houses = [
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757954606/4_5_yul7sx.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757954605/4_6_d4kzkw.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757954605/4_4_mquexq.avif',
-      
+
     ],
     description: 'Check out this Flat available for rent in Kondapur in Hyderabad. It is a 1 BHK unit that comes at an affordable rent, with modern features and premium amenities to suit your lifestyle needs. The unit is unfurnished. With numerous new-age amenities and green surroundings, this Flat provides a convenient lifestyle for residents. A spacious house for your family, this unit includes 1 bedroom. There are 1 bathroom and 1 balcony. It has a built-up area of 800 square_feet. The carpet area is 700.0 square_feet. The Flat is built on 1 floor. The building has a total of 6 floors. The monthly rent is Rs 16000 and the security deposit to be paid by residents is Rs 32000.',
     beds: 1,
@@ -168,8 +168,8 @@ export const houses = [
     nearbyLocation: 'Sanskriti School',
     nearbyMetro: 'Raidurg metro station',
     nearbyMall: 'sarath city mall',
-    latitude: '17.471934572176963', 
-    longitude:'78.3601016032763',
+    latitude: '17.471934572176963',
+    longitude: '78.3601016032763',
     discount: '8% off on annual rent',
   },
 
@@ -189,7 +189,7 @@ export const houses = [
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757955838/5_2_cuk0n2.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757955836/5_4_wdh77x.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757955836/5_4_wdh77x.avif',
-     
+
     ],
     description: 'Check this beautiful 1 BHK Flat available for rent in Hyderabad. Nestled at a prime location in Madhapur, it is an ideal home for those looking for a modern lifestyle. The Flat is fully furnished, available for affordable rent. This 1 BHK unit is inside a gated society equipped with various amenities and ample greenery. The Flat is thoughtfully designed to ensure a comfortable living. It includes 1 bedroom and 1 bathroom. Out of a total 7 floors, this 1 BHK unit is built on floor 4. It also has 1 balcony that have been spaciously designed and allow you to enjoy the magnificent views of the surroundings. The Flat is Vastu-compliant and designed as East facing house. The carpet area of this property is 800 square_feet. The built-up area is 850 square_feet. The monthly rent for this Flat is Rs 25000, and the security deposit is Rs 50000.',
     beds: 1,
@@ -219,7 +219,7 @@ export const houses = [
 
   {
     id: 6,
-    agentId: 5, 
+    agentId: 5,
     title: '1 BHK Flat for Rent',
     location: 'Dream home, Chanda Naik Nagar, Madhapur, Hyderabad,500081',
     image: [
@@ -253,12 +253,12 @@ export const houses = [
     earbyMetro: 'Madhapur metro station',
     nearbyMall: 'City Centre Mall ',
     latitude: '17.455172783415172',
-    longitude:'78.3925093690634',
+    longitude: '78.3925093690634',
     discount: '5% off on annual rent',
-},
-{
+  },
+  {
     id: 7,
-    agentId: 6, 
+    agentId: 6,
     title: '2 BHK Flat for Rent',
     location: 'Madhapur 100 feet road, Chanda Naik Nagar, Madhapur, Hyderabad,500081',
     image: [
@@ -293,23 +293,23 @@ export const houses = [
     nearbyLocation: 'Yashoda Hospitals Hitech City',
     nearbyMetro: 'Madhapur metro station',
     nearbyMall: 'City Centre Mall ',
-    latitude:'17.452771709615984', 
-    longitude:'78.39184851803778',
+    latitude: '17.452771709615984',
+    longitude: '78.39184851803778',
     discount: '9% off on annual rent',
-},
-{
+  },
+  {
     id: 8,
-    agentId: 7, 
+    agentId: 7,
     title: '3 BHK Flat for Rent',
     location: 'Madhapur Ayyappa society, Mega Hills, Madhapur, Hyderabad,500081',
     image: [
-        'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959205/8_2_hhjpg5.avif',
-        'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959202/8_1_naxygw.avif',
-        'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959200/8_3_qaflni.avif',
-        'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959200/8_4_zpdazr.avif',
-        'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959198/8_6_te3ggu.avif',
-        'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959199/8_7_rpxhjn.avif',
-        'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959199/8_5_zixntn.avif',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959205/8_2_hhjpg5.avif',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959202/8_1_naxygw.avif',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959200/8_3_qaflni.avif',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959200/8_4_zpdazr.avif',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959198/8_6_te3ggu.avif',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959199/8_7_rpxhjn.avif',
+      'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959199/8_5_zixntn.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757959197/8_8_dpfyjq.avif',
     ],
     description: `Here is an excellent 3 BHK Flat available for rent in Hyderabad. Surrounded by natural greens and equipped with numerous amenities, this rented 3 BHK house offers a comfortable lifestyle for families. It is a spacious property nestled in Madhapur that enjoys good connectivity to major landmarks of the city. The Flat is on the 6 floor. There is a total of 7 floors. The Flat is designed as per modern construction standards. It has 3 bedrooms and 3 bathroom. It is East facing. The 3 BHK unit is thoughtfully designed to meet the space needs of a modern family and allows ample sunlight and fresh air. There are 3 balcony in this unit where residents can spend a relaxed evening and enjoy excellent views of the surroundings. This Flat has 1900 Square feet of built-up area. The monthly rent payable is Rs 45000, and the security deposit to be paid is Rs 90000.`,
@@ -333,13 +333,13 @@ export const houses = [
     nearbyLocation: 'ORCHIDS The International School - CBSE School in Jubilee Hills',
     nearbyMetro: 'Madhapur metro station',
     nearbyMall: 'Amrutha Mall ',
-    latitude:'17.44889532712224', 
-    longitude:'78.39077605241059',
+    latitude: '17.44889532712224',
+    longitude: '78.39077605241059',
     discount: '15% off on annual rent',
-},
-{
+  },
+  {
     id: 9,
-    agentId: 8, 
+    agentId: 8,
     title: '2 BHK Flat for Rent',
     location: 'Un mode, Gachibowli, Hyderabad,500032',
     image: [
@@ -353,7 +353,7 @@ export const houses = [
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757996940/9_4_unjhta.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1757996940/9_3_hhxymu.avif',
 
-     
+
     ],
     description: `Here is an excellent 2 BHK Flat available for rent in Hyderabad. Surrounded by natural greens and equipped with numerous amenities, this rented 2 BHK house offers a comfortable lifestyle for families. It is a spacious property nestled in Gachibowli that enjoys good connectivity to major landmarks of the city. The Flat is on the 2 floor. There is a total of 5 floors. The Flat is designed as per modern construction standards. It has 2 bedrooms and 2 bathroom. It is East facing. The 2 BHK unit is thoughtfully designed to meet the space needs of a modern family and allows ample sunlight and fresh air. There are 1 balcony in this unit where residents can spend a relaxed evening and enjoy excellent views of the surroundings. This Flat has 1150 square_feet of built-up area. The monthly rent payable is Rs 32000, and the security deposit to be paid is Rs 64000.`,
     beds: 2,
@@ -376,13 +376,13 @@ export const houses = [
     nearbyLocation: 'Kendriya Vidyalaya, Gachibowli',
     nearbyMetro: 'Raidurg metro station',
     nearbyMall: 'Inorbit Mall ',
-    latitude:'17.436225372459283',
-    longitude:'78.33383047201573',
+    latitude: '17.436225372459283',
+    longitude: '78.33383047201573',
     discount: '6% off on annual rent',
-},
-{
+  },
+  {
     id: 10,
-    agentId: 10, 
+    agentId: 10,
     title: '2 BHK Independent Builder Floor for Rent',
     location: 'Burugupalli Residency, Chhota Anjaiah Nagar, Gachibowli, Hyderabad,500032',
     image: [
@@ -396,8 +396,8 @@ export const houses = [
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1758000083/10_8_l2xmzp.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1758000082/10_9_q5bmxd.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1758000082/10_10_lj5s3a.avif',
-      
-      
+
+
     ],
     description: `Here is an excellent 2 BHK Independent Floor available for rent in Hyderabad. Surrounded by natural greens and equipped with numerous amenities, this rented 2 BHK house offers a comfortable lifestyle for families. It is a spacious property nestled in Gachibowli that enjoys good connectivity to major landmarks of the city. The Independent Floor is on the 2 floor. There is a total of 5 floors. The Independent Floor is designed as per modern construction standards. It has 2 bedrooms and 2 bathroom. It is East facing. The 2 BHK unit is thoughtfully designed to meet the space needs of a modern family and allows ample sunlight and fresh air. There are 1 balcony in this unit where residents can spend a relaxed evening and enjoy excellent views of the surroundings. This Independent Floor has 1250 square_feet of built-up area. It has a carpet area of 1100 square_feet. The monthly rent payable is Rs 35000, and the security deposit to be paid is Rs 70000.`,
     beds: 2,
@@ -419,14 +419,14 @@ export const houses = [
     nearbyLocation: 'Himagiri Hospitals Gachibowli',
     nearbyMetro: 'Raidurg metro station',
     nearbyMall: 'Atrium Mall ',
-    latitude:'17.445453895498257', 
-    longitude:'78.35925962542133',
-    discount: '12% off on annual rent',
-  
-},
-{
+    latitude: '17.445453895498257',
+    longitude: '78.35925962542133',
+
+
+  },
+  {
     id: 11,
-    agentId: 11, 
+    agentId: 11,
     title: '3 BHK Flat for Rent',
     location: 'Dukes Galaxy, Sri Ram Nagar Colony, Banjara Hills, Hyderabad,500034',
     image: [
@@ -443,7 +443,7 @@ export const houses = [
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1758000152/11_10_vo9lys.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1758000150/11_11_fbgtm9.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1758000148/11_12_cpkkvs.avif',
-      
+
     ],
     description: `Here is an excellent 3 BHK Flat available for rent in Hyderabad. Surrounded by natural greens and equipped with numerous amenities, this rented 3 BHK house offers a comfortable lifestyle for families. It is a spacious property nestled in Banjara Hills that enjoys good connectivity to major landmarks of the city. The Flat is on the 5 floor. There is a total of 10 floors. The Flat is designed as per modern construction standards. It has 3 bedrooms and 3 bathroom. It is North-East facing. The 3 BHK unit is thoughtfully designed to meet the space needs of a modern family and allows ample sunlight and fresh air. There are 0 balcony in this unit where residents can spend a relaxed evening and enjoy excellent views of the surroundings. This Flat has 2475 square feet of built-up area. It has a carpet area of 1980 square feet. The monthly rent payable is Rs 70007, and the security deposit to be paid is Rs 210000.`,
     beds: 3,
@@ -465,11 +465,11 @@ export const houses = [
     nearbyLocation: 'KIMS - Sunshine Hospitals, Begumpet',
     nearbyMetro: 'Khairatabad metro station',
     nearbyMall: 'GVK One Mall ',
-    latitude:'17.409588643807634',
-    longitude:'78.44706017939872',
+    latitude: '17.409588643807634',
+    longitude: '78.44706017939872',
     discount: '10% off on annual rent',
-},
-{
+  },
+  {
     id: 12,
     agentId: 13,
     title: '2 BHK Penthouse for Rent',
@@ -484,7 +484,7 @@ export const houses = [
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1758001361/12_6_xz1gbe.avif',
       'https://res.cloudinary.com/dvqrtjzvv/image/upload/v1758001361/12_7_c3tbck.avif',
 
-    
+
     ],
     description: 'This is a well-designed 2 BHK Penthouse available for rent. It is situated in a prime location of Hyderabad at Nanakramguda. This modern Penthouse is semi furnished. The 2 BHK unit fulfills all the needs of a modern lifestyle for families. There is a total of 5 floors. This unit is on 5 floor. The Penthouse provides complete comfort for the residents. The Penthouse lets you enjoy the lush greenery around. Meticulously designed to meet your housing needs, this unit has 2 bedrooms and 2 bathroom. It includes 0 balcony allowing residents to catch a glimpse of the city’s skyline. The total built-up area is 1200 square_feet. The total monthly rent is Rs 28000. The security deposit payable is Rs 28000.',
     beds: 2,
@@ -506,9 +506,9 @@ export const houses = [
     nearbyLocation: 'The Shri Ram Universal School',
     nearbyMetro: 'Raidurg metro station',
     nearbyMall: 'Sarath City Capital Mall ',
-    latitude:'17.419689285304486',
-    longitude:'78.33823623821539',
-    discount: '8% off on annual rent',
-},
+    latitude: '17.419689285304486',
+    longitude: '78.33823623821539',
+
+  },
 
 ];
