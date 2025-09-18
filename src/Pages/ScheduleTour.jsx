@@ -3,10 +3,83 @@ import React, { useState } from "react";
 export default function ScheduleTour({ property }) {
   const [selectedTime, setSelectedTime] = useState("");
   const [tourType, setTourType] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [checkbox, setCheckbox] = useState(false);
+  const [requests, setRequests] = useState("");
+
+  // Real-time error states
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
   // ✅ Date range: today → Dec 31, 2027
   const today = new Date().toISOString().split("T")[0];
   const maxDate = new Date("2027-12-31").toISOString().split("T")[0];
+
+  // Real-time validators
+  const handleNameChange = (e) => {
+    const val = e.target.value;
+    setName(val);
+    if (val && !/^[A-Za-z\s]+$/.test(val)) {
+      setNameError("Only letters and spaces are allowed");
+    } else {
+      setNameError("");
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    const val = e.target.value;
+    setEmail(val);
+    if (
+      val &&
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val)
+    ) {
+      setEmailError("Enter a valid email address");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const handlePhoneChange = (e) => {
+    const val = e.target.value.replace(/\D/g, ""); // Remove non-digits
+    setPhone(val.slice(0, 10)); // Limit to 10 digits
+    if (val.length > 0 && val.length < 10) {
+      setPhoneError("Phone number must be 10 digits");
+    } else {
+      setPhoneError("");
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Final validation before submission
+    if (!name || nameError) {
+      alert("Please enter a valid name");
+      return;
+    }
+    if (!email || emailError) {
+      alert("Please enter a valid email");
+      return;
+    }
+    if (!phone || phoneError) {
+      alert("Please enter a valid 10-digit phone number");
+      return;
+    }
+    if (!selectedTime) {
+      alert("Please select a time slot");
+      return;
+    }
+    if (!tourType) {
+      alert("Please select a tour type");
+      return;
+    }
+
+    alert("Form submitted successfully!");
+    // Here you can send the data to your API
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-6">
@@ -28,103 +101,135 @@ export default function ScheduleTour({ property }) {
           </div>
         </div>
 
-        {/* Date */}
-        <h3 className="font-semibold text-gray-800 mb-2">Schedule a Tour</h3>
-        <label className="block text-sm text-gray-600 mb-1">Date</label>
-        <input
-          type="date"
-          min={today}
-          max={maxDate}
-          className="w-full border rounded-lg p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+        <form onSubmit={handleSubmit}>
+          {/* Date */}
+          <h3 className="font-semibold text-gray-800 mb-2">Schedule a Tour</h3>
+          <label className="block text-sm text-gray-600 mb-1">Date</label>
+          <input
+            type="date"
+            min={today}
+            max={maxDate}
+            className="w-full border rounded-lg p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
 
-        {/* Time Slots */}
-        <div className="flex gap-3 mb-6">
-          {["10:00AM", "2:00PM", "4:00PM"].map((time) => (
-            <button
-              key={time}
-              onClick={() => setSelectedTime(time)}
-              className={`px-4 py-2 rounded-lg border transition ${
-                selectedTime === time
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              {time}
-            </button>
-          ))}
-        </div>
+          {/* Time Slots */}
+          <div className="flex gap-3 mb-6">
+            {["10:00AM", "2:00PM", "4:00PM"].map((time) => (
+              <button
+                key={time}
+                type="button"
+                onClick={() => setSelectedTime(time)}
+                className={`px-4 py-2 rounded-lg border transition ${
+                  selectedTime === time
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                {time}
+              </button>
+            ))}
+          </div>
 
-        {/* Tour Type */}
-        <div className="flex items-center gap-6 mb-8">
-          <label className="flex items-center gap-2">
+          {/* Tour Type */}
+          <div className="flex items-center gap-6 mb-8">
+            <label className="flex items-center gap-2">
+              <input
+                type="radio"
+                name="tour"
+                value="virtual"
+                checked={tourType === "virtual"}
+                onChange={() => setTourType("virtual")}
+              />
+              Virtual Tour
+            </label>
+            <label className="flex items-center gap-2">
+              <input
+                type="radio"
+                name="tour"
+                value="in-person"
+                checked={tourType === "in-person"}
+                onChange={() => setTourType("in-person")}
+              />
+              In-Person Tour
+            </label>
+          </div>
+
+          {/* Contact Info */}
+          <h3 className="font-semibold text-gray-800 mb-3">Contact Information</h3>
+          <div className="grid grid-cols-1 gap-4 mb-4">
+            <div>
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={handleNameChange}
+                className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+              {nameError && (
+                <p className="text-red-500 text-sm mt-1">{nameError}</p>
+              )}
+            </div>
+
+            <div>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={handleEmailChange}
+                className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+              {emailError && (
+                <p className="text-red-500 text-sm mt-1">{emailError}</p>
+              )}
+            </div>
+
+            <div>
+              <input
+                type="text"
+                placeholder="Phone No"
+                value={phone}
+                onChange={handlePhoneChange}
+                className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+              {phoneError && (
+                <p className="text-red-500 text-sm mt-1">{phoneError}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Checkbox */}
+          <label className="flex items-center gap-2 mb-6 text-sm">
             <input
-              type="radio"
-              name="tour"
-              value="virtual"
-              checked={tourType === "virtual"}
-              onChange={() => setTourType("virtual")}
+              type="checkbox"
+              checked={checkbox}
+              onChange={() => setCheckbox(!checkbox)}
             />
-            Virtual Tour
+            I want agent to call me before the visit
           </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              name="tour"
-              value="in-person"
-              checked={tourType === "in-person"}
-              onChange={() => setTourType("in-person")}
-            />
-            In-Person Tour
+
+          {/* Requests */}
+          <label className="block text-sm text-gray-600 mb-1">
+            Any Specific Requests?
           </label>
-        </div>
+          <textarea
+            className="w-full border rounded-lg p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            rows="3"
+            value={requests}
+            onChange={(e) => setRequests(e.target.value)}
+          ></textarea>
 
-        {/* Contact Info */}
-        <h3 className="font-semibold text-gray-800 mb-3">Contact Information</h3>
-        <div className="grid grid-cols-1 gap-4 mb-4">
-          <input
-            type="text"
-            placeholder="Name"
-            pattern="^[A-Za-z\s]+$"
-            title="Only letters are allowed"
-            className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-            title="Enter a valid email address"
-            className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="tel"
-            placeholder="Phone No"
-            pattern="^\d{10}$"
-            maxLength="10"
-            title="Enter a valid 10-digit phone number"
-            className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* Checkbox */}
-        <label className="flex items-center gap-2 mb-6 text-sm">
-          <input type="checkbox" />
-          I want agent to call me before the visit
-        </label>
-
-        {/* Requests */}
-        <label className="block text-sm text-gray-600 mb-1">
-          Any Specific Requests?
-        </label>
-        <textarea
-          className="w-full border rounded-lg p-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          rows="3"
-        ></textarea>
-
-        {/* Submit */}
-        <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium">
-          Submit Request
-        </button>
+          {/* Submit */}
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-medium"
+          >
+            Submit Request
+          </button>
+        </form>
       </div>
     </div>
   );
