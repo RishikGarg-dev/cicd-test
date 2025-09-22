@@ -90,7 +90,7 @@ const HouseCard = ({ house, isFavorite, toggleFavorite }) => {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: 12 }}>
             <FaHome size={18} />
-            <span>{house.type}</span>
+            <span>{house.propertyType}</span>
           </div>
         </div>
 
