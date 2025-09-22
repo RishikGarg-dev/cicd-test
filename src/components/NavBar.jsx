@@ -27,8 +27,6 @@ export default function Navbar() {
           <Link to="/" className="text-black text-sm font-medium hover:text-gray-700">Home</Link>
           <Link to="/Properties" className="text-black text-sm font-medium hover:text-gray-700">Properties</Link>
           <Link to="/agent" className="text-black text-sm font-medium hover:text-gray-700">Agent</Link>
-          <Link to="/LandLord" className="text-black text-sm font-medium hover:text-gray-700">LandLord</Link>
-          <Link to="/myrentals" className="text-black text-sm font-medium hover:text-gray-700">MyRentals</Link>
           <Link to="/Login" className="text-black text-sm font-medium hover:text-gray-700">
             <i className="fas fa-user mr-1"></i> Login
           </Link>
@@ -41,8 +39,6 @@ export default function Navbar() {
           <Link to="/" className="block text-black font-medium hover:text-gray-700">Home</Link>
           <Link to="/Properties" className="block text-black font-medium hover:text-gray-700">Properties</Link>
           <Link to="/agent" className="block text-black font-medium hover:text-gray-700">Agent</Link>
-          <Link to="/LandLord" className="block text-black font-medium hover:text-gray-700">LandLord</Link>
-          <Link to="/myrentals" className="block text-black font-medium hover:text-gray-700">MyRentals</Link>
           <Link to="#Login" className="block text-black font-medium hover:text-gray-700 mt-6">
             <i className="fas fa-user mr-1"></i> Login
           </Link>
