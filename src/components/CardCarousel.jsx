@@ -171,10 +171,10 @@ export default function CardCarousel() {
 
               <div className="flex justify-between text-xs sm:text-sm mb-2">
                 <div className="flex items-center gap-1">
-                  <FaCarSide /> {card.vehicles}
+                  <FaCarSide /> {card.parking}
                 </div>
                 <div className="flex items-center gap-1">
-                  <FaHome /> {card.type}
+                  <FaHome /> {card.propertyType}
                 </div>
               </div>
 
