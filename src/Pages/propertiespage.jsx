@@ -2,33 +2,36 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import bannerImg from "../assets/banner.p.png";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import HouseCard from "../components/HouseCard";
 import { houses as initialHouses } from "../houses";
 
-// Utility to dynamically get unique values from houses for filters
-const getFilterOptions = (houses) => {
-  return {
-    Beds: [...new Set(houses.map((h) => h.beds))],
-    Parking: [...new Set(houses.map((h) => h.parking))],
-    Furnishing: [...new Set(houses.map((h) => h.furnishing))],
-    Others: ["Lift", "Security", "Pet Friendly"],
-  };
-};
+// Helper: Get unique filter options dynamically
+const getFilterOptions = (houses) => ({
+  "Building Type": [...new Set(houses.map((h) => h.propertyType || h.type))],
+  Beds: [...new Set(houses.map((h) => h.beds))],
+  Parking: [...new Set(houses.map((h) => h.parking))],
+  Furnishing: [...new Set(houses.map((h) => h.furnishing))],
+  Others: ["Pet Friendly", "Lift", "Security"],
+});
 
-// Helper function to convert price string to number
-const parsePrice = (priceStr) => {
-  if (!priceStr) return 0;
-  return parseInt(priceStr.toString().replace(/[^0-9]/g, '')) || 0;
-};
+// Helper: Price parser
+const parsePrice = (priceStr) =>
+  parseInt(priceStr.toString().replace(/[^0-9]/g, "")) || 0;
 
-// Fixed price range
-const priceRange = {
-  min: 500,
-  max: 100000
-};
+// Price range
+const priceRange = { min: 500, max: 100000 };
 
-function PortalPopup({ anchor, onClose, children, className = "", style = {}, offset = { x: 0, y: 8 } }) {
+const DEFAULT_OFFSET = { x: 0, y: 8 };
+
+function PortalPopup({
+  anchor,
+  onClose,
+  children,
+  className = "",
+  style = {},
+  offset = DEFAULT_OFFSET,
+}) {
   const containerRef = useRef(null);
   const [pos, setPos] = useState(null);
 
@@ -54,7 +57,11 @@ function PortalPopup({ anchor, onClose, children, className = "", style = {}, of
   useEffect(() => {
     const handleClickOutside = (e) => {
       const anchorEl = anchor?.current || anchor;
-      if (!containerRef.current?.contains(e.target) && !anchorEl?.contains(e.target)) onClose?.();
+      if (
+        !containerRef.current?.contains(e.target) &&
+        !anchorEl?.contains(e.target)
+      )
+        onClose?.();
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -66,7 +73,13 @@ function PortalPopup({ anchor, onClose, children, className = "", style = {}, of
     <div
       ref={containerRef}
       className={`bg-white rounded-lg shadow-xl ${className}`}
-      style={{ position: "absolute", top: pos.top, left: pos.left, zIndex: 9999, ...style }}
+      style={{
+        position: "absolute",
+        top: pos.top,
+        left: pos.left,
+        zIndex: 9999,
+        ...style,
+      }}
     >
       {children}
     </div>,
@@ -78,11 +91,12 @@ const PropertyPage = () => {
   const [location, setLocation] = useState("");
   const [propertyType, setPropertyType] = useState("");
   const [price, setPrice] = useState(priceRange.max);
-  const [age, setAge] = useState(100);
+  const [age, setAge] = useState(30);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [selectedFilters, setSelectedFilters] = useState({});
   const [showSlider, setShowSlider] = useState(false);
   const [showAgeSlider, setShowAgeSlider] = useState(false);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [sortBy, setSortBy] = useState("");
 
@@ -92,12 +106,13 @@ const PropertyPage = () => {
 
   const filterOptions = getFilterOptions(initialHouses);
 
-  const propertyTypes = [...new Set(initialHouses.map(house => house.propertyType))];
-
   const toggleFavorite = (id) =>
-    setFavorites((prev) => (prev.includes(id) ? prev.filter((fid) => fid !== id) : [...prev, id]));
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((fid) => fid !== id) : [...prev, id]
+    );
 
-  const toggleDropdown = (filter) => setActiveDropdown((prev) => (prev === filter ? null : filter));
+  const toggleDropdown = (filter) =>
+    setActiveDropdown((prev) => (prev === filter ? null : filter));
   const selectOption = (filter, option) => {
     setSelectedFilters((prev) => ({ ...prev, [filter]: option }));
     setActiveDropdown(null);
@@ -113,10 +128,11 @@ const PropertyPage = () => {
     setPropertyType("");
     setLocation("");
     setPrice(priceRange.max);
-    setAge(100);
+    setAge(30);
     setShowSlider(false);
     setShowAgeSlider(false);
     setActiveDropdown(null);
+    setShowMobileFilters(false);
   };
 
   const handleSubmit = (e) => {
@@ -124,41 +140,63 @@ const PropertyPage = () => {
     console.log({ location, price, age, propertyType, selectedFilters });
   };
 
+  // Filtering
   let filteredHouses = initialHouses.filter((house) => {
-    if (location && !house.location.toLowerCase().includes(location.toLowerCase())) return false;
+    if (
+      location &&
+      !house.location.toLowerCase().includes(location.toLowerCase())
+    )
+      return false;
     if (propertyType && house.propertyType !== propertyType) return false;
-    const housePrice = parsePrice(house.price);
-    if (price && housePrice > price) return false;
-    if (age < 100 && house.propertyAge && house.propertyAge > age) return false;
+    if (price && parsePrice(house.price) > price) return false;
+    if (age && house.propertyAge && house.propertyAge > age) return false;
     for (let key in selectedFilters) {
       if (key === "Others") {
         for (let o of selectedFilters[key].split(",")) {
           if (!house[o.toLowerCase()]) return false;
         }
-      } else if (house[key.toLowerCase()] && house[key.toLowerCase()] !== selectedFilters[key]) return false;
+      } else if (
+        house[key.toLowerCase()] &&
+        house[key.toLowerCase()] !== selectedFilters[key]
+      )
+        return false;
     }
     return true;
   });
 
-  if (sortBy === "Price: Low to High") filteredHouses.sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
-  else if (sortBy === "Price: High to Low") filteredHouses.sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+  if (sortBy === "Price: Low to High")
+    filteredHouses.sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+  else if (sortBy === "Price: High to Low")
+    filteredHouses.sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
   else if (sortBy === "Newest") filteredHouses.sort((a, b) => b.id - a.id);
 
   return (
     <>
-      {/* Hero Section */}
-      <div className="relative bg-cover bg-center h-[300px]" style={{ backgroundImage: `url(${bannerImg})` }}>
+      {/* Hero */}
+      <div
+        className="relative bg-cover bg-center h-[300px]"
+        style={{ backgroundImage: `url(${bannerImg})` }}
+      >
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center text-white">
-          <h2 className="mb-4 text-4xl font-bold md:text-5xl">Filter to Fit Your Needs</h2>
+          <h2 className="mb-4 text-4xl font-bold md:text-5xl">
+            Filter to Fit Your Needs
+          </h2>
           <p className="max-w-2xl mb-8 text-lg md:text-xl">
-            From villas and apartments to shops and offices — filter and find it all.
+            From villas and apartments to shops and offices — filter and find it
+            all.
           </p>
         </div>
       </div>
 
-      {/* Desktop Search Bar */}
-      <form onSubmit={handleSubmit} className="hidden w-full max-w-4xl px-4 py-5 mx-auto mt-6 sm:block">
+      {/* Desktop Search & Filters */}
+      
+      {/* Desktop Search & Filters */}
+      <form
+        onSubmit={handleSubmit}
+        className="hidden w-full max-w-4xl px-4 py-5 mx-auto mt-6 sm:block"
+      >
         <div className="relative flex items-center justify-between gap-2 px-4 py-3 text-sm bg-gray-300 rounded-full shadow-md backdrop-blur-md">
+          {/* Location */}
           <div className="flex items-center gap-2">
             <i className="text-black fas fa-map-marker-alt"></i>
             <input
@@ -173,7 +211,7 @@ const PropertyPage = () => {
               }}
             />
           </div>
-
+          {/* Price */}
           <div className="self-stretch w-px bg-black/30" />
           <div className="relative">
             <div
@@ -191,7 +229,7 @@ const PropertyPage = () => {
               </span>
             </div>
           </div>
-
+          {/* Age */}
           <div className="self-stretch w-px bg-black/30" />
           <div className="relative">
             <div
@@ -209,7 +247,8 @@ const PropertyPage = () => {
               </span>
             </div>
           </div>
-
+          
+          {/* Property Type */}
           <div className="self-stretch w-px bg-black/30" />
           <div className="flex items-center">
             <i className="text-black fas fa-building"></i>
@@ -219,36 +258,37 @@ const PropertyPage = () => {
               onChange={(e) => setPropertyType(e.target.value)}
             >
               <option value="">Property Type</option>
-              {propertyTypes.map((type) => (
+              {filterOptions["Building Type"].map((type) => (
                 <option key={type} value={type}>
                   {type}
                 </option>
               ))}
             </select>
           </div>
-
           <button className="px-2 text-black cursor-pointer" type="submit">
             <i className="text-xl fas fa-search"></i>
           </button>
         </div>
 
-        {/* Filters Row */}
+        {/* Desktop Filters (Building Type removed) */}
         <div className="flex flex-wrap justify-center items-center gap-3 mt-4">
-          {Object.keys(filterOptions).map((filter) => (
-            <button
-              key={filter}
-              ref={(el) => (buttonRefs.current[filter] = el)}
-              onClick={() => toggleDropdown(filter)}
-              className={`px-4 py-2 text-sm rounded-full border ${
-                selectedFilters[filter]
-                  ? "bg-gray-300 text-gray-900 border-gray-400"
-                  : "bg-gray-200 text-gray-800 border-gray-300"
-              } hover:bg-gray-300 transition-colors duration-200`}
-            >
-              {filter} {selectedFilters[filter] && `: ${selectedFilters[filter]}`} <ChevronDown className="inline ml-1 w-3 h-3" />
-            </button>
-          ))}
-
+          {Object.keys(filterOptions)
+            .filter((filter) => filter !== "Building Type")
+            .map((filter) => (
+              <button
+                key={filter}
+                ref={(el) => (buttonRefs.current[filter] = el)}
+                onClick={() => toggleDropdown(filter)}
+                className={`px-4 py-2 text-sm rounded-full border ${
+                  selectedFilters[filter]
+                    ? "bg-gray-300 text-gray-900 border-gray-400"
+                    : "bg-gray-200 text-gray-800 border-gray-300"
+                } hover:bg-gray-300 transition-colors duration-200`}
+              >
+                {filter} {selectedFilters[filter] && `: ${selectedFilters[filter]}`}{" "}
+                <ChevronDown className="inline ml-1 w-3 h-3" />
+              </button>
+            ))}
           <button
             onClick={resetAllFilters}
             className="px-4 py-2 text-sm rounded-full border bg-gray-200 text-gray-800 border-gray-300 hover:bg-gray-300 transition-colors duration-200"
@@ -257,7 +297,7 @@ const PropertyPage = () => {
           </button>
         </div>
 
-        {/* Selected Filters Bar */}
+        {/* Selected Filters */}
         {Object.keys(selectedFilters).length > 0 && (
           <div className="flex flex-wrap gap-2 mt-3">
             {Object.entries(selectedFilters).map(([key, value]) => (
@@ -273,92 +313,233 @@ const PropertyPage = () => {
         )}
       </form>
 
-      {/* Properties Section */}
-      <section className="px-4 py-6 md:px-16 lg:px-24">
-        <h2 className="mb-2 text-3xl font-bold text-gray-800">Explore Properties</h2>
-
-        <div className="flex items-center justify-between mb-4 text-gray-700">
-          <span className="text-gray-600 text-lg">
-            Total Properties: <strong>{filteredHouses.length}</strong>
-          </span>
-          <div className="flex items-center gap-2 text-lg">
-            <span className="font-medium">Sort by:</span>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="text-gray-800 text-lg bg-transparent focus:outline-none border-none"
-            >
-              <option value="">Relevance</option>
-              <option value="Price: Low to High">Price: Low to High</option>
-              <option value="Price: High to Low">Price: High to Low</option>
-              <option value="Newest">Newest</option>
-            </select>
-          </div>
+      {/* Mobile Search & Filters */}
+      <form onSubmit={handleSubmit} className="block px-4 mt-6 sm:hidden">
+        <div className="flex items-center gap-2 px-3 py-2 text-black bg-white rounded-full shadow-md">
+          <i className="text-xs fas fa-map-marker-alt" />
+          <input
+            type="text"
+            placeholder="Enter locality or Zip code"
+            className="flex-1 text-xs bg-transparent focus:outline-none"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+          <button className="px-2 text-black" type="submit">
+            <i className="text-xl fas fa-search"></i>
+          </button>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 justify-items-center px-4 md:px-0 mx-auto">
-          {filteredHouses.map((house) => (
-            <HouseCard
-              key={house.id}
-              house={{ ...house, discount: undefined }}
-              isFavorite={favorites.includes(house.id)}
-              toggleFavorite={toggleFavorite}
-            />
-          ))}
-        </div>
-      </section>
+        {/* Filter buttons row */}
+        <div className="flex justify-between mt-4">
+          {/* Property Type dropdown like desktop */}
+          <select
+            className="flex-1 mx-1 px-2 py-1 text-[10px] rounded-full bg-gray-100 text-gray-700 focus:outline-none"
+            value={propertyType}
+            onChange={(e) => setPropertyType(e.target.value)}
+          >
+            <option value="">Property Type</option>
+            {filterOptions["Building Type"].map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
 
-      {/* Price Slider Popup */}
-      {showSlider && priceRef.current && (
-        <PortalPopup anchor={priceRef.current} onClose={() => setShowSlider(false)} className="p-4" style={{ minWidth: 300 }}>
-          <div className="space-y-4">
-            <label className="block text-sm font-semibold text-gray-700">
+          <button
+            type="button"
+            onClick={() => {
+              setShowSlider((s) => !s);
+              setShowAgeSlider(false);
+            }}
+            className="flex-1 mx-1 px-2 py-1 text-[10px] rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200"
+          >
+            Price Range
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setShowAgeSlider((s) => !s);
+              setShowSlider(false);
+            }}
+            className="flex-1 mx-1 px-2 py-1 text-[10px] rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200"
+          >
+            Age of Property
+          </button>
+        </div>
+
+        {/* 👉 Inline sliders for mobile */}
+        {showSlider && (
+          <div className="mt-3 p-4 bg-white rounded-lg shadow-md">
+            <label className="block mb-2 text-sm font-semibold text-gray-700">
               Max Price: ₹{price.toLocaleString()}
             </label>
             <input
               type="range"
               min={priceRange.min}
               max={priceRange.max}
-              step="1000"
+              step={500}
               value={price}
               onChange={(e) => setPrice(Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+              className="w-full"
             />
-            <div className="flex justify-between text-xs text-gray-600">
-              <span>₹{priceRange.min.toLocaleString()}</span>
-              <span>₹{priceRange.max.toLocaleString()}</span>
-            </div>
           </div>
-        </PortalPopup>
-      )}
+        )}
 
-      {/* Age Slider Popup */}
-      {showAgeSlider && ageRef.current && (
-        <PortalPopup anchor={ageRef.current} onClose={() => setShowAgeSlider(false)} className="p-4" style={{ minWidth: 250 }}>
-          <div className="space-y-4">
-            <label className="block text-sm font-semibold text-gray-700">
+        {showAgeSlider && (
+          <div className="mt-3 p-4 bg-white rounded-lg shadow-md">
+            <label className="block mb-2 text-sm font-semibold text-gray-700">
               Max Age: {age} years
             </label>
-            <input 
-              type="range" 
-              min="0" 
-              max="100" 
-              step="1" 
-              value={age} 
-              onChange={(e) => setAge(Number(e.target.value))} 
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            <input
+              type="range"
+              min="0"
+              max="30"
+              step="1"
+              value={age}
+              onChange={(e) => setAge(Number(e.target.value))}
+              className="w-full"
             />
-            <div className="flex justify-between text-xs text-gray-600">
-              <span>0 years</span>
-              <span>100+ years</span>
-            </div>
           </div>
+        )}
+
+        {/* Extra filters (inline instead of PortalPopup) */}
+        <div className="mt-3">
+          <button
+            onClick={() => setShowMobileFilters((s) => !s)}
+            className="flex items-center gap-2 p-2 bg-gray-100 rounded-full hover:bg-gray-200"
+          >
+            <SlidersHorizontal className="w-5 h-5 text-gray-700" />
+            <span className="text-sm text-gray-700">Filter</span>
+          </button>
+
+          {showMobileFilters && (
+            <div className="flex flex-col gap-3 mt-3">
+              {Object.keys(filterOptions)
+                .filter((filter) => filter !== "Building Type")
+                .map((filter) => (
+                  <div key={filter} className="bg-gray-100 rounded-md">
+                    <button
+                      onClick={() => toggleDropdown(filter)}
+                      className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200"
+                    >
+                      {filter} <ChevronDown className="w-4 h-4" />
+                    </button>
+
+                    {activeDropdown === filter && (
+                      <div className="max-h-60 overflow-y-auto border-t border-gray-300">
+                        {(filterOptions[filter] || []).map((option) => (
+                          <div
+                            key={option}
+                            onClick={() => selectOption(filter, option)}
+                            className="px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-200"
+                          >
+                            {option}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+              <button
+                onClick={resetAllFilters}
+                className="w-full px-4 py-2 text-sm font-medium text-center text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
+              >
+                Reset all
+              </button>
+            </div>
+          )}
+        </div>
+      </form>
+
+      {/* Properties Section */}
+<section className="w-full py-6 px-4 md:px-4">
+  <h2 className="mb-2 text-3xl font-bold text-gray-800">Explore Properties</h2>
+  <div className="flex items-center justify-between mb-4 text-gray-700">
+    <span className="text-gray-600 text-lg">
+      Total Properties: <strong>{filteredHouses.length}</strong>
+    </span>
+    <div className="flex items-center gap-2 text-lg">
+      <span className="font-medium">Sort by:</span>
+      <select
+        value={sortBy}
+        onChange={(e) => setSortBy(e.target.value)}
+        className="text-gray-800 text-lg bg-transparent focus:outline-none border-none"
+      >
+        <option value="">Relevance</option>
+        <option value="Price: Low to High">Price: Low to High</option>
+        <option value="Price: High to Low">Price: High to Low</option>
+        <option value="Newest">Newest</option>
+      </select>
+    </div>
+  </div>
+
+  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 w-full">
+    {filteredHouses.map((house) => (
+      <HouseCard
+        key={house.id}
+        house={{ ...house, discount: undefined }}
+        isFavorite={favorites.includes(house.id)}
+        toggleFavorite={toggleFavorite}
+      />
+    ))}
+  </div>
+</section>
+
+
+      {/* Desktop-only PortalPopup for sliders & filters */}
+      {showSlider && priceRef.current && (
+        <PortalPopup
+          anchor={priceRef.current}
+          onClose={() => setShowSlider(false)}
+          className="p-4 sm:block hidden"
+          style={{ minWidth: 260 }}
+        >
+          <label className="block mb-2 text-sm font-semibold text-gray-700">
+            Max Price: ₹{price.toLocaleString()}
+          </label>
+          <input
+            type="range"
+            min={priceRange.min}
+            max={priceRange.max}
+            step={500}
+            value={price}
+            onChange={(e) => setPrice(Number(e.target.value))}
+            className="w-full"
+          />
         </PortalPopup>
       )}
 
-      {/* Dropdown for Filters */}
+      {showAgeSlider && ageRef.current && (
+        <PortalPopup
+          anchor={ageRef.current}
+          onClose={() => setShowAgeSlider(false)}
+          className="p-4 sm:block hidden"
+          style={{ minWidth: 220 }}
+        >
+          <label className="block mb-2 text-sm font-semibold text-gray-700">
+            Max Age: {age} years
+          </label>
+          <input
+            type="range"
+            min="0"
+            max="30"
+            step="1"
+            value={age}
+            onChange={(e) => setAge(Number(e.target.value))}
+            className="w-full"
+          />
+        </PortalPopup>
+      )}
+
+      {/* Filter Dropdown (desktop only) */}
       {activeDropdown && buttonRefs.current[activeDropdown] && (
-        <PortalPopup anchor={{ current: buttonRefs.current[activeDropdown] }} onClose={() => setActiveDropdown(null)} style={{ minWidth: 160 }}>
+        <PortalPopup
+          anchor={buttonRefs.current[activeDropdown]}
+          onClose={() => setActiveDropdown(null)}
+          style={{ minWidth: 160 }}
+          className="sm:block hidden"
+        >
           <div className="overflow-y-auto max-h-60">
             {(filterOptions[activeDropdown] || []).map((option) => (
               <div
