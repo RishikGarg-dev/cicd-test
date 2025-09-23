@@ -9,7 +9,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
         {/* Logo */}
         <div className="text-2xl font-bold">
-          <Link to="/" className="text-black hover:text-gray-700">Swiftly</Link>
+          <Link to="/" className="text-black hover:text-gray-700">Shiftly</Link>
         </div>
 
         {/* Hamburger Menu (Mobile) */}
