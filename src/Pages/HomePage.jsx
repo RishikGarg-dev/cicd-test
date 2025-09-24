@@ -5,16 +5,17 @@ import HouseCard from "../components/HouseCard";
 import CardCarousel from "../components/CardCarousel";
 import img4 from "../assets/office.jpg";
 
-
 export default function HomePage() {
   const [price, setPrice] = useState(5000);
   const [selectedPrice, setSelectedPrice] = useState("");
-  const [age, setAge] = useState("");
+  const [propertyAge, setAge] = useState("");
   const [propertyType, setPropertyType] = useState("");
   const [showSlider, setShowSlider] = useState(false);
   const [showAgeSlider, setShowAgeSlider] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const [location, setLocation] = useState("");
+  const [filteredHouses, setFilteredHouses] = useState([]);
+  const [isSearched, setIsSearched] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,15 +25,57 @@ export default function HomePage() {
     );
   };
 
-  const handleSubmit = (e) => {
+   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = { location, selectedPrice, age, propertyType };
-    console.log("Form Data:", formData);
+
+    const noFilters =
+    location.trim() === "" &&
+    !selectedPrice &&
+    !propertyAge &&
+    !propertyType;
+
+  if (noFilters) {
+    setFilteredHouses([]);    
+    setIsSearched(true);        
+    return;                    
+  }
+
+    let results = houses;
+
+    setShowSlider(false);  
+    setShowAgeSlider(false);
+
+    if (location.trim() !== "") {
+      results = results.filter((house) =>
+        house.location.toLowerCase().includes(location.toLowerCase())
+      );
+    }
+
+    if (selectedPrice) {
+      const [min, max] = selectedPrice.split("-").map(Number);
+      results = results.filter(
+        (house) => house.price >= min && house.price <= max
+      );
+    }
+
+    if (propertyAge) {
+      results = results.filter(
+        (house) => house.propertyAge <= propertyAge);
+    }
+
+    if (propertyType) {
+      results = results.filter(
+        (house) => house.propertyType.toLowerCase() === propertyType.toLowerCase()
+      );
+    }
+
+    setFilteredHouses(results);
+    setIsSearched(true);
   };
 
-  return (
+   return (
     <div className="min-h-screen bg-white text-black">
-      {/* Hero Section */}
+      {/* Hero Section with Search */}
       <section className="relative w-full min-h-[50vh] sm:min-h-screen">
         <div className="bg-[url('https://res.cloudinary.com/dvqrtjzvv/image/upload/v1756129943/banner_e69nkm.png')] bg-cover bg-center h-150 w-full relative">
           <div className="absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white w-full">
@@ -45,38 +88,144 @@ export default function HomePage() {
               Partner, View, Tour, Shift.
             </p>
 
-            {/* Desktop Search Bar */}
+           {/*Desktop view search bar*/}
             <form
               onSubmit={handleSubmit}
               className="hidden sm:block mt-6 w-full max-w-4xl mx-auto px-4"
             >
-              <div className="relative bg-white/100 backdrop-blur-md rounded-full px-4 py-3 flex items-center justify-between shadow-md gap-2 text-sm">
-                {/* Location */}
-                <div className="flex items-center gap-2">
-                  <i className="fas fa-map-marker-alt text-black"></i>
+            <div className="relative bg-white/100 backdrop-blur-md rounded-full px-4 py-3 flex items-center justify-between shadow-md gap-2 text-sm">
+            {/* Location */}
+            <div className="flex items-center gap-2">
+               <i className="fas fa-map-marker-alt text-black"></i>
                   <input
                     type="text"
                     placeholder="Enter Location"
                     className="px-2 py-1 bg-transparent border-none focus:outline-none text-black placeholder-gray-500 w-40"
                     value={location}
-                    onChange={(e) => {
-                      setLocation(e.target.value);
-                      setShowSlider(false);
-                      setShowAgeSlider(false);
-                    }}
-                    onClick={() => {
-                      setShowSlider(false);
-                      setShowAgeSlider(false);
-                    }}
+                    onChange={(e) => setLocation(e.target.value)}
                   />
-                </div>
+            </div>
+
+            <div className="self-stretch w-px bg-black/30" />
+
+            {/* Price */}
+            <div className="relative">
+               <div
+                    className="flex items-center gap-2 cursor-pointer"
+                    onClick={() => {
+                      setShowSlider(!showSlider);
+                      setShowAgeSlider(false);
+                    }}
+                  >
+                    <i className="fas fa-money-bill-wave text-black"></i>
+                    <span className="text-black whitespace-nowrap">
+                      Price Range
+                    </span>
+               </div>
+               {showSlider && (
+                 <div className="absolute top-full mt-2 left-0 bg-white p-4 rounded-lg shadow-lg z-10 w-64">
+                      <label className="block mb-2 text-sm font-semibold text-gray-700">
+                        Max Price: ₹{price.toLocaleString()}
+                      </label>
+                      <input
+                        type="range"
+                        min="1000"
+                        max="700000"
+                        step="500"
+                        value={price}
+                        onChange={(e) => {
+                          setPrice(Number(e.target.value));
+                          setSelectedPrice(`0-${e.target.value}`);
+                        }}
+                        className="w-full"
+                      />
+                  </div>
+                  )}
+           </div>
+
+            <div className="self-stretch w-px bg-black/30" />
+
+            {/* Age */}
+            <div className="relative flex items-center gap-2">
+              <i className="fas fa-hourglass-half text-black"></i>
+                <span
+                    className="text-black cursor-pointer whitespace-nowrap"
+                    onClick={() => {
+                      setShowAgeSlider(!showAgeSlider);
+                      setShowSlider(false);
+                    }}
+                >
+                Age of Property
+                </span>
+            {showAgeSlider && (
+              <div className="absolute top-full mt-2 left-0 bg-white p-4 rounded-lg shadow-lg z-10 w-64">
+                      <label className="block mb-2 text-sm font-semibold text-gray-700">
+                        Max Age: {propertyAge} years
+                      </label>
+                      <input
+                        type="range"
+                        min="1"
+                        max="100"
+                        step="1"
+                        value={propertyAge}
+                        onChange={(e) => setAge(Number(e.target.value))}
+                        className="w-full"
+                      />
+              </div>
+                  )}
+           </div>
 
                 <div className="self-stretch w-px bg-black/30" />
+
+                {/* Property Type */}
+                <div className="flex items-center">
+                  <i className="fas fa-building text-black"></i>
+                  <select
+                    className="text-sm px-2 py-1 rounded-md text-black focus:outline-none cursor-pointer min-w-[100px]"
+                    value={propertyType}
+                    onChange={(e) => setPropertyType(e.target.value)}
+                  >
+                    <option value="">Property Type</option>
+                    <option value="1 BHK">1 BHK</option>
+                    <option value="2 BHK">2 BHK</option>
+                    <option value="3 BHK">3 BHK</option>
+                    <option value="4 BHK">4+ BHK</option>
+                  </select>
+                </div>
+
+                <button className="text-black px-2 cursor-pointer">
+                  <i className="fas fa-search text-xl"></i>
+                </button>
+              </div>
+            </form>
+
+            {/* 📱 Mobile Search Bar */}
+           <form
+           onSubmit={handleSubmit}
+           className="block sm:hidden mt-6 w-full max-w-md mx-auto px-4"
+           >
+                {/* Location Input */}
+           <div className="flex items-center bg-white rounded-full shadow-md px-3 py-2">
+                    <i className="fas fa-map-marker-alt text-gray-500 mr-2"></i>
+                    <input
+            type="text"
+            placeholder="Enter locality or Zip code"
+            className="flex-1 bg-transparent border-none focus:outline-none text-sm text-black placeholder-gray-500"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+                    />
+                    <button type="submit" className="text-black">
+            <i className="fas fa-search text-lg"></i>
+                    </button>
+                 </div>
+
+            {/* Filter Chips */}
+             <div className="flex flex-wrap gap-2 mt-3">
 
                 {/* Price */}
                 <div className="relative">
                   <div
-                    className="flex items-center gap-2 cursor-pointer"
+                    className="bg-white rounded-full flex items-center gap-2 cursor-pointer"
                     onClick={() => {
                       setShowSlider(!showSlider);
                       setShowAgeSlider(false);
@@ -110,8 +259,8 @@ export default function HomePage() {
 
                 <div className="self-stretch w-px bg-black/30" />
 
-                {/* Age */}
-                <div className="relative flex items-center gap-2">
+                              {/* Age */}
+                <div className="relative bg-white rounded-full flex items-center gap-2">
                   <i className="fas fa-hourglass-half text-black"></i>
                   <span
                     className="text-black cursor-pointer whitespace-nowrap"
@@ -125,14 +274,14 @@ export default function HomePage() {
                   {showAgeSlider && (
                     <div className="absolute top-full mt-2 left-0 bg-white p-4 rounded-lg shadow-lg z-10 w-64">
                       <label className="block mb-2 text-sm font-semibold text-gray-700">
-                        Max Age: {age} years
+                        Max Age: {propertyAge} years
                       </label>
                       <input
                         type="range"
                         min="1"
                         max="100"
                         step="1"
-                        value={age}
+                        value={propertyAge}
                         onChange={(e) => setAge(Number(e.target.value))}
                         className="w-full"
                       />
@@ -142,165 +291,50 @@ export default function HomePage() {
 
                 <div className="self-stretch w-px bg-black/30" />
 
-                {/* Property Type */}
-                <div className="flex items-center">
+                              {/* Property Type */}
+                <div className="bg-white rounded-full flex items-center">
                   <i className="fas fa-building text-black"></i>
                   <select
                     className="text-sm px-2 py-1 rounded-md text-black focus:outline-none cursor-pointer min-w-[100px]"
                     value={propertyType}
-                    onChange={(e) => {
-                      setPropertyType(e.target.value);
-                      setShowSlider(false);
-                      setShowAgeSlider(false);
-                    }}
-                    onClick={() => {
-                      setShowSlider(false);
-                      setShowAgeSlider(false);
-                    }}
+                    onChange={(e) => setPropertyType(e.target.value)}
                   >
                     <option value="">Property Type</option>
                     <option value="1 BHK">1 BHK</option>
                     <option value="2 BHK">2 BHK</option>
                     <option value="3 BHK">3 BHK</option>
-                    <option value="4 BHK">4 BHK</option>
+                    <option value="4 BHK">4+ BHK</option>
                   </select>
                 </div>
-
-                <button className="text-black px-2 cursor-pointer">
-                  <i className="fas fa-search text-xl"></i>
-                </button>
-              </div>
+             </div>
             </form>
-
-            {/* Mobile Search Bar */}
-            <form onSubmit={handleSubmit} className="block sm:hidden mt-6 px-4">
-              <div className="flex items-center gap-2 bg-white text-black rounded-full px-3 py-2 shadow-md">
-                <i className="fas fa-map-marker-alt text-xs" />
-                <input
-                  type="text"
-                  placeholder="Enter locality or Zip code"
-                  className="flex-1 text-xs focus:outline-none bg-transparent"
-                  value={location}
-                  onChange={(e) => {
-                    setLocation(e.target.value);
-                    setShowSlider(false);
-                    setShowAgeSlider(false);
-                  }}
-                  onFocus={() => {
-                    setShowSlider(false);
-                    setShowAgeSlider(false);
-                  }}
-                  onClick={() => {
-                    setShowSlider(false);
-                    setShowAgeSlider(false);
-                  }}
-                />
-                <button className="text-black px-2">
-                  <i className="fas fa-search text-xl"></i>
-                </button>
-              </div>
-            </form>
-
-            {/* Mobile Filters */}
-            <div className="sm:hidden mt-4 px-4 relative z-10">
-              <div className="relative w-full">
-                <div className="flex gap-2 justify-between w-full">
-                  {/* Property Type */}
-                  <div className="flex-1 min-w-0">
-                    <select
-                      className="appearance-none text-center text-[11px] px-2 py-1 border-none rounded-full shadow bg-white text-black w-full outline-none"
-                      value={propertyType}
-                      onChange={(e) => {
-                        setPropertyType(e.target.value);
-                        setShowSlider(false);
-                        setShowAgeSlider(false);
-                      }}
-                      onClick={() => {
-                        setShowSlider(false);
-                        setShowAgeSlider(false);
-                      }}
-                    >
-                      <option value="">Property Type</option>
-                      <option value="1 BHK">1 BHK</option>
-                      <option value="2 BHK">2 BHK</option>
-                      <option value="3 BHK">3 BHK</option>
-                      <option value="4 BHK">4 BHK</option>
-                    </select>
-                  </div>
-
-                  {/* Price Range */}
-                  <div className="flex-1 min-w-0 relative">
-                    <button
-                      onClick={() => {
-                        setShowSlider(!showSlider);
-                        setShowAgeSlider(false);
-                      }}
-                      type="button"
-                      className="text-[11px] text-center px-2 py-1 border-none rounded-full shadow bg-white text-black w-full outline-none"
-                    >
-                      Price Range
-                    </button>
-                  </div>
-
-                  {/* Age of Property */}
-                  <div className="flex-1 min-w-0 relative">
-                    <button
-                      onClick={() => {
-                        setShowAgeSlider(!showAgeSlider);
-                        setShowSlider(false);
-                      }}
-                      type="button"
-                      className="text-[11px] text-center px-2 py-1 border-none rounded-full shadow bg-white text-black w-full outline-none"
-                    >
-                      Age of Property
-                    </button>
-                  </div>
-                </div>
-
-                {/* Sliders */}
-                {showSlider && (
-                  <div className="absolute left-1/2 -translate-x-1/2 mt-2 bg-white p-4 rounded-md shadow-lg z-30 w-[92vw] max-w-xs">
-                    <label className="block mb-2 text-xs font-semibold text-gray-700">
-                      Max Price: ₹{price.toLocaleString()}
-                    </label>
-                    <input
-                      type="range"
-                      min="1000"
-                      max="700000"
-                      step="500"
-                      value={price}
-                      onChange={(e) => {
-                        setPrice(Number(e.target.value));
-                        setSelectedPrice(`0-${e.target.value}`);
-                      }}
-                      className="w-full"
-                    />
-                  </div>
-                )}
-
-                {showAgeSlider && (
-                  <div className="absolute left-1/2 -translate-x-1/2 mt-2 bg-white p-4 rounded-md shadow-lg z-30 w-[92vw] max-w-xs">
-                    <label className="block mb-2 text-xs font-semibold text-gray-700">
-                      Max Age: {age} years
-                    </label>
-                    <input
-                      type="range"
-                      min="1"
-                      max="100"
-                      step="1"
-                      value={age}
-                      onChange={(e) => setAge(Number(e.target.value))}
-                      className="w-full"
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-
+      {/* 🔎 Search Results */}
+      {isSearched && (
+        <section className="px-4 sm:px-6 py-10">
+          <h2 className="text-4xl font-bold mb-6 text-left">Search items</h2>
+          {filteredHouses.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-5 px-2 sm:px-0">
+              {filteredHouses.map((house) => (
+                <HouseCard
+                  key={house.id}
+                  house={house}
+                  isFavorite={favorites.includes(house.id)}
+                  toggleFavorite={toggleFavorite}
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-600">
+              No properties found for your search.
+            </p>
+          )}
+        </section>
+      )}
+    
       {/* Discount Listings */}
       <section className="px-4 sm:px-6 py-14 text-center">
         <h2 className="text-3xl text-red-500 font-bold">Discount Listings</h2>
