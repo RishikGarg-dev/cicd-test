@@ -7,9 +7,11 @@ import {
   FaHeart,
   FaRegHeart,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { houses } from "../houses";
 
 export default function CardCarousel() {
+  const navigate = useNavigate();
   const total = houses.length;
   const [centerIndex, setCenterIndex] = useState(2);
   const [favorites, setFavorites] = useState([]);
@@ -103,6 +105,13 @@ export default function CardCarousel() {
     );
   };
 
+  const handleCardClick = (e, houseId) => {
+    // Only navigate if we're not dragging and it's not a heart click
+    if (!dragging.current && !e.target.closest('.favorite-button')) {
+      navigate(`/properties/${houseId}`);
+    }
+  };
+
   return (
     <div
       className="relative w-full h-[400px] sm:h-[460px] overflow-hidden select-none px-[5px] cursor-pointer"
@@ -119,12 +128,13 @@ export default function CardCarousel() {
           <div
             key={card.id}
             className="absolute w-[65vw] sm:w-[80vw] max-w-[300px] min-h-[300px] sm:min-h-[440px] 
-                       p-3 sm:p-4 bg-white rounded-xl shadow-lg flex flex-col"
+                       p-3 sm:p-4 bg-white rounded-xl shadow-lg flex flex-col cursor-pointer"
             style={getStyles(i)}
+            onClick={(e) => handleCardClick(e, card.id)}
           >
             {/* Favorite button */}
             <div
-              className="absolute top-3 right-3 bg-white rounded-full p-2 shadow-md cursor-pointer z-10"
+              className="favorite-button absolute top-3 right-3 bg-white rounded-full p-2 shadow-md cursor-pointer z-10"
               onClick={(e) => {
                 e.stopPropagation();
                 toggleFavorite(card.id);
