@@ -1,6 +1,24 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { houses } from "../houses"; // Path to your houses data
+import { agentsData } from "../agentsData"; // Path to your agents data
 
-export default function ScheduleTour({ property }) {
+export default function ScheduleTour() {
+  const { id } = useParams();
+  const property = houses.find((h) => h.id === Number(id));
+
+  // Default agent for unassigned properties
+  const defaultAgent = {
+    name: "N/A",
+    phone: "N/A",
+    email: "N/A",
+    image: "/images/agent.jpg",
+  };
+
+  // Find the assigned agent or use default
+  const agent = agentsData.find((a) => a.id === property?.agentId) || defaultAgent;
+
+  // Form states
   const [selectedTime, setSelectedTime] = useState("");
   const [tourType, setTourType] = useState("");
   const [name, setName] = useState("");
@@ -9,16 +27,16 @@ export default function ScheduleTour({ property }) {
   const [checkbox, setCheckbox] = useState(false);
   const [requests, setRequests] = useState("");
 
-  // Real-time error states
+  // Error states
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [phoneError, setPhoneError] = useState("");
 
-  // ✅ Date range: today → Dec 31, 2027
+  // Date range: today → Dec 31, 2027
   const today = new Date().toISOString().split("T")[0];
   const maxDate = new Date("2027-12-31").toISOString().split("T")[0];
 
-  // Real-time validators
+  // Validators
   const handleNameChange = (e) => {
     const val = e.target.value;
     setName(val);
@@ -43,8 +61,8 @@ export default function ScheduleTour({ property }) {
   };
 
   const handlePhoneChange = (e) => {
-    const val = e.target.value.replace(/\D/g, ""); // Remove non-digits
-    setPhone(val.slice(0, 10)); // Limit to 10 digits
+    const val = e.target.value.replace(/\D/g, "");
+    setPhone(val.slice(0, 10));
     if (val.length > 0 && val.length < 10) {
       setPhoneError("Phone number must be 10 digits");
     } else {
@@ -55,7 +73,6 @@ export default function ScheduleTour({ property }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Final validation before submission
     if (!name || nameError) {
       alert("Please enter a valid name");
       return;
@@ -78,8 +95,16 @@ export default function ScheduleTour({ property }) {
     }
 
     alert("Form submitted successfully!");
-    // Here you can send the data to your API
+    // TODO: send data to API
   };
+
+  if (!property) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-600 text-lg">Property not found.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-6">
@@ -87,20 +112,33 @@ export default function ScheduleTour({ property }) {
         {/* Property Header */}
         <div className="flex items-center space-x-4 mb-8">
           <img
-            src={property?.image || "https://via.placeholder.com/120"}
+            src={property?.image?.[0] || "https://via.placeholder.com/120"}
             alt={property?.title || "Property"}
             className="w-24 h-24 object-cover rounded-lg shadow"
           />
           <div>
             <h2 className="text-2xl font-bold text-gray-800">
-              {property?.title || "Property Title"}
+              {property?.title}
             </h2>
-            <p className="text-gray-600 text-sm">
-              {property?.location || "Location"}
-            </p>
+            <p className="text-gray-600 text-sm">{property?.location}</p>
           </div>
         </div>
 
+        {/* Agent Details */}
+        <div className="border rounded-lg p-4 mb-8 bg-gray-50 flex items-center gap-4">
+          <img
+            src={agent.image}
+            alt={agent.name}
+            className="w-20 h-20 object-cover rounded-lg shadow"
+          />
+          <div>
+            <h3 className="font-semibold text-gray-800 mb-1">{agent.name}</h3>
+            <p className="text-gray-600 text-sm">{agent.phone}</p>
+            <p className="text-gray-600 text-sm">{agent.email}</p>
+          </div>
+        </div>
+
+        {/* Form */}
         <form onSubmit={handleSubmit}>
           {/* Date */}
           <h3 className="font-semibold text-gray-800 mb-2">Schedule a Tour</h3>
@@ -156,7 +194,9 @@ export default function ScheduleTour({ property }) {
           </div>
 
           {/* Contact Info */}
-          <h3 className="font-semibold text-gray-800 mb-3">Contact Information</h3>
+          <h3 className="font-semibold text-gray-800 mb-3">
+            Contact Information
+          </h3>
           <div className="grid grid-cols-1 gap-4 mb-4">
             <div>
               <input

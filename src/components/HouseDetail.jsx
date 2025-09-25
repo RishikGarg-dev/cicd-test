@@ -1,22 +1,37 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { houses } from '../houses';
-import HouseCard from './HouseCard';
-import { FaHeart, FaRegHeart, FaBed, FaBath, FaCar, FaRegLightbulb, FaLock, FaHome, FaRegBuilding, FaMapMarkerAlt, FaSubway, FaShoppingCart, FaCompass, FaRulerCombined } from 'react-icons/fa';
-import { GiLift, GiWaterDrop } from 'react-icons/gi';
-import { MdCleaningServices, MdBalcony, MdAccessTime } from 'react-icons/md';
-
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { houses } from "../houses";
+import HouseCard from "./HouseCard";
+import {
+  FaHeart,
+  FaRegHeart,
+  FaBed,
+  FaBath,
+  FaCar,
+  FaRegLightbulb,
+  FaLock,
+  FaHome,
+  FaRegBuilding,
+  FaMapMarkerAlt,
+  FaSubway,
+  FaShoppingCart,
+  FaCompass,
+  FaRulerCombined,
+} from "react-icons/fa";
+import { GiLift, GiWaterDrop } from "react-icons/gi";
+import { MdCleaningServices, MdBalcony, MdAccessTime } from "react-icons/md";
 
 const HouseDetail = () => {
   const { id } = useParams();
-  const house = houses.find(h => h.id === Number(id));
+  const navigate = useNavigate();
+  const house = houses.find((h) => h.id === Number(id));
 
   const [favorites, setFavorites] = useState([]);
 
   const toggleFavorite = (houseId) => {
-    setFavorites(prev =>
+    setFavorites((prev) =>
       prev.includes(houseId)
-        ? prev.filter(id => id !== houseId)
+        ? prev.filter((id) => id !== houseId)
         : [...prev, houseId]
     );
   };
@@ -27,7 +42,7 @@ const HouseDetail = () => {
 
   return (
     <div className="max-w-screen-xl p-4 mx-auto">
-
+      {/* Header */}
       <div className="flex flex-col items-start justify-between px-2 mb-4 md:flex-row md:items-center md:px-0">
         <div>
           <h2 className="text-2xl font-semibold">{house.title}</h2>
@@ -37,11 +52,16 @@ const HouseDetail = () => {
           </div>
         </div>
         <div className="mt-3 space-y-1 text-base text-right text-gray-800 md:text-lg md:mt-0">
-          <p className="text-2xl font-semibold text-green-600">₹{house.price}/month</p>
-          <p className="text-sm text-gray-500">Security Deposit: ₹{house.deposit}</p>
+          <p className="text-2xl font-semibold text-green-600">
+            ₹{house.price}/month
+          </p>
+          <p className="text-sm text-gray-500">
+            Security Deposit: ₹{house.deposit}
+          </p>
         </div>
       </div>
 
+      {/* Images */}
       <div className="relative mb-6">
         <div className="flex gap-4 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {house.image.map((imgUrl, idx) => (
@@ -53,7 +73,6 @@ const HouseDetail = () => {
             />
           ))}
         </div>
-
 
         <div
           className="absolute z-10 p-2 bg-white rounded-full shadow-md cursor-pointer top-5 right-5"
@@ -70,10 +89,9 @@ const HouseDetail = () => {
         </div>
       </div>
 
-
-      <h1 className="text-xl font-semibold "> Property Summary </h1>
+      {/* Property Summary */}
+      <h1 className="text-xl font-semibold">Property Summary</h1>
       <div className="grid grid-cols-2 gap-6 mb-6 sm:grid-cols-3 lg:grid-cols-4">
-
         <div className="flex items-center">
           <FaBed className="mr-2 text-gray-600" />
           <span>{house.beds} BHK</span>
@@ -132,9 +150,11 @@ const HouseDetail = () => {
         </div>
       </div>
 
+      {/* Description */}
       <h3 className="mb-2 text-lg font-semibold">Description</h3>
       <p>{house.description}</p>
 
+      {/* Nearby */}
       <div className="pt-8 mt-10">
         <h3 className="mb-6 text-xl font-semibold">Nearby Accessibility</h3>
         <div className="grid items-start grid-cols-1 gap-8 md:grid-cols-2">
@@ -158,7 +178,7 @@ const HouseDetail = () => {
               src={`https://www.google.com/maps?q=${house.latitude},${house.longitude}&hl=en&z=16&output=embed`}
               width="100%"
               height="250"
-              style={{ border: 0, borderRadius: '0.75rem' }}
+              style={{ border: 0, borderRadius: "0.75rem" }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -168,21 +188,28 @@ const HouseDetail = () => {
         </div>
       </div>
 
+      {/* Actions */}
       <div className="grid grid-cols-1 gap-8 mt-10 md:grid-cols-2">
         <div>
           <p className="mb-3 text-base text-gray-800">
-            <strong>Want to visit the Property?</strong><br />
+            <strong>Want to visit the Property?</strong>
+            <br />
             Just schedule the time by clicking on schedule a tour.
           </p>
-          <button className="px-6 py-2 text-white transition bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600">
+          <button
+            onClick={() => navigate(`/property/${house.id}/schedule-tour`)}
+            className="px-6 py-2 text-white transition bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600"
+          >
             Schedule a Tour
           </button>
         </div>
 
         <div>
           <p className="mb-3 text-base text-gray-800">
-            <strong>Click Apply Now to begin your rental journey.</strong><br />
-            It takes just a few minutes to share your details, upload documents, and take the first step toward securing your new home.
+            <strong>Click Apply Now to begin your rental journey.</strong>
+            <br />
+            It takes just a few minutes to share your details, upload
+            documents, and take the first step toward securing your new home.
           </p>
           <button className="px-6 py-2 text-white transition bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
             Apply Now
@@ -190,12 +217,13 @@ const HouseDetail = () => {
         </div>
       </div>
 
+      {/* Similar Listings */}
       <div className="mt-10">
         <h3 className="mb-4 text-xl font-semibold">Similar Listings</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6">
           {houses
-            .filter(h => h.id !== house.id)
-            .map(h => (
+            .filter((h) => h.id !== house.id)
+            .map((h) => (
               <HouseCard
                 key={h.id}
                 house={h}

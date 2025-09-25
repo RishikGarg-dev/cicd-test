@@ -36,8 +36,9 @@ function App() {
           <Route path="/landlord" element={<Landlord />} />
           <Route path="/myrentals" element={<ActiveRentals />} />
           <Route path="/blogs" element={<BlogPage />} />
-         <Route path="/schedule-tour" element={<ScheduleTour />} />
 
+          {/* ✅ Updated ScheduleTour route to accept property ID */}
+          <Route path="/property/:id/schedule-tour" element={<ScheduleTour />} />
         </Routes>
         <Footer />
       </Router>
