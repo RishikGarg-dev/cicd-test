@@ -9,7 +9,7 @@ import { houses as initialHouses } from "../houses";
 // Helper: Get unique filter options dynamically
 const getFilterOptions = (houses) => ({
   "Building Type": [...new Set(houses.map((h) => h.propertyType || h.type))],
-  Beds: [...new Set(houses.map((h) => h.beds))],
+  ConstructionType: [...new Set(houses.map((h) => h.type))],
   Parking: [...new Set(houses.map((h) => h.parking))],
   Furnishing: [...new Set(houses.map((h) => h.furnishing))],
   Others: ["Pet Friendly", "Lift", "Security"],

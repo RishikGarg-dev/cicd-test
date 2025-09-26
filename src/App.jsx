@@ -15,6 +15,7 @@ import AgentDetails from "./components/AgentDetails";
 import ActiveRentals from './Pages/MyRentals';
 import BlogPage from './Pages/BlogPage';
 
+
 function App() {
   return (
     <BrowserRouter>
