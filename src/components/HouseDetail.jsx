@@ -24,6 +24,8 @@ const HouseDetail = () => {
   if (!house) return <div className="p-4">House not found</div>;
 
   const isFavorite = favorites.includes(house.id);
+   
+  
 
   return (
     <div className="max-w-screen-xl p-4 mx-auto">
@@ -190,21 +192,53 @@ const HouseDetail = () => {
         </div>
       </div>
 
+      
       <div className="mt-10">
-        <h3 className="mb-4 text-xl font-semibold">Similar Listings</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6">
-          {houses
-            .filter(h => h.id !== house.id)
-            .map(h => (
-              <HouseCard
-                key={h.id}
-                house={h}
-                isFavorite={favorites.includes(h.id)}
-                toggleFavorite={toggleFavorite}
-              />
-            ))}
-        </div>
-      </div>
+  <h3 className="mb-4 text-xl font-semibold">Similar Listings</h3>
+
+  {houses.filter((h) => {
+    if (h.id === house.id) return false; // skip current
+    // Check if both share a common locality word
+    const selectedLocation = house.location.toLowerCase();
+    const otherLocation = h.location.toLowerCase();
+    return (
+      h.propertyType === house.propertyType &&
+      selectedLocation.split(" ").some((word) =>
+        otherLocation.includes(word)
+      )
+    );
+  }).length === 0 ? (
+    <p className="text-gray-500">No similar listings found.</p>
+  ) : (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-6">
+      {houses
+        .filter((h) => {
+          if (h.id === house.id) return false;
+          const selectedLocation = house.location.toLowerCase();
+          const otherLocation = h.location.toLowerCase();
+          return (
+            h.propertyType === house.propertyType &&
+            selectedLocation.split(" ").some((word) =>
+              otherLocation.includes(word)
+            )
+          );
+        })
+        .map((h) => (
+          <HouseCard
+            key={h.id}
+            house={h}
+            isFavorite={favorites.includes(h.id)}
+            toggleFavorite={toggleFavorite}
+          />
+        ))}
+    </div>
+  )}
+</div>
+
+
+
+
+
     </div>
   );
 };

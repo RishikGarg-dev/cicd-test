@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   FaBed,
@@ -25,78 +24,67 @@ const HouseCard = ({ house, isFavorite, toggleFavorite }) => {
   return (
     <div
       onClick={handleCardClick}
-      style={{
-        width: 300,
-        margin: '0 6px',
-        border: '2px solid #ddd',
-        borderRadius: 12,
-        overflow: 'hidden',
-        cursor: 'pointer',
-        backgroundColor: '#fff',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
-        transition: 'transform 0.2s',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
+      className="w-full h-full max-w-[400px] mx-auto border-2 border-gray-200 rounded-xl shadow-sm hover:shadow-md transition duration-200 cursor-pointer flex flex-col"
     >
-      <div style={{ position: 'relative' }}>
+      {/* Image with heart icon */}
+      <div className="relative">
         <img
           src={Array.isArray(house.image) ? house.image[0] : house.image}
           alt="House"
-          style={{ width: '100%', height: 180, objectFit: 'cover' }}
+          className="w-full h-[180px] object-cover rounded-t-xl"
         />
-
         <div
           onClick={handleHeartClick}
-          style={{
-            position: 'absolute',
-            top: 10,
-            right: 10,
-            backgroundColor: 'white',
-            borderRadius: '50%',
-            padding: '8px',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
-            cursor: 'pointer',
-            zIndex: 10,
-          }}
+          className="absolute top-2 right-2 bg-white rounded-full p-2 shadow cursor-pointer z-10"
         >
           {isFavorite ? (
-            <FaHeart size={24} color="red" />
+            <FaHeart size={20} className="text-red-500" />
           ) : (
-            <FaRegHeart size={24} color="gray" />
+            <FaRegHeart size={20} className="text-gray-500" />
           )}
         </div>
-
       </div>
 
-      <div style={{ padding: '10px 14px', flexGrow: 1 }}>
-        <h4 style={{ margin: '5px 0', fontWeight: 'bold' }}>{house.title}</h4>
-        <p style={{ margin: '0 0 10px', fontSize: '14px', color: '#555' }}>
-          📍 {house.location}
-        </p>
+      {/* Card Content */}
+      <div className="flex flex-col justify-between flex-grow p-4">
+        {/* Title + location */}
+        <div>
+          <h4 className="font-semibold text-base mb-1">{house.title}</h4>
+          <p className="text-sm text-gray-600 mb-4 truncate">
+            📍 {house.location}
+          </p>
+        </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: 12 }}>
-            <FaBed size={18} />
+        {/* Icons row */}
+        <div className="flex justify-between text-xs text-center mb-4">
+          <div className="flex flex-col items-center">
+            <FaBed className="text-gray-700 mb-1" size={16} />
             <span>{house.beds} Beds</span>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: 12 }}>
-            <FaRulerCombined size={18} />
+          <div className="flex flex-col items-center">
+            <FaRulerCombined className="text-gray-700 mb-1" size={16} />
             <span>{house.size}</span>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: 12 }}>
-            <FaCarSide size={18} />
+          <div className="flex flex-col items-center">
+            <FaCarSide className="text-gray-700 mb-1" size={16} />
             <span>{house.parking}</span>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: 12 }}>
-            <FaHome size={18} />
-            <span>{house.type}</span>
+          <div className="flex flex-col items-center">
+            <FaHome className="text-gray-700 mb-1" size={16} />
+            <span>{house.propertyType}</span>
           </div>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <strong style={{ fontSize: 16 }}>₹ {house.price}</strong>
-          <span style={{ color: 'red', fontSize: 12 }}>{house.discount}</span>
+        {/* Price + discount */}
+        <div className="flex justify-between items-center">
+          <span className="font-bold text-lg text-black">
+            ₹ {house.price}
+          </span>
+          {house.discount && (
+            <span className="text-sm text-red-500 font-medium">
+              {house.discount}
+            </span>
+          )}
         </div>
       </div>
     </div>
