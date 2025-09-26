@@ -2,20 +2,20 @@ import React from 'react';
 
 const vendors = {
   1: [
-    { name: 'Fresh Milk Co.', rating: 4.5, price: '$2/L', image: 'https://via.placeholder.com/300x200' },
-    { name: 'Dairy Delight', rating: 4.0, price: '$2.5/L', image: 'https://via.placeholder.com/300x200' },
+    { name: 'Fresh Milk Co.', rating: 4.5, price: '₹2/L', image: 'https://via.placeholder.com/300x200' },
+    { name: 'Dairy Delight', rating: 4.0, price: '₹2.5/L', image: 'https://via.placeholder.com/300x200' },
   ],
   2: [
-    { name: 'Pure Water Supply', rating: 5.0, price: '$1.5/Unit', image: 'https://via.placeholder.com/300x200' },
-    { name: 'AquaFresh', rating: 4.8, price: '$2/Unit', image: 'https://via.placeholder.com/300x200' },
+    { name: 'Pure Water Supply', rating: 5.0, price: '₹1.5/Unit', image: 'https://via.placeholder.com/300x200' },
+    { name: 'AquaFresh', rating: 4.8, price: '₹2/Unit', image: 'https://via.placeholder.com/300x200' },
   ],
   3: [
-    { name: 'Super Grocer', rating: 4.7, price: '$30/Bag', image: 'https://via.placeholder.com/300x200' },
-    { name: 'Quick Grocery', rating: 4.2, price: '$25/Bag', image: 'https://via.placeholder.com/300x200' },
+    { name: 'Super Grocer', rating: 4.7, price: '₹30/Bag', image: 'https://via.placeholder.com/300x200' },
+    { name: 'Quick Grocery', rating: 4.2, price: '₹25/Bag', image: 'https://via.placeholder.com/300x200' },
   ],
   4: [
-    { name: 'Clean Sweep', rating: 4.3, price: '$15/Day', image: 'https://via.placeholder.com/300x200' },
-    { name: 'Sparkle Cleaners', rating: 4.8, price: '$18/Day', image: 'https://via.placeholder.com/300x200' },
+    { name: 'Clean Sweep', rating: 4.3, price: '₹15/Day', image: 'https://via.placeholder.com/300x200' },
+    { name: 'Sparkle Cleaners', rating: 4.8, price: '₹18/Day', image: 'https://via.placeholder.com/300x200' },
   ],
 };
 
