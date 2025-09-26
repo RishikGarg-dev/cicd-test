@@ -33,7 +33,7 @@ export default function Footer() {
         <div className="flex-1 min-w-[160px]">
           <h2 className="text-base font-semibold mb-2">Contact</h2>
           <p>+91 9573263944</p>
-          <p>info@shswift.com</p>
+          <p>info@shiftly.com</p>
         </div>
 
 
