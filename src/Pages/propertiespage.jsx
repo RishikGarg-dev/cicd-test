@@ -7,13 +7,26 @@ import HouseCard from "../components/HouseCard";
 import { houses as initialHouses } from "../houses";
 
 // Helper: Get unique filter options dynamically
-const getFilterOptions = (houses) => ({
-  "Building Type": [...new Set(houses.map((h) => h.propertyType || h.type))],
-  ConstructionType: [...new Set(houses.map((h) => h.type))],
-  Parking: [...new Set(houses.map((h) => h.parking))],
-  Furnishing: [...new Set(houses.map((h) => h.furnishing))],
-  Others: ["Pet Friendly", "Lift", "Security"],
-});
+const getFilterOptions = (houses) => {
+  // Beds: ensure 4 exists and also add a 4+ option at the end
+  const bedSet = new Set(houses.map((h) => Number(h.beds)));
+  bedSet.add(4);
+  const bedOptions = Array.from(bedSet)
+    .filter((v) => !Number.isNaN(v))
+    .sort((a, b) => a - b)
+    .map((v) => String(v));
+  if (!bedOptions.includes("4+")) bedOptions.push("4+");
+
+  return {
+    "Building Type": [
+      ...new Set(houses.map((h) => h.propertyType || h.type)),
+    ],
+    Beds: bedOptions,
+    Parking: [...new Set(houses.map((h) => h.parking))],
+    Furnishing: [...new Set(houses.map((h) => h.furnishing))],
+    Others: ["Pet Friendly", "Lift", "Security"],
+  };
+};
 
 // Helper: Price parser
 const parsePrice = (priceStr) =>
@@ -151,7 +164,14 @@ const PropertyPage = () => {
     if (price && parsePrice(house.price) > price) return false;
     if (age && house.propertyAge && house.propertyAge > age) return false;
     for (let key in selectedFilters) {
-      if (key === "Others") {
+      if (key === "Beds") {
+        const val = selectedFilters[key];
+        if (val === "4+") {
+          if (!(Number(house.beds) >= 4)) return false;
+        } else {
+          if (Number(house.beds) !== Number(val)) return false;
+        }
+      } else if (key === "Others") {
         for (let o of selectedFilters[key].split(",")) {
           if (!house[o.toLowerCase()]) return false;
         }
@@ -174,7 +194,7 @@ const PropertyPage = () => {
     <>
       {/* Hero */}
       <div
-        className="relative bg-cover bg-center h-[300px]"
+        className="relative bg-cover bg-center h-[500px] md:h-[600px]"
         style={{ backgroundImage: `url(${bannerImg})` }}
       >
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center text-white">
@@ -185,272 +205,271 @@ const PropertyPage = () => {
             From villas and apartments to shops and offices — filter and find it
             all.
           </p>
-        </div>
-      </div>
 
-      {/* Desktop Search & Filters */}
-      
-      {/* Desktop Search & Filters */}
-      <form
-        onSubmit={handleSubmit}
-        className="hidden w-full max-w-4xl px-4 py-5 mx-auto mt-6 sm:block"
-      >
-        <div className="relative flex items-center justify-between gap-2 px-4 py-3 text-sm bg-gray-300 rounded-full shadow-md backdrop-blur-md">
-          {/* Location */}
-          <div className="flex items-center gap-2">
-            <i className="text-black fas fa-map-marker-alt"></i>
-            <input
-              type="text"
-              placeholder="Enter Location"
-              className="w-40 px-2 py-1 text-black placeholder-gray-500 bg-transparent border-none focus:outline-none"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              onClick={() => {
-                setShowSlider(false);
-                setShowAgeSlider(false);
-              }}
-            />
-          </div>
-          {/* Price */}
-          <div className="self-stretch w-px bg-black/30" />
-          <div className="relative">
-            <div
-              ref={priceRef}
-              className="flex items-center gap-2 cursor-pointer"
-              onClick={() => {
-                setShowSlider((s) => !s);
-                setShowAgeSlider(false);
-                setActiveDropdown(null);
-              }}
-            >
-              <i className="text-black fas fa-money-bill-wave"></i>
-              <span className="text-black whitespace-nowrap">
-                Price: Up to ₹{price.toLocaleString()}
-              </span>
-            </div>
-          </div>
-          {/* Age */}
-          <div className="self-stretch w-px bg-black/30" />
-          <div className="relative">
-            <div
-              ref={ageRef}
-              className="flex items-center gap-2 cursor-pointer"
-              onClick={() => {
-                setShowAgeSlider((s) => !s);
-                setShowSlider(false);
-                setActiveDropdown(null);
-              }}
-            >
-              <i className="text-black fas fa-hourglass-half"></i>
-              <span className="text-black whitespace-nowrap">
-                Age: Up to {age} years
-              </span>
-            </div>
-          </div>
-          
-          {/* Property Type */}
-          <div className="self-stretch w-px bg-black/30" />
-          <div className="flex items-center">
-            <i className="text-black fas fa-building"></i>
-            <select
-              className="text-sm px-2 py-1 rounded-md text-black focus:outline-none cursor-pointer min-w-[120px]"
-              value={propertyType}
-              onChange={(e) => setPropertyType(e.target.value)}
-            >
-              <option value="">Property Type</option>
-              {filterOptions["Building Type"].map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
-          </div>
-          <button className="px-2 text-black cursor-pointer" type="submit">
-            <i className="text-xl fas fa-search"></i>
-          </button>
-        </div>
-
-        {/* Desktop Filters (Building Type removed) */}
-        <div className="flex flex-wrap justify-center items-center gap-3 mt-4">
-          {Object.keys(filterOptions)
-            .filter((filter) => filter !== "Building Type")
-            .map((filter) => (
-              <button
-                key={filter}
-                ref={(el) => (buttonRefs.current[filter] = el)}
-                onClick={() => toggleDropdown(filter)}
-                className={`px-4 py-2 text-sm rounded-full border ${
-                  selectedFilters[filter]
-                    ? "bg-gray-300 text-gray-900 border-gray-400"
-                    : "bg-gray-200 text-gray-800 border-gray-300"
-                } hover:bg-gray-300 transition-colors duration-200`}
-              >
-                {filter} {selectedFilters[filter] && `: ${selectedFilters[filter]}`}{" "}
-                <ChevronDown className="inline ml-1 w-3 h-3" />
+          {/* Desktop Search & Filters - Moved inside banner */}
+          <form
+            onSubmit={handleSubmit}
+            className="hidden w-full max-w-4xl px-4 py-5 mx-auto mt-8 sm:block"
+          >
+            <div className="relative flex items-center justify-between gap-2 px-4 py-3 text-sm bg-white/95 backdrop-blur-md rounded-full shadow-md">
+              {/* Location */}
+              <div className="flex items-center gap-2">
+                <i className="text-black fas fa-map-marker-alt"></i>
+                <input
+                  type="text"
+                  placeholder="Enter Location"
+                  className="w-40 px-2 py-1 text-black placeholder-gray-500 bg-transparent border-none focus:outline-none"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  onClick={() => {
+                    setShowSlider(false);
+                    setShowAgeSlider(false);
+                  }}
+                />
+              </div>
+              {/* Price */}
+              <div className="self-stretch w-px bg-black/30" />
+              <div className="relative">
+                <div
+                  ref={priceRef}
+                  className="flex items-center gap-2 cursor-pointer"
+                  onClick={() => {
+                    setShowSlider((s) => !s);
+                    setShowAgeSlider(false);
+                    setActiveDropdown(null);
+                  }}
+                >
+                  <i className="text-black fas fa-money-bill-wave"></i>
+                  <span className="text-black whitespace-nowrap">
+                    Price: Up to ₹{price.toLocaleString()}
+                  </span>
+                </div>
+              </div>
+              {/* Age */}
+              <div className="self-stretch w-px bg-black/30" />
+              <div className="relative">
+                <div
+                  ref={ageRef}
+                  className="flex items-center gap-2 cursor-pointer"
+                  onClick={() => {
+                    setShowAgeSlider((s) => !s);
+                    setShowSlider(false);
+                    setActiveDropdown(null);
+                  }}
+                >
+                  <i className="text-black fas fa-hourglass-half"></i>
+                  <span className="text-black whitespace-nowrap">
+                    Age: Up to {age} years
+                  </span>
+                </div>
+              </div>
+              
+              {/* Property Type */}
+              <div className="self-stretch w-px bg-black/30" />
+              <div className="flex items-center">
+                <i className="text-black fas fa-building"></i>
+                <select
+                  className="text-sm px-2 py-1 rounded-md text-black focus:outline-none cursor-pointer min-w-[120px] bg-transparent"
+                  value={propertyType}
+                  onChange={(e) => setPropertyType(e.target.value)}
+                >
+                  <option value="">Property Type</option>
+                  {filterOptions["Building Type"].map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button className="px-2 text-black cursor-pointer" type="submit">
+                <i className="text-xl fas fa-search"></i>
               </button>
-            ))}
-          <button
-            onClick={resetAllFilters}
-            className="px-4 py-2 text-sm rounded-full border bg-gray-200 text-gray-800 border-gray-300 hover:bg-gray-300 transition-colors duration-200"
-          >
-            Reset All
-          </button>
-        </div>
+            </div>
 
-        {/* Selected Filters */}
-        {Object.keys(selectedFilters).length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-3">
-            {Object.entries(selectedFilters).map(([key, value]) => (
-              <span
-                key={key}
-                className="flex items-center px-3 py-1 text-sm font-medium text-white bg-blue-500 rounded-full cursor-pointer hover:bg-blue-600"
-                onClick={() => removeFilter(key)}
-              >
-                {key}: {value} <span className="ml-1 font-bold">×</span>
-              </span>
-            ))}
-          </div>
-        )}
-      </form>
-
-      {/* Mobile Search & Filters */}
-      <form onSubmit={handleSubmit} className="block px-4 mt-6 sm:hidden">
-        <div className="flex items-center gap-2 px-3 py-2 text-black bg-white rounded-full shadow-md">
-          <i className="text-xs fas fa-map-marker-alt" />
-          <input
-            type="text"
-            placeholder="Enter locality or Zip code"
-            className="flex-1 text-xs bg-transparent focus:outline-none"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
-          <button className="px-2 text-black" type="submit">
-            <i className="text-xl fas fa-search"></i>
-          </button>
-        </div>
-
-        {/* Filter buttons row */}
-        <div className="flex justify-between mt-4">
-          {/* Property Type dropdown like desktop */}
-          <select
-            className="flex-1 mx-1 px-2 py-1 text-[10px] rounded-full bg-gray-100 text-gray-700 focus:outline-none"
-            value={propertyType}
-            onChange={(e) => setPropertyType(e.target.value)}
-          >
-            <option value="">Property Type</option>
-            {filterOptions["Building Type"].map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-
-          <button
-            type="button"
-            onClick={() => {
-              setShowSlider((s) => !s);
-              setShowAgeSlider(false);
-            }}
-            className="flex-1 mx-1 px-2 py-1 text-[10px] rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200"
-          >
-            Price Range
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setShowAgeSlider((s) => !s);
-              setShowSlider(false);
-            }}
-            className="flex-1 mx-1 px-2 py-1 text-[10px] rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200"
-          >
-            Age of Property
-          </button>
-        </div>
-
-        {/* 👉 Inline sliders for mobile */}
-        {showSlider && (
-          <div className="mt-3 p-4 bg-white rounded-lg shadow-md">
-            <label className="block mb-2 text-sm font-semibold text-gray-700">
-              Max Price: ₹{price.toLocaleString()}
-            </label>
-            <input
-              type="range"
-              min={priceRange.min}
-              max={priceRange.max}
-              step={500}
-              value={price}
-              onChange={(e) => setPrice(Number(e.target.value))}
-              className="w-full"
-            />
-          </div>
-        )}
-
-        {showAgeSlider && (
-          <div className="mt-3 p-4 bg-white rounded-lg shadow-md">
-            <label className="block mb-2 text-sm font-semibold text-gray-700">
-              Max Age: {age} years
-            </label>
-            <input
-              type="range"
-              min="0"
-              max="30"
-              step="1"
-              value={age}
-              onChange={(e) => setAge(Number(e.target.value))}
-              className="w-full"
-            />
-          </div>
-        )}
-
-        {/* Extra filters (inline instead of PortalPopup) */}
-        <div className="mt-3">
-          <button
-            onClick={() => setShowMobileFilters((s) => !s)}
-            className="flex items-center gap-2 p-2 bg-gray-100 rounded-full hover:bg-gray-200"
-          >
-            <SlidersHorizontal className="w-5 h-5 text-gray-700" />
-            <span className="text-sm text-gray-700">Filter</span>
-          </button>
-
-          {showMobileFilters && (
-            <div className="flex flex-col gap-3 mt-3">
+            {/* Desktop Filters (Building Type removed) */}
+            <div className="flex flex-wrap justify-center items-center gap-3 mt-4">
               {Object.keys(filterOptions)
                 .filter((filter) => filter !== "Building Type")
                 .map((filter) => (
-                  <div key={filter} className="bg-gray-100 rounded-md">
-                    <button
-                      onClick={() => toggleDropdown(filter)}
-                      className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200"
-                    >
-                      {filter} <ChevronDown className="w-4 h-4" />
-                    </button>
-
-                    {activeDropdown === filter && (
-                      <div className="max-h-60 overflow-y-auto border-t border-gray-300">
-                        {(filterOptions[filter] || []).map((option) => (
-                          <div
-                            key={option}
-                            onClick={() => selectOption(filter, option)}
-                            className="px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-200"
-                          >
-                            {option}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                  <button
+                    key={filter}
+                    ref={(el) => (buttonRefs.current[filter] = el)}
+                    onClick={() => toggleDropdown(filter)}
+                    className={`px-4 py-2 text-sm rounded-full border ${
+                      selectedFilters[filter]
+                        ? "bg-white/90 text-gray-900 border-gray-400"
+                        : "bg-white/80 text-gray-800 border-gray-300"
+                    } hover:bg-white/95 transition-colors duration-200`}
+                  >
+                    {filter} {selectedFilters[filter] && `: ${selectedFilters[filter]}`}{" "}
+                    <ChevronDown className="inline ml-1 w-3 h-3" />
+                  </button>
                 ))}
-
               <button
                 onClick={resetAllFilters}
-                className="w-full px-4 py-2 text-sm font-medium text-center text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
+                className="px-4 py-2 text-sm rounded-full border bg-white/80 text-gray-800 border-gray-300 hover:bg-white/95 transition-colors duration-200"
               >
-                Reset all
+                Reset All
               </button>
             </div>
-          )}
+
+            {/* Selected Filters */}
+            {Object.keys(selectedFilters).length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-3">
+                {Object.entries(selectedFilters).map(([key, value]) => (
+                  <span
+                    key={key}
+                    className="flex items-center px-3 py-1 text-sm font-medium text-white bg-blue-500 rounded-full cursor-pointer hover:bg-blue-600"
+                    onClick={() => removeFilter(key)}
+                  >
+                    {key}: {value} <span className="ml-1 font-bold">×</span>
+                  </span>
+                ))}
+              </div>
+            )}
+          </form>
+
+          {/* Mobile Search & Filters - Moved inside banner */}
+          <form onSubmit={handleSubmit} className="block px-4 mt-8 sm:hidden w-full max-w-md">
+            <div className="flex items-center gap-2 px-3 py-2 text-black bg-white/95 backdrop-blur-md rounded-full shadow-md">
+              <i className="text-xs fas fa-map-marker-alt" />
+              <input
+                type="text"
+                placeholder="Enter locality or Zip code"
+                className="flex-1 text-xs bg-transparent focus:outline-none"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+              <button className="px-2 text-black" type="submit">
+                <i className="text-xl fas fa-search"></i>
+              </button>
+            </div>
+
+            {/* Filter buttons row */}
+            <div className="flex justify-between mt-4">
+              {/* Property Type dropdown like desktop */}
+              <select
+                className="flex-1 mx-1 px-2 py-1 text-[10px] rounded-full bg-white/90 text-gray-700 focus:outline-none"
+                value={propertyType}
+                onChange={(e) => setPropertyType(e.target.value)}
+              >
+                <option value="">Property Type</option>
+                {filterOptions["Building Type"].map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setShowSlider((s) => !s);
+                  setShowAgeSlider(false);
+                }}
+                className="flex-1 mx-1 px-2 py-1 text-[10px] rounded-full bg-white/90 text-gray-700 hover:bg-white/95"
+              >
+                Price Range
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowAgeSlider((s) => !s);
+                  setShowSlider(false);
+                }}
+                className="flex-1 mx-1 px-2 py-1 text-[10px] rounded-full bg-white/90 text-gray-700 hover:bg-white/95"
+              >
+                Age of Property
+              </button>
+            </div>
+
+            {/* 👉 Inline sliders for mobile */}
+            {showSlider && (
+              <div className="mt-3 p-4 bg-white/95 backdrop-blur-md rounded-lg shadow-md">
+                <label className="block mb-2 text-sm font-semibold text-gray-700">
+                  Max Price: ₹{price.toLocaleString()}
+                </label>
+                <input
+                  type="range"
+                  min={priceRange.min}
+                  max={priceRange.max}
+                  step={500}
+                  value={price}
+                  onChange={(e) => setPrice(Number(e.target.value))}
+                  className="w-full"
+                />
+              </div>
+            )}
+
+            {showAgeSlider && (
+              <div className="mt-3 p-4 bg-white/95 backdrop-blur-md rounded-lg shadow-md">
+                <label className="block mb-2 text-sm font-semibold text-gray-700">
+                  Max Age: {age} years
+                </label>
+                <input
+                  type="range"
+                  min="0"
+                  max="30"
+                  step="1"
+                  value={age}
+                  onChange={(e) => setAge(Number(e.target.value))}
+                  className="w-full"
+                />
+              </div>
+            )}
+
+            {/* Extra filters (inline instead of PortalPopup) */}
+            <div className="mt-3">
+              <button
+                onClick={() => setShowMobileFilters((s) => !s)}
+                className="flex items-center gap-2 p-2 bg-white/90 backdrop-blur-md rounded-full hover:bg-white/95"
+              >
+                <SlidersHorizontal className="w-5 h-5 text-gray-700" />
+                <span className="text-sm text-gray-700">Filter</span>
+              </button>
+
+              {showMobileFilters && (
+                <div className="flex flex-col gap-3 mt-3">
+                  {Object.keys(filterOptions)
+                    .filter((filter) => filter !== "Building Type")
+                    .map((filter) => (
+                      <div key={filter} className="bg-white/90 backdrop-blur-md rounded-md">
+                        <button
+                          onClick={() => toggleDropdown(filter)}
+                          className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 hover:bg-white/95"
+                        >
+                          {filter} <ChevronDown className="w-4 h-4" />
+                        </button>
+
+                        {activeDropdown === filter && (
+                          <div className="max-h-60 overflow-y-auto border-t border-gray-300">
+                            {(filterOptions[filter] || []).map((option) => (
+                              <div
+                                key={option}
+                                onClick={() => selectOption(filter, option)}
+                                className="px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-white/95"
+                              >
+                                {option}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+
+                  <button
+                    onClick={resetAllFilters}
+                    className="w-full px-4 py-2 text-sm font-medium text-center text-gray-700 bg-white/90 backdrop-blur-md rounded-md hover:bg-white/95"
+                  >
+                    Reset all
+                  </button>
+                </div>
+              )}
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
+
 
       {/* Properties Section */}
 <section className="w-full py-6 px-4 md:px-4">
@@ -515,7 +534,7 @@ const PropertyPage = () => {
           anchor={ageRef.current}
           onClose={() => setShowAgeSlider(false)}
           className="p-4 sm:block hidden"
-          style={{ minWidth: 220 }}
+          style={{ minWidth: 260 }}
         >
           <label className="block mb-2 text-sm font-semibold text-gray-700">
             Max Age: {age} years
