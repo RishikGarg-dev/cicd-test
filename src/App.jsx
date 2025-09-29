@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter,  Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/NavBar';
 import LoginSignup from './Pages/LoginSignUpPage';
 import HouseDetail from './components/HouseDetail';
@@ -13,14 +13,13 @@ import Footer from './components/Footer';
 import Agent from './Pages/Agent';
 import AgentDetails from "./components/AgentDetails";
 import ActiveRentals from './Pages/MyRentals';
-import ScheduleTour from './Pages/ScheduleTour';
 import BlogPage from './Pages/BlogPage';
-
+import ScheduleTour from './Pages/ScheduleTour';
 
 function App() {
   return (
-    <div>
-      <Router>
+    
+      <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -38,8 +37,7 @@ function App() {
           <Route path="/property/:id/schedule-tour" element={<ScheduleTour />} />
         </Routes>
         <Footer />
-      </Router>
-    </div>
+      </BrowserRouter>
   );
 }
 

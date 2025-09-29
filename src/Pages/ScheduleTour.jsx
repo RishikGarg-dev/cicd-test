@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { houses } from "../houses"; // Path to your houses data
-import { agentsData } from "../agentsData"; // Path to your agents data
+import { houses } from "../houses"; 
+import { agentsData } from "../agentsData"; 
 
 export default function ScheduleTour() {
   const { id } = useParams();
