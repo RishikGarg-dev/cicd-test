@@ -103,7 +103,7 @@ The apartment is part of a secure residential complex with round-the-clock secur
 
   {
     id: 3,
-    agentId: 1,
+    agentId: 4,
     title: 'Spacious 3BHK Modern Apartment',
     location: 'HSR Layout, Bangalore',
     image: [
@@ -304,7 +304,7 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
 },
 {
   id: 7,
-  agentId: 6, 
+  agentId: 4, 
   title: 'Fully-Furnished Plug & Play Office in Capital Park',
   location: 'Capital Park, Madhapur, West Zone, Hyderabad',
   image: [
@@ -346,7 +346,7 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
 },
 {
   id: 8,
-  agentId: 7, 
+  agentId: 3, 
   title: 'Commercial Building for Sale',
   location: 'Amberpet, Secunderabad, Hyderabad',
   image: [
@@ -388,7 +388,7 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
 },
 {
   id: 9,
-  agentId: 8, 
+  agentId: 6, 
   title: 'Plot in Sai Annapurna County, Peddapur',
   location: 'Peddapur, Hyderabad',
   image: [
@@ -433,7 +433,7 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
 },
 {
   id: 10,
-  agentId: 10, 
+  agentId: 5, 
   title: 'Fitted Office Space for Sale in SLN Terminus',
   location: 'SLN Terminus, Gachibowli, West Zone, Hyderabad',
   image: [
@@ -480,7 +480,7 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
 },
 {
   id: 11,
-  agentId: 11, 
+  agentId: 6, 
   title: '3 BHK Apartment in Phoenix Golf Edge, Gachibowli',
   location: 'Phoenix Golf Edge, Gachibowli, Hyderabad',
   image: [
@@ -522,7 +522,7 @@ Residents also benefit from continuous water supply, power backup, 24x7 security
 },
 {
   id: 12,
-  agentId: 13,
+  agentId: 2,
   title: "G+6 Commercial Building  in Kondapur",
   location: "Kondapur, West Zone, Hyderabad",
   image: [
