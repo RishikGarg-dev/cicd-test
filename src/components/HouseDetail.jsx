@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import { houses } from '../houses';
 import HouseCard from './HouseCard';
 import { FaHeart, FaRegHeart, FaBed, FaBath, FaCar, FaRegLightbulb, FaLock, FaHome, FaRegBuilding, FaMapMarkerAlt, FaSubway, FaShoppingCart, FaCompass, FaRulerCombined } from 'react-icons/fa';
@@ -9,6 +9,7 @@ import { MdCleaningServices, MdBalcony, MdAccessTime } from 'react-icons/md';
 
 const HouseDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const house = houses.find(h => h.id === Number(id));
 
   const [favorites, setFavorites] = useState([]);
@@ -171,29 +172,33 @@ const HouseDetail = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-8 mt-10 md:grid-cols-2">
-        <div>
-          <p className="mb-3 text-base text-gray-800">
-            <strong>Want to visit the Property?</strong><br />
-            Just schedule the time by clicking on schedule a tour.
-          </p>
-          <button className="px-6 py-2 text-white transition bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600">
-            Schedule a Tour
-          </button>
-        </div>
+  {/* Schedule Tour */}
+  <div>
+    <p className="mb-3 text-base text-gray-800">
+      <strong>Want to visit the Property?</strong><br />
+      Just schedule the time by clicking on schedule a tour.
+    </p>
+    <button
+      type="button"
+      onClick={() => navigate(`/property/${house.id}/schedule-tour`)}
+      className="px-6 py-2 text-white transition bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600"
+    >
+      Schedule a Tour
+    </button>
+  </div>
 
-        <div>
-          <p className="mb-3 text-base text-gray-800">
-            <strong>Click Apply Now to begin your rental journey.</strong><br />
-            It takes just a few minutes to share your details, upload documents, and take the first step toward securing your new home.
-          </p>
-          <button className="px-6 py-2 text-white transition bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
-            Apply Now
-          </button>
-        </div>
-      </div>
-
-      
-      <div className="mt-10">
+  {/* Apply Now */}
+  <div>
+    <p className="mb-3 text-base text-gray-800">
+      <strong>Click Apply Now to begin your rental journey.</strong><br />
+      It takes just a few minutes to share your details, upload documents, and take the first step toward securing your new home.
+    </p>
+    <button className="px-6 py-2 text-white transition bg-green-500 rounded-md cursor-pointer hover:bg-green-600">
+      Apply Now
+    </button>
+  </div>
+</div>
+      <div className="mt-10"> 
   <h3 className="mb-4 text-xl font-semibold">Similar Listings</h3>
 
   {houses.filter((h) => {
@@ -234,12 +239,7 @@ const HouseDetail = () => {
     </div>
   )}
 </div>
-
-
-
-
-
-    </div>
+</div>
   );
 };
 
