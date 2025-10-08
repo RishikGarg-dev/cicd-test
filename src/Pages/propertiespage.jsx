@@ -1,7 +1,7 @@
 // PropertyPage.js
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import bannerImg from "../assets/banner.p.png";
+//import bannerImg from "../assets/banner.p.png";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import HouseCard from "../components/HouseCard";
 import { houses as initialHouses } from "../houses";
@@ -195,7 +195,7 @@ const PropertyPage = () => {
       {/* Hero */}
       <div
         className="relative bg-cover bg-center h-[500px] md:h-[600px]"
-        style={{ backgroundImage: `url(${bannerImg})` }}
+        style={{ backgroundImage: `url(${"https://res.cloudinary.com/dvqrtjzvv/image/upload/v1756129943/banner_e69nkm.png"})` }}
       >
         <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center text-white">
           <h2 className="mb-4 text-4xl font-bold md:text-5xl">

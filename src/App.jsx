@@ -4,7 +4,7 @@ import Navbar from './components/NavBar';
 import LoginSignup from './Pages/LoginSignUpPage';
 import HouseDetail from './components/HouseDetail';
 import HomePage from './Pages/HomePage';
-import PropertyPage from './Pages/PropertiesPage';
+import PropertyPage from './Pages/PropertiesPage'
 import VerifiedListings from './Pages/VerifiedlistingPage';
 import FurnitureRewards from './Pages/FurnitureRewardsPage';
 import UpToDayRentals from './Pages/UpToDayRentalsPage';
