@@ -1,176 +1,311 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useMemo, useState, useCallback } from "react";
 import { agentsData } from "../agentsData.jsx";
 import { houses } from "../houses.jsx";
-import { MapPin, Star, Phone, Mail, MessageSquare } from "lucide-react";
+import { MapPin, Star, Phone, Mail, MessageSquare, ShieldCheck, Languages, Award } from "lucide-react";
 import HouseCard from "../components/HouseCard";
 
 export default function AgentDetails() {
   const { id } = useParams();
-  const agent = agentsData.find((a) => a.id === parseInt(id));
+  const navigate = useNavigate();
+  const agentId = parseInt(id);
 
-  if (!agent) return <p className="text-center mt-20">Agent not found</p>;
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formError, setFormError] = useState(null);
+
+  const agent = useMemo(() => agentsData.find((a) => a.id === agentId), [agentId]);
+  const agentHouses = useMemo(() => houses.filter((h) => h.agentId === agentId), [agentId]);
+
+  // Handle form input changes
+  const handleInputChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }, []);
+
+  // Handle form submission
+  const handleFormSubmit = useCallback((e) => {
+    e.preventDefault();
+    setFormError(null);
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.message) {
+      setFormError("Please fill out all fields");
+      return;
+    }
+    setFormSubmitting(true);
+    // Simulate form submission
+    setTimeout(() => {
+      setFormSubmitting(false);
+      alert("Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
+    }, 1500);
+  }, [formData]);
+
+  // page not found
+  if (!agent) {
+    return (
+      <div className="min-h-[70vh] flex items-center justify-center px-4">
+        <div className="bg-white border border-gray-100 rounded-3xl shadow-xl p-10 text-center max-w-md w-full">
+          <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
+             <span className="text-2xl">🔍</span>
+          </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Agent Not Found</h2>
+          <p className="text-gray-500 text-sm mb-8 leading-relaxed">
+            The professional you're looking for isn't in our directory. They might have moved or the link is broken.
+          </p>
+          <button
+            onClick={() => navigate("/agent")}
+            className="w-full py-3 bg-black text-white rounded-xl font-medium hover:bg-zinc-800 transition-all active:scale-[0.98]"
+          >
+            Back to Directory
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-6xl mx-auto p-4 sm:p-6">
-      {/* Back Link */}
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+
+      {/* back button */}
       <button
-        onClick={() => window.history.back()}
-        className="text-sm text-gray-500 hover:underline mb-4 flex items-center cursor-pointer"
+        onClick={() => navigate(-1)}
+        className="group flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-black mb-8 transition-colors"
+        aria-label="Go back to previous page"
       >
-        ← Back To Directory
+        <span className="flex items-center justify-center w-6 h-6 rounded-full border border-gray-200 group-hover:border-black transition-colors">
+          <span className="pb-0.5 transition-transform duration-200 group-hover:-translate-x-0.5">←</span>
+        </span>
+        Back to Directory
       </button>
 
-      {/* Agent Header */}
-      <div className="flex flex-col md:flex-row gap-6 items-start bg-white shadow-md rounded-2xl p-4 sm:p-6">
-        <img
-          src={agent.image}
-          alt={agent.name}
-          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover mx-auto md:mx-0"
-        />
+      {/* profile header */}
+      <div className="bg-white border border-gray-100 rounded-[2rem] p-6 sm:p-10 shadow-sm relative overflow-hidden">
+        {/* subtle background accent */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-bl-full -z-0 pointer-events-none" />
+        
+        <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center md:items-start">
 
-        <div className="flex-1 text-center md:text-left">
-          <h1 className="text-xl sm:text-2xl font-bold">{agent.name}</h1>
-          <div className="flex flex-wrap justify-center md:justify-start items-center gap-2 text-gray-600 mt-2">
-            <MapPin size={16} />
-            <span>{agent.city}</span>
-            <span>• {agent.experience} yrs</span>
-            <span className="flex items-center gap-1">
-              • {agent.rating}
-              <Star size={14} className="text-yellow-500" /> (
-              {agent.reviewsCount} reviews)
-            </span>
-          </div>
-
-          {/* Languages */}
-          <div className="flex flex-wrap justify-center md:justify-start gap-2 mt-2">
-            {agent.languages.map((lang, idx) => (
-              <span
-                key={idx}
-                className="px-3 py-1 bg-gray-100 rounded-full text-xs sm:text-sm"
-              >
-                {lang}
-              </span>
-            ))}
-          </div>
-
-          {/* Specialties */}
-          <div className="flex flex-wrap justify-center md:justify-start gap-2 mt-2">
-            {agent.specialties.map((tag, idx) => (
-              <span
-                key={idx}
-                className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs sm:text-sm"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex flex-col gap-2 w-full md:w-auto">
-          <button className="w-full md:w-auto bg-black text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-800 text-sm sm:text-base cursor-pointer">
-            <MessageSquare size={16} /> Message
-          </button>
-          <a
-            href={`tel:${agent.phone}`}
-            className="w-full md:w-auto border border-black px-4 py-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 text-sm sm:text-base"
-          >
-            <Phone size={16} /> Call{" "}
-            <span className="font-medium">{agent.phone}</span>
-          </a>
-        </div>
-      </div>
-
-      {/* Row 1: About & Contact Info */}
-      <div className="grid md:grid-cols-3 gap-6 mt-6">
-        {/* About */}
-        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6 md:col-span-2">
-          <h2 className="text-lg font-semibold">About {agent.name}</h2>
-          <p className="text-gray-700 mt-2 text-sm sm:text-base">{agent.about}</p>
-        </div>
-
-        {/* Contact Info */}
-        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6">
-          <h3 className="font-semibold">Contact Information</h3>
-          <div className="flex items-center gap-2 mt-3 text-gray-700 text-sm sm:text-base">
-            <Phone size={16} /> <span>{agent.phone}</span>
-          </div>
-          <div className="flex items-center gap-2 mt-2 text-gray-700 text-sm sm:text-base">
-            <Mail size={16} /> <span>{agent.email}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Row 2: Active Properties & Send Message */}
-      <div className="grid md:grid-cols-3 gap-6 mt-6">
-        {/* Left Column (Active + Reviews) */}
-        <div className="md:col-span-2 space-y-6">
-          {/* Active Properties */}
-          <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6">
-            <h2 className="text-lg font-semibold">
-              Active Properties ({houses.filter(h => h.agentId === agent.id).length})
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
-              {houses
-                .filter(h => h.agentId === agent.id)
-                .map((prop) => (
-                  <HouseCard key={prop.id} house={prop} />
-                ))}
+          {/* profile image */}
+          <div className="relative shrink-0">
+            <div className="p-1 rounded-full bg-gradient-to-tr from-blue-100 to-gray-100 shadow-sm">
+              <img
+                src={agent.image}
+                alt={agent.name}
+                className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-white shadow-inner"
+              />
+            </div>
+            {/* experience badge */}
+            <div className="absolute bottom-2 right-2 bg-black text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg border border-white/20">
+              {agent.experience}+ Years
             </div>
           </div>
 
-          {/* Reviews */}
-          <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6">
-            <h2 className="text-lg font-semibold">
-              Reviews ({agent.reviews.length})
-            </h2>
-            <div className="mt-4 space-y-4">
-              {agent.reviews.map((review, idx) => (
-                <div
-                  key={idx}
-                  className="border-b last:border-b-0 pb-4 last:pb-0"
-                >
-                  <p className="font-semibold text-sm sm:text-base">
-                    {review.name} — {review.date}
-                  </p>
-                  <p className="text-yellow-500">
-                    {"★".repeat(review.rating)}
-                    {"☆".repeat(5 - review.rating)}
-                  </p>
-                  <p className="text-gray-700 text-sm sm:text-base">{review.comment}</p>
+          {/* profile info */}
+          <div className="flex-1 text-center md:text-left">
+            <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">{agent.name}</h1>
+              
+            </div>
+
+            <div className="flex flex-wrap justify-center md:justify-start items-center gap-x-5 gap-y-2 text-gray-500 mt-4 text-sm font-medium">
+              <div className="flex items-center gap-1.5">
+                <MapPin size={16} className="text-gray-400" />
+                {agent.city}
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="flex items-center bg-yellow-50 px-2 py-0.5 rounded">
+                  <span className="text-yellow-700 font-bold mr-1">{agent.rating}</span>
+                  <Star size={14} className="text-yellow-500 fill-yellow-500" />
                 </div>
+                <span className="text-gray-400 font-normal">({agent.reviewsCount} reviews)</span>
+              </div>
+            </div>
+
+            {/* details tags */}
+            <div className="flex flex-wrap justify-center md:justify-start gap-2 mt-6">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg text-xs font-medium text-gray-600">
+                <Languages size={14} />
+                Telugu, Hindi, English
+              </div>
+              {["Luxury Rentals", "Budget-Friendly", "Family Homes"].map((tag, idx) => (
+                <span
+                  key={idx}
+                  className="px-3 py-1.5 bg-zinc-50 border border-zinc-100 text-zinc-600 rounded-lg text-xs font-medium"
+                >
+                  {tag}
+                </span>
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Right Column (Send Message) */}
-        <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6 h-fit min-h-[420px]">
-
-          <h3 className="font-semibold">Send a Message</h3>
-          <form className="mt-3 space-y-3">
-            <input
-              type="text"
-              placeholder="Name"
-              className="w-full border rounded-lg px-3 py-2 text-sm sm:text-base"
-            />
-            <input
-              type="email"
-              placeholder="E-mail"
-              className="w-full border rounded-lg px-3 py-2 text-sm sm:text-base"
-            />
-            <textarea
-              placeholder="Message"
-              className="w-full border rounded-lg px-3 py-2 h-24 text-sm sm:text-base"
-            />
-            <button
-              type="submit"
-              className="w-full bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 text-sm sm:text-base cursor-pointer"
-            >
-              Send Message
+          {/* action buttons */}
+          <div className="flex flex-col sm:flex-row md:flex-col gap-3 w-full md:w-64 mt-4 md:mt-2">
+            <button className="flex-1 bg-black text-white px-6 py-3.5 rounded-2xl flex items-center justify-center gap-2 active:scale-95 font-semibold text-sm shadow-md hover:bg-zinc-800 transition-all">
+              <MessageSquare size={18} />
+              Message Agent
             </button>
-          </form>
+            <a
+              href={`tel:${agent.phone}`}
+              className="flex-1 border-2 border-gray-100 px-6 py-3.5 rounded-2xl flex items-center justify-center gap-2 active:scale-95 font-semibold text-sm hover:border-black transition-all"
+            >
+              <Phone size={18} />
+              Call Direct
+            </a>
+          </div>
         </div>
+      </div>
+
+      {/* content layout */}
+      <div className="grid lg:grid-cols-3 gap-10 mt-12">
+        
+        {/* left column - main content */}
+        <div className="lg:col-span-2 space-y-10">
+          
+          {/* About */}
+          <section>
+            <h2 className="text-xl font-bold text-gray-900 mb-5 flex items-center gap-2">
+              About the Agent
+            </h2>
+            <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm leading-relaxed">
+              <p className="text-gray-600 text-base">{agent.about}</p>
+            </div>
+          </section>
+
+          {/* Active Listings */}
+          <section>
+            <div className="flex justify-between items-end mb-6">
+              <h2 className="text-xl font-bold text-gray-900">Active Listings</h2>
+              <span className="text-sm font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                {agentHouses.length} Properties
+              </span>
+            </div>
+            
+            {agentHouses.length === 0 ? (
+              <div className="bg-gray-50 border-2 border-dashed border-gray-200 rounded-3xl p-12 text-center">
+                <p className="text-gray-400 font-medium">No active listings at the moment.</p>
+              </div>
+            ) : (
+              <div className="grid sm:grid-cols-2 gap-6">
+                {agentHouses.map((prop) => (
+                  <HouseCard key={prop.id} house={prop} />
+                ))}
+              </div>
+            )}
+          </section>
+
+          {/* Reviews */}
+          <section>
+            <h2 className="text-xl font-bold text-gray-900 mb-6">Client Experiences</h2>
+            <div className="bg-white rounded-3xl border border-gray-100 shadow-sm divide-y divide-gray-50">
+              {agent.reviews.map((review, idx) => (
+                <div key={idx} className="p-6 sm:p-8 first:rounded-t-3xl last:rounded-b-3xl">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-zinc-100 rounded-full flex items-center justify-center font-bold text-zinc-400 text-xs uppercase">
+                        {review.name.charAt(0)}
+                      </div>
+                      <div>
+                        <p className="font-bold text-sm text-gray-900">{review.name}</p>
+                        <p className="text-[11px] text-gray-400 font-medium uppercase tracking-tight">{review.date}</p>
+                      </div>
+                    </div>
+                    <div className="flex text-yellow-500 gap-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={12} className={i < review.rating ? "fill-current" : "text-gray-200"} />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-gray-600 text-sm leading-relaxed italic">"{review.comment}"</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        {/* right column - sticky form */}
+        <aside className="lg:col-span-1">
+          <div className="sticky top-10 space-y-6">
+            
+            {/* Contact Card */}
+            <div className="bg-zinc-900 rounded-[2rem] p-8 text-white shadow-xl overflow-hidden relative">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-bl-full" />
+              <h3 className="text-lg font-bold mb-6">Contact Information</h3>
+              <div className="space-y-4 relative z-10">
+                <a href={`tel:${agent.phone}`} className="flex items-center gap-4 group cursor-pointer">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <Phone size={18} />
+                  </div>
+                  <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">{agent.phone}</span>
+                </a>
+                <a href={`mailto:${agent.email}`} className="flex items-center gap-4 group cursor-pointer">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <Mail size={18} />
+                  </div>
+                  <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors truncate">{agent.email}</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Message Form */}
+            <div className="bg-white rounded-[2rem] p-8 shadow-xl border border-gray-100">
+              <h3 className="text-lg font-bold text-gray-900 mb-6">Inquiry Form</h3>
+              <form className="space-y-4" onSubmit={handleFormSubmit}>
+                {formError && (
+                  <div className="p-3 bg-red-50 text-red-600 text-xs rounded-xl font-medium border border-red-100">
+                    {formError}
+                  </div>
+                )}
+                <div>
+                  <label className="text-[10px] uppercase font-bold text-gray-400 ml-1 mb-1 block">Full Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full bg-gray-50 border-none rounded-2xl px-5 py-3.5 text-sm focus:ring-2 focus:ring-black/5 transition-all placeholder:text-gray-300"
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] uppercase font-bold text-gray-400 ml-1 mb-1 block">Email Address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="example@mail.com"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full bg-gray-50 border-none rounded-2xl px-5 py-3.5 text-sm focus:ring-2 focus:ring-black/5 transition-all placeholder:text-gray-300"
+                  />
+                </div>
+                <div>
+                  <label className="text-[10px] uppercase font-bold text-gray-400 ml-1 mb-1 block">Your Message</label>
+                  <textarea
+                    name="message"
+                    placeholder="I'm interested in..."
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className="w-full bg-gray-50 border-none rounded-2xl px-5 py-3.5 h-32 text-sm focus:ring-2 focus:ring-black/5 transition-all resize-none placeholder:text-gray-300"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={formSubmitting}
+                  className={`w-full bg-black text-white py-4 rounded-2xl hover:bg-zinc-800 transition-all active:scale-95 text-sm font-bold shadow-lg shadow-black/10 mt-2 ${
+                    formSubmitting ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                >
+                  {formSubmitting ? "Sending..." : "Send Message"}
+                </button>
+              </form>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
   );
