@@ -44,14 +44,29 @@ export default function HomePage() {
     }
 
     if (propertyAge) {
-      results = results.filter(
-        (house) => house.propertyAge <= propertyAge);
+      results = results.filter((house) => {
+        let age = house.propertyAge;
+        
+        if (typeof age === 'string') {
+          const match = age.match(/\d+/);
+          age = match ? parseInt(match[0]) : 0;
+        } else if (typeof age === 'number') {
+          age = age;
+        } else {
+          age = 0;
+        }
+        
+        return age <= propertyAge;
+      });
     }
 
     if (propertyType) {
-      results = results.filter(
-        (house) => house.propertyType.toLowerCase() === propertyType.toLowerCase()
-      );
+      results = results.filter((house) => {
+        const titleMatch = house.title?.toLowerCase().includes(propertyType.toLowerCase());
+        const typeMatch = house.propertyType?.toLowerCase().includes(propertyType.toLowerCase());
+        const bedsMatch = house.beds?.toString() === propertyType.charAt(0);
+        return titleMatch || typeMatch || bedsMatch;
+      });
     }
 
     console.log('Filtered results:', results);
