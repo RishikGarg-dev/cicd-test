@@ -8,7 +8,7 @@ import img4 from "../assets/office.jpg";
 export default function HomePage() {
   const [price, setPrice] = useState(5000);
   const [selectedPrice, setSelectedPrice] = useState("");
-  const [propertyAge, setAge] = useState(1);
+  const [propertyAge, setAge] = useState("");
   const [propertyType, setPropertyType] = useState("");
   const [showSlider, setShowSlider] = useState(false);
   const [showAgeSlider, setShowAgeSlider] = useState(false);
@@ -43,31 +43,15 @@ export default function HomePage() {
       );
     }
 
-    if (propertyAge > 1) {
-      results = results.filter((house) => {
-        let age = house.propertyAge;
-        
-        // Handle different data types and formats
-        if (typeof age === 'string') {
-          // Extract first number from strings like "5-10 years", "2 Years", etc.
-          const match = age.match(/\d+/);
-          age = match ? parseInt(match[0]) : 0;
-        } else if (typeof age === 'number') {
-          age = age;
-        } else {
-          age = 0; // Default for invalid data
-        }
-        
-        return age <= propertyAge;
-      });
+    if (propertyAge) {
+      results = results.filter(
+        (house) => house.propertyAge <= propertyAge);
     }
 
     if (propertyType) {
-      results = results.filter((house) => {
-        const titleMatch = house.title?.toLowerCase().includes(propertyType.toLowerCase());
-        const typeMatch = house.propertyType?.toLowerCase() === propertyType.toLowerCase();
-        return titleMatch || typeMatch;
-      });
+      results = results.filter(
+        (house) => house.propertyType.toLowerCase() === propertyType.toLowerCase()
+      );
     }
 
     console.log('Filtered results:', results);
