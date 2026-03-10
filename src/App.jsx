@@ -15,6 +15,7 @@ import AgentDetails from "./components/AgentDetails";
 import ActiveRentals from './Pages/MyRentals';
 import BlogPage from './Pages/BlogPage';
 import ScheduleTour from './Pages/ScheduleTour';
+import SearchResults from './Pages/SearchResults';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/myrentals" element={<ActiveRentals />} />
           <Route path="/blogs" element={<BlogPage />} />
           <Route path="/property/:id/schedule-tour" element={<ScheduleTour />} />
+          <Route path="/search-results" element={<SearchResults />} />
         </Routes>
         <Footer />
       </BrowserRouter>

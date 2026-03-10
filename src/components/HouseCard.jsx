@@ -13,6 +13,7 @@ const HouseCard = ({ house, isFavorite, toggleFavorite }) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     navigate(`/properties/${house.id}`);
   };
 
