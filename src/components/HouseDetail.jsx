@@ -204,6 +204,40 @@ const HouseDetail = () => {
 
           <h3 className="mb-2 text-lg font-bold">Description</h3>
           <p className="text-gray-600 leading-relaxed mb-10">{house.description}</p>
+          
+          
+          <div className="pt-8 mt-10">
+            <h3 className="mb-6 text-xl font-bold">Nearby Accessibility</h3>
+            <div className="grid items-start grid-cols-1 gap-8 md:grid-cols-2">
+              <ul className="space-y-4 text-gray-700">
+                <li className="flex items-start gap-3">
+                  <FaMapMarkerAlt className="mt-1 text-blue-600" size={18} />
+                  <span>{house.nearbyLocation}</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <FaSubway className="mt-1 text-blue-600" size={18} />
+                  <span>{house.nearbyMetro}</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <FaShoppingCart className="mt-1 text-blue-600" size={18} />
+                  <span>{house.nearbyMall}</span>
+                </li>
+              </ul>
+
+              <div>
+                <iframe
+                  src={`https://www.google.com/maps?q=${house.latitude},${house.longitude}&hl=en&z=16&output=embed`}
+                  width="100%"
+                  height="250"
+                  style={{ border: 0, borderRadius: '1.5rem' }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Nearby Map"
+                />
+              </div>
+            </div>
+          </div>
 
           {/* Action Buttons */}
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 mb-12">
