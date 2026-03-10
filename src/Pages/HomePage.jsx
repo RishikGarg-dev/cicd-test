@@ -43,7 +43,7 @@ export default function HomePage() {
       );
     }
 
-    if (propertyAge) {
+    if (propertyAge > 1) {
       results = results.filter((house) => {
         let age = house.propertyAge;
         
