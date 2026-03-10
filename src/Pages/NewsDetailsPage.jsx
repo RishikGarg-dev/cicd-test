@@ -149,134 +149,165 @@ export default function NewsDetailsPage() {
   const stripTags = (html) => (html ? html.replace(/<[^>]+>/g, "") : "");
 
   return (
-    <div className="min-h-screen bg-white pb-20">
-      <div className="max-w-3xl mx-auto px-6 pt-12">
+    <div className="min-h-screen bg-white pb-20 w-full overflow-x-hidden">
+      {/* Article Header */}
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 mt-12 mb-8">
         <button
           onClick={() => navigate(-1)}
-          className="text-blue-600 font-medium hover:underline mb-4 inline-block"
+          className="text-zinc-500 font-semibold tracking-wider text-sm hover:underline hover:text-zinc-800 transition-colors mb-8 inline-block"
         >
           ← Back
         </button>
 
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+        <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-zinc-800 leading-tight mb-6 tracking-tighter w-full">
           {article.title}
         </h1>
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
-          <div className="text-sm text-gray-500">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-6 pb-8 border-b border-zinc-100">
+          <div className="text-sm font-medium text-zinc-500 flex flex-wrap items-center gap-2">
             <a
               href={article.source?.url || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-gray-700 hover:underline"
+              className="text-zinc-800 font-bold hover:underline"
             >
               {article.source?.name || "Unknown source"}
             </a>
-            {" • "}
+            <span className="text-zinc-300">•</span>
             <span>{timeAgo(article.publishedAt)} </span>
-            <span className="text-gray-400">•</span>
-            <span className="ml-1">{formatDate(article.publishedAt)}</span>
-            {article.author ? <span className="hidden sm:inline"> • {article.author}</span> : null}
-            <span className="ml-2 text-gray-400">•</span>
-            <span className="ml-1 text-gray-600">{readMinutes} min read</span>
+            <span className="text-zinc-300">•</span>
+            <span>{formatDate(article.publishedAt)}</span>
+            {article.author ? (
+              <>
+                <span className="hidden sm:inline text-zinc-300">•</span>
+                <span className="hidden sm:inline">{article.author}</span>
+              </>
+            ) : null}
+            <span className="text-zinc-300">•</span>
+            <span className="text-zinc-600 bg-zinc-100 px-2 py-0.5 rounded-full text-xs font-bold tracking-wider uppercase">
+              {readMinutes} min read
+            </span>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-3">
             <button
               onClick={handleCopyLink}
-              className="px-3 py-1 border rounded text-sm hover:bg-gray-100"
+              className="px-5 py-2.5 border border-zinc-200 rounded-full text-sm font-bold text-zinc-700 hover:bg-zinc-50 shadow-sm transition-all flex items-center gap-2"
             >
-              {copyStatus || "Copy link"}
+              {copyStatus || "Copy Link"}
             </button>
 
             <button
               onClick={handleEmailShare}
-              className="px-3 py-1 border rounded text-sm hover:bg-gray-100"
+              className="px-5 py-2.5 border border-zinc-200 rounded-full text-sm font-bold text-zinc-700 hover:bg-zinc-50 shadow-sm transition-all"
             >
               Share
             </button>
 
             <button
               onClick={openOriginal}
-              className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
+              className="px-6 py-2.5 bg-zinc-900 text-white rounded-full text-sm font-bold hover:bg-zinc-800 shadow-sm transition-all"
             >
-              Open original
+              Open Original
             </button>
           </div>
         </div>
+      </div>
 
-        {openOriginalConfirm && (
-          <div className="mb-4 text-sm text-green-600">Opened original in new tab.</div>
-        )}
+      {openOriginalConfirm && (
+        <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 mb-4">
+          <div className="text-sm font-medium text-zinc-600 bg-zinc-100 px-4 py-2 rounded-lg inline-block">
+            Opened original article in a new tab.
+          </div>
+        </div>
+      )}
 
-        {article.image && (
+      {/* Hero Image */}
+      {article.image && (
+        <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 mb-16">
           <img
             src={article.image}
             alt={article.title}
-            className="w-full h-[420px] object-cover rounded-2xl mb-6 shadow"
+            className="w-full h-[50vh] md:h-[65vh] object-cover rounded-3xl shadow-sm"
           />
-        )}
+        </div>
+      )}
 
+      {/* Article Content */}
+      <article className="w-full max-w-7xl mx-auto px-6 sm:px-8 text-lg md:text-xl text-zinc-800 leading-relaxed font-medium mt-8">
         {article.description && (
-          <p className="text-lg text-gray-700 mb-6">{stripTags(article.description)}</p>
+          <p className="text-xl md:text-2xl text-zinc-600 font-medium mb-12 max-w-5xl leading-relaxed">
+            {stripTags(article.description)}
+          </p>
         )}
 
-        {/* Content: try splitting by paragraphs if available, otherwise show content */}
-        <article className="prose max-w-none text-gray-800 leading-relaxed">
+        <div className="max-w-5xl">
           {article.content
             ? article.content.split("\n\n").map((p, i) => (
-                <p key={i} className="mb-4">
+                <p key={i} className="mb-8">
                   {stripTags(p)}
                 </p>
               ))
-            : (article.description && (
-                <p>{stripTags(article.description)}</p>
-              ))}
-        </article>
-
-        <div className="mt-8 border-t pt-6">
-          <a
-            href={article.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 font-medium hover:underline"
-          >
-            Read original on {article.source?.name || "source"} →
-          </a>
+            : (
+                <p className="mb-8 italic text-zinc-500">
+                  Full content is not available via the API preview. Please read the original article to see the full story.
+                </p>
+              )}
         </div>
+      </article>
 
-        {/* Related articles */}
-        {related.length > 0 && (
-          <div className="mt-12">
-            <h3 className="text-2xl font-bold mb-4">Related articles</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {related.map((r, idx) => (
-                <Link
-                  key={idx}
-                  to={`/news/${idx}`}
-                  state={{ article: r }}
-                  className="block bg-white border border-gray-100 rounded-lg p-4 hover:shadow transition"
-                >
-                  <div className="flex gap-3">
-                    {r.image && (
-                      <img
-                        src={r.image}
-                        alt={r.title}
-                        className="w-24 h-16 object-cover rounded"
-                      />
-                    )}
-                    <div>
-                      <div className="text-sm text-gray-500">{r.source?.name} • {timeAgo(r.publishedAt)}</div>
-                      <div className="font-medium">{r.title}</div>
-                      <div className="text-sm text-gray-600 line-clamp-2">{stripTags(r.description)}</div>
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 mt-12 mb-16">
+        <hr className="border-t border-zinc-200 mb-8 max-w-5xl" />
+        <a
+          href={article.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-zinc-800 font-bold hover:text-zinc-500 underline underline-offset-4 decoration-zinc-200 hover:decoration-zinc-400 transition-all inline-flex items-center gap-2"
+        >
+          Read the rest of the story on {article.source?.name || "the original source"} 
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+
+      {/* Related articles */}
+      {related.length > 0 && (
+        <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 mt-16 bg-zinc-50/50 py-16 -mb-20">
+          <h3 className="text-3xl font-black text-zinc-800 mb-8 tracking-tight">More related news</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {related.map((r, idx) => (
+              <Link
+                key={idx}
+                to={`/news/${idx}`}
+                state={{ article: r }}
+                className="group bg-white border border-zinc-200 rounded-2xl p-5 hover:shadow-md transition-all duration-300 flex flex-col hover:-translate-y-1"
+              >
+                <div className="flex gap-4 mb-4">
+                  {r.image && (
+                    <img
+                      src={r.image}
+                      alt={r.title}
+                      className="w-24 h-24 object-cover rounded-xl shadow-sm border border-zinc-100"
+                    />
+                  )}
+                  <div className="flex-1">
+                    <div className="text-[10px] font-bold text-zinc-500 mb-2 uppercase tracking-wider">
+                      {r.source?.name} <span className="text-zinc-300 mx-1">•</span> {timeAgo(r.publishedAt)}
+                    </div>
+                    <div className="font-bold text-zinc-800 line-clamp-3 leading-snug group-hover:text-zinc-600 transition-colors">
+                      {r.title}
                     </div>
                   </div>
-                </Link>
-              ))}
-            </div>
+                </div>
+                <div className="text-sm text-zinc-500 line-clamp-2 mt-auto">
+                  {stripTags(r.description)}
+                </div>
+              </Link>
+            ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

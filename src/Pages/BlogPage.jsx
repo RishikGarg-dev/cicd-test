@@ -59,14 +59,14 @@ export default function BlogPage() {
     <div className="min-h-screen bg-white">
 
       {/* Hero */}
-      <div className="bg-white py-16 px-6 mb-8 border-b border-gray-100">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="bg-white pt-4 pb-8 px-4 sm:px-6 lg:px-8 border-b border-zinc-100 w-full xl:max-w-[100vw] overflow-x-hidden">
+        <div className="w-full text-left">
 
-          <h1 className="text-5xl font-extrabold text-gray-900 mb-4">
+          <h1 className="text-5xl md:text-6xl font-black text-zinc-800 mb-6 tracking-tight">
             Rental Insights & Tips
           </h1>
 
-          <p className="text-lg text-gray-600">
+          <p className="text-lg md:text-xl text-gray-600 font-medium max-w-3xl">
             Expert advice for tenants, leasing guides, and rental market trends.
           </p>
 
@@ -74,11 +74,12 @@ export default function BlogPage() {
       </div>
 
       {/* Refresh Button */}
-      <div className="max-w-7xl mx-auto px-6 mb-6 flex justify-end">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center bg-zinc-50/50 xl:max-w-[100vw] overflow-x-hidden">
+        <h2 className="text-2xl font-black text-zinc-800 m-0 p-0 tracking-tight">Latest Updates</h2>
 
         <button
           onClick={handleRefresh}
-          className="border border-black px-4 py-2 text-sm font-medium hover:bg-gray-100 transition"
+          className="border border-zinc-300 bg-white text-zinc-700 px-6 py-2.5 text-sm font-bold uppercase tracking-wider rounded-full hover:bg-zinc-100 transition-all duration-300 shadow-sm hover:shadow-md"
         >
           Refresh News
         </button>
@@ -89,16 +90,16 @@ export default function BlogPage() {
       <LatestRentalNews news={news} loading={loading} error={error} />
 
       {/* Static Blogs Heading */}
-      <div className="max-w-7xl mx-auto px-6 pb-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 pt-16 pb-8 bg-white xl:max-w-[100vw] overflow-x-hidden border-t border-zinc-100">
 
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">
+        <h2 className="text-3xl font-black text-zinc-800 mb-0 tracking-tight">
           Property Guides & Insights
         </h2>
 
       </div>
 
       {/* Static Blogs */}
-      <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-3 px-6 pb-16">
+      <div className="w-full grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-4 sm:px-6 lg:px-8 pb-20 bg-white xl:max-w-[100vw] overflow-x-hidden">
 
         {blogs.map((blog) => (
 
@@ -117,7 +118,7 @@ export default function BlogPage() {
 
             <div className="p-6 flex flex-col flex-1">
 
-              <h2 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2">
+              <h2 className="text-2xl font-bold text-zinc-800 mb-3 line-clamp-2 hover:text-zinc-600 transition-colors">
                 {blog.title}
               </h2>
 
@@ -127,7 +128,7 @@ export default function BlogPage() {
 
               <Link
                 to={`/blogs/${blog.id}`}
-                className="mt-6 text-blue-600 font-semibold hover:text-blue-800"
+                className="mt-6 text-zinc-800 font-bold text-sm uppercase tracking-wider hover:text-zinc-500 transition-colors inline-block pb-1"
               >
                 Read Article →
               </Link>
