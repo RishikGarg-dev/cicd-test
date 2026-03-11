@@ -5699,7 +5699,7 @@ Good parking space and peaceful locality`,
     "image": [
       "https://res.cloudinary.com/devenrsr9/image/upload/v1772718690/p-150-1-img_vl8pap.jpg"
     ]
-  }
+  },
   {
 
     id:151,
