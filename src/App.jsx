@@ -17,13 +17,13 @@ import ActiveRentals from './Pages/MyRentals';
 import BlogPage from './Pages/BlogPage';
 import ScheduleTour from './Pages/ScheduleTour';
 import BlogsDetailsPage from './Pages/BlogsDetailsPage';
-import SavedPropertiesPage from './Pages/SavedPropertiesPage';
-import { WishlistProvider } from './context/WishlistProvider';
+//import SavedPropertiesPage from './Pages/SavedPropertiesPage';
+//import { WishlistProvider } from './context/WishlistProvider';
 import SearchResults from './Pages/SearchResults';
 
 function App() {
   return (
-    <WishlistProvider>
+    
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -38,17 +38,16 @@ function App() {
           <Route path="/agent/:id" element={<AgentDetails />} />
           <Route path="/landlord" element={<Landlord />} />
           <Route path="/myrentals" element={<ActiveRentals />} />
-
           <Route path="/blogs" element={<BlogPage />} />
           <Route path="/blogs/:id" element={<BlogsDetailsPage />} />
           <Route path="/news/:id" element={<NewsDetailsPage />} />
           <Route path="/property/:id/schedule-tour" element={<ScheduleTour />} />
-          <Route path="/saved-properties" element={<SavedPropertiesPage />} />
+          {/* <Route path="/saved-properties" element={<SavedPropertiesPage />} /> */}
           <Route path="/search-results" element={<SearchResults />} />
         </Routes>
         <Footer />
       </BrowserRouter>
-    </WishlistProvider>
+    
   );
 }
 
