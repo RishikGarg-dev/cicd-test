@@ -19,6 +19,7 @@ import ScheduleTour from './Pages/ScheduleTour';
 import BlogsDetailsPage from './Pages/BlogsDetailsPage';
 import SavedPropertiesPage from './Pages/SavedPropertiesPage';
 import { WishlistProvider } from './context/WishlistProvider';
+import SearchResults from './Pages/SearchResults';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="/news/:id" element={<NewsDetailsPage />} />
           <Route path="/property/:id/schedule-tour" element={<ScheduleTour />} />
           <Route path="/saved-properties" element={<SavedPropertiesPage />} />
+          <Route path="/search-results" element={<SearchResults />} />
         </Routes>
         <Footer />
       </BrowserRouter>

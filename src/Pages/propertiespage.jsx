@@ -495,12 +495,16 @@ const PropertyPage = () => {
 
   <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 w-full">
     {filteredHouses.map((house) => (
-      <HouseCard
+      <div
         key={house.id}
-        house={{ ...house, discount: undefined }}
-        isFavorite={favorites.includes(house.id)}
-        toggleFavorite={toggleFavorite}
-      />
+        className="transition-all duration-200 rounded-lg border border-transparent hover:border-blue-300 hover:shadow-xl hover:scale-[1.02] hover:bg-blue-50"
+      >
+        <HouseCard
+          house={{ ...house, discount: undefined }}
+          isFavorite={favorites.includes(house.id)}
+          toggleFavorite={toggleFavorite}
+        />
+      </div>
     ))}
   </div>
 </section>

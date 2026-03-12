@@ -27,23 +27,8 @@ export default function HomePage() {
 
    const handleSubmit = (e) => {
     e.preventDefault();
-
-    const noFilters =
-    location.trim() === "" &&
-    !selectedPrice &&
-    !propertyAge &&
-    !propertyType;
-
-  if (noFilters) {
-    setFilteredHouses([]);    
-    setIsSearched(true);        
-    return;                    
-  }
-
+    
     let results = houses;
-
-    setShowSlider(false);  
-    setShowAgeSlider(false);
 
     if (location.trim() !== "") {
       results = results.filter((house) =>
@@ -54,23 +39,39 @@ export default function HomePage() {
     if (selectedPrice) {
       const [min, max] = selectedPrice.split("-").map(Number);
       results = results.filter(
-        (house) => house.price >= min && house.price <= max
+        (house) => Number(house.price) >= min && Number(house.price) <= max
       );
     }
 
     if (propertyAge) {
-      results = results.filter(
-        (house) => house.propertyAge <= propertyAge);
+      results = results.filter((house) => {
+        let age = house.propertyAge;
+        
+        if (typeof age === 'string') {
+          const match = age.match(/\d+/);
+          age = match ? parseInt(match[0]) : 0;
+        } else if (typeof age === 'number') {
+          age = age;
+        } else {
+          age = 0;
+        }
+        
+        return age <= propertyAge;
+      });
     }
 
     if (propertyType) {
-      results = results.filter(
-        (house) => house.propertyType.toLowerCase() === propertyType.toLowerCase()
-      );
+      results = results.filter((house) => {
+        const titleMatch = house.title?.toLowerCase().includes(propertyType.toLowerCase());
+        const typeMatch = house.propertyType?.toLowerCase().includes(propertyType.toLowerCase());
+        const bedsMatch = house.beds?.toString() === propertyType.charAt(0);
+        return titleMatch || typeMatch || bedsMatch;
+      });
     }
 
-    setFilteredHouses(results);
-    setIsSearched(true);
+    console.log('Filtered results:', results);
+    console.log('Navigating with state:', { filteredHouses: results, location, selectedPrice, propertyAge, propertyType });
+    navigate('/search-results', { state: { filteredHouses: results, location, selectedPrice, propertyAge, propertyType } });
   };
 
    return (
@@ -312,29 +313,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 🔎 Search Results */}
-      {isSearched && (
-        <section className="px-4 sm:px-6 py-10">
-          <h2 className="text-4xl font-bold mb-6 text-left">Search items</h2>
-          {filteredHouses.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 sm:gap-4 md:gap-5 px-2 sm:px-0">
-              {filteredHouses.map((house) => (
-                <HouseCard
-                  key={house.id}
-                  house={house}
-                  isFavorite={favorites.includes(house.id)}
-                  toggleFavorite={toggleFavorite}
-                />
-              ))}
-            </div>
-          ) : (
-            <p className="text-center text-gray-600">
-              No properties found for your search.
-            </p>
-          )}
-        </section>
-      )}
-    
+
       {/* Discount Listings */}
       <section className="px-4 sm:px-6 py-14 text-center">
         <h2 className="text-3xl text-red-500 font-bold">Discount Listings</h2>
