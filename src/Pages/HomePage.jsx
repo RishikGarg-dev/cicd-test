@@ -82,7 +82,7 @@ export default function HomePage() {
           <div className="absolute top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white w-full">
             <h1 className="text-3xl sm:text-5xl font-bold text-white text-center leading-snug">
               Find, Rent, and Manage <br />
-              Homes Swiftly
+              Homes Shiftly
             </h1>
             <p className="mt-6 text-l sm:text-xl md:text-xl font-medium drop-shadow-sm">
               Easy Steps to find your next home <br />
@@ -349,7 +349,7 @@ export default function HomePage() {
       <section className="bg-gray-50 py-10 px-4 sm:px-6">
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4">Trusted Properties</h2>
         <p className="max-w-2xl mx-auto text-center text-gray-600 text-sm sm:text-base mb-8">
-          Rent confidently. Swiftly connects you with genuine listings, flexible options,
+          Rent confidently. Shiftly connects you with genuine listings, flexible options,
           and rewards that make moving smarter.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-8xl mx-auto">
@@ -379,7 +379,7 @@ export default function HomePage() {
               Start Renting Out Your Property Today
             </h2>
             <p className="text-gray-700 mb-6 text-base sm:text-lg">
-              List your space on Swiftly — whether it's furnished or not — and get
+              List your space on Shiftly — whether it's furnished or not — and get
               <br className="hidden sm:inline-block" />
               matched with genuine, trustworthy tenants.
             </p>
