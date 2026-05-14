@@ -1,51 +1,59 @@
 name: React CI/CD to Docker Hub
 
-# 1. TRIGGERS: When should this run?
+# --- 1. TRIGGERS ---
 on:
   push:
-    branches: [ "main", "feature/*" ]
+    branches: 
+      - "main"
+      - "ci-pipeline"
   pull_request:
-    branches: [ "main" ]
-  workflow_dispatch: # Allows you to run the build manually from the UI
+    branches: 
+      - "main"
+  workflow_dispatch:
 
+# --- 2. JOBS ---
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest # Uses a fresh GitHub-hosted machine
+    runs-on: ubuntu-latest
 
     steps:
-      # 2. PREP: Get the code and set up Docker
+      # --- PREPARATION ---
       - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+        description: "Enables advanced build features like caching"
 
-      # 3. AUTH: Log into Docker Hub using Secrets
+      # --- AUTHENTICATION ---
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      # 4. METADATA: Determine the tags (e.g., 'main' becomes 'latest')
+      # --- METADATA & TAGGING LOGIC ---
       - name: Extract Metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKER_HUB_USERNAME }}/ament-react-app
+          images: rishikgarg/shiftly-demo
           tags: |
+            # Tags with the branch name (e.g., ci-pipeline)
             type=ref,event=branch
+            # Tags with the short git commit hash (e.g., sha-a1b2c3d)
             type=sha,format=short
+            # Tags as 'latest' ONLY when pushing to the main branch
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
 
-      # 5. BUILD & PUSH: Execute the Docker build and upload
-      - name: Build and Push
+      # --- BUILD AND PUSH ---
+      - name: Build and Push Image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          # Caching: Speeds up subsequent builds by storing layers
+          # Caching: Speeds up subsequent builds significantly
           cache-from: type=gha
           cache-to: type=gha,mode=max
