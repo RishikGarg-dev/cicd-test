@@ -103,8 +103,7 @@ The app will be running at `http://localhost:5173`.
 
 ---
 
-## 📁 Folder Structure
-
+## 📁 Folder Structur
 ```
 src/
 ├── assets/             # Images and media
